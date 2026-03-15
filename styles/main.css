@@ -1,0 +1,150 @@
+/* CSS Variables */
+
+:root {
+  --ink:       #0e1117;
+  --ink2:      #3a3f4a;
+  --ink3:      #6b7280;
+  --paper:     #faf9f6;
+  --paper2:    #f3f1ec;
+  --paper3:    #e8e5de;
+  --teal:      #0a7c5c;
+  --teal2:     #12a87a;
+  --teal3:     #d4f0e6;
+  --teal-dark: #085041;
+  --red:       #c0392b;
+  --red2:      #e74c3c;
+  --red3:      #fde8e6;
+  --blue:      #1a4f8a;
+  --blue3:     #dbeafe;
+  --amber:     #92540a;
+  --amber2:    #b96e12;
+  --amber3:    #fef3c7;
+  --navy:      #0e1117;
+  --primary-blue: #003d85;
+  --primary-blue2: #00326a;
+  --col-width: 760px;
+  --transition: 300ms ease;
+}
+
+
+
+
+html {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    background-color: var(--paper2);
+    color: var(--ink);
+    scroll-behavior: smooth;
+}
+
+
+
+/* Style properties for the navigation bar */
+.nav{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color: var(--paper);
+    border-bottom: 1px solid var(--paper3);
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-inner{
+    width: var(--col-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-brand{
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    color: var(--ink3);
+}
+
+.nav-links{
+    display: flex;
+    gap: 24px;
+}
+
+.nav-links a{
+    font-size: 12px;
+    text-decoration: none;
+    color: var(--ink3);
+    transition: color var(--transition);
+}
+
+.nav-links a:hover{
+    color: var(--primary-blue);
+}
+
+.logo{
+    height: 100px;
+}
+
+.nav-links li{
+    list-style: none;
+}
+
+.nav-pill{
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 3px;
+    background: var(--primary-blue);
+}
+
+/* header section */
+
+.header{
+    background-color: var(--navy);
+    padding: 72px 0px 56px;
+    position: relative;
+}
+
+.header-inner {
+    display: grid;
+    grid-template-columns: 1fr 260px;
+    gap: 48px;
+    align-items: start;
+}
+
+.header-kicker{
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    color: var(--teal);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.header-kicker::before{
+    content: '';
+    width: 28px;
+    height: 1px;
+    background-color: var(--teal);
+}
+
+.header-title{
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    line-height: 1.12;
+    font-weight: 700;
+    color: var(--paper)
+}
+
+.header em{
+    color: var(--teal2);
+}
+
+.header-body{
+    color: #9ca3af;
+    font-size: 14px;
+}
