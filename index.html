@@ -4,9 +4,15 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Iceland Demographics 2011–2021 | F21DV Group 1</title>
+    <link rel="icon" href="img/iceland-logo.svg">
+
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+
+    <!-- Load d3.js library -->
+     <script src="libs/d3/d3.v7.min.js"></script>
+
+    <!-- Load styles -->
     <link rel='stylesheet' type='text/css' media='screen' href='styles/main.css'>
-    <script src='scripts/main.js'></script>
 </head>
 
 <!-- Webpage body starts here-->
@@ -16,7 +22,7 @@
     <nav class="nav">
     <div class="nav-inner">
         <span class="nav-brand">
-            <a>
+            <a href="#header">
                 <img src="img/min-justice.png" class="logo"/>
             </a>
         </span>
@@ -36,15 +42,19 @@
     </nav>
     
      
-    <!-- Datastory header-->
-    <section class="header">
+    <!-- ================================ Datastory header ================================ -->
+    <section class="header" id="header">
         <div class="col header-inner">
             <div>
-                <div class="header-kicker">A Data Story · Government & Policy</div>
+                <div class="header-prefix">A Data Story · Government & Policy</div>
                 <h1 class="header-title">
                     Iceland's immigration <br>
                     surge is <em>sustaining <br>the workforce</em> - <br>
-                    but integration<br>is failling
+                    but integration<br>is failing
+
+                    <!-- Iceland's immigration surge 
+                    <br> is <em>sustaining the workforce</em> - <br>
+                    but integration is failing -->
                 </h1>
                 
                 <p class="header-body">
@@ -57,10 +67,449 @@
             </div>
             
             <!-- Summary statistics -->
-            <div class="key-stats">
+            <div class="key-stat">
+                <div class="stat-card teal-card">
+                    <div class="stat-num teal">+115%</div>
+                    <div class="stat-label">Immigrant population growth<br>2011 to 2021</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-num">35%</div>
+                    <div class="stat-label">Depenh<br>2011 to 2021</div>
+                </div>
+
+                <div class="stat-card red-card">
+                    <div class="stat-num red">-16.9pp</div>
+                    <div class="stat-label">Depenh<br>2011 to 2021</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-num">35%</div>
+                    <div class="stat-label">Depenh<br>2011 to 2021</div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================ Chapter 1 ========================================== -->
+    <section class="chapter a" id="chapter1">
+
+        <!-- Two column layout- Insighs (left) and Charts (right) -->
+        <div class="col chapter-grid">
+
+            <div class="insights">
+                <span class="ch-tag ch-tag-green">Chapter 01 · Population Shift</span>
                 
+                <h2 class="ch-head">Immigration is reshaping Iceland -
+                    <em>geopgraphically and demographically</em>
+                </h2>
+
+                <p class="ch-body">
+                    In 2011 most municipalities had and immigrant share below 8%.
+                    By 2021 the capital region and southwest show shares approaching 30%.
+                </p>
+
+                <p class="ch-body">
+                    Immigrants landed almost entirely in the 25-44 working age bands, which is
+                    the same categories where native numbers declined. The dependency ration held
+                    stable at 35% across both years.
+                </p>
+
+                <div class="callout teal">
+                    <p><strong>Click a region</strong> on the map tso see its age breakdown in the pyramid. Click an age bar on the pyramid to highlight where that age group's
+                        immigratns are most concentrated.
+                    </p>
+                </div>
+
+                <div class="bidir-badge blue">
+                    <span>Map</span> 
+                    <span class="bidir-arrow">⇄</span> 
+                    <span>Pyramid</span> 
+                    <span class="bidir-sub">bidirectional</span></p>
 
 
+                </div>
+            </div>
+
+
+            <div class="charts-section">
+                
+                <div class="charts-stack">
+
+                    <!-- Choropleth Chart-->
+                    <div class="chart-wrap">
+                        <div class="chart-head">
+                            <span class="chart-name">Immigrant Share % by Region - click to filter pyramid (Cholopleth Chart- Seyi)</span>
+
+                            <span class="chart-src">Background</span>
+                        </div>
+
+                        <div class="chart-body">
+
+                            <!-- Legend and toggle buttons -->
+                            <div class="chart-int">
+                                <div class="legend">
+                                Legend goes here
+                                </div>
+
+                                <div class="toggle-group" id="map-year-toggle">
+                                    <button class="toggle-btn active" data-year="2021">2021</button>
+                                    <button class="toggle-btn" data-year="2011">2011</button>
+                                </div>
+                            </div>
+
+
+                            <!-- Chart SVG goes in here -->
+                            <div class="choropleth-chart">
+
+
+                            </div>
+                            
+                        </div>
+                        
+                        
+
+                        <div class="chart-footer">
+                            <span>Click region to filter pyramid chart below</span>
+                            <span>Hover for immigrant share %</span>
+                            <span>Toggle 2011 / 2021</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Population Pyramid Chart -->
+                    <div class="chart-wrap">
+                        <div class="chart-head">
+                            <span class="chart-name" d="selected-municipality-label">Population Pyramid - All municipalities (Pyramid Chart - Seyi)</span>
+
+                            <span class="chart-src">Background</span>
+                        </div>
+
+                        <div class="chart-body">
+
+                            <!-- Legend and toggle buttons -->
+                            <div class="chart-int">
+                                <div class="legend">
+                                Legend goes here
+                                </div>
+
+                                <div class="toggle-group" id="map-year-toggle">
+                                    <button class="toggle-btn active" data-year="2021">2021</button>
+                                    <button class="toggle-btn" data-year="2011">2011</button>
+                                </div>
+                            </div>
+
+                            
+                            <!-- Chart SVG goes here -->
+                            <div class="pyramid-chart">
+
+
+                            </div>
+
+                        </div>
+                        
+                        
+
+                        <div class="chart-footer">
+                            <span>Click region to filter pyramid chart below</span>
+                            <span>Hover for immigrant share %</span>
+                            <span>Toggle 2011 / 2021</span>
+                        </div>
+
+                    </div>
+
+                </div>
+                
+            </div>
+            
+
+
+
+        </div>
+
+    </section> <!--==== Chapter 1 ends here ==== -->
+
+
+
+    <!-- ================================ Chapter 2 ========================================== -->
+     <section class="chapter b" id="chapter2">
+
+        <!-- Two column layout- Insighs (left) and Charts (right) -->
+        <div class="col chapter-grid">
+
+            <!-- Insights -->
+            <div class="insights">
+                <span class="ch-tag ch-tag-red">Chapter 02 · Employment collapse</span>
+                
+                <h2 class="ch-head red">In 2021, immigrants were
+                    <em>better employed.</em>
+                    By 2021, reverse became the case.
+                </h2>
+
+                <p class="ch-body">
+                    In 2011, immigrants were 7.6pp ahead of natives in employment. By 2021, they had fallen
+                    2.66pp behind: a complete reversal across ever age group and education level simultaneously.
+                </p>
+
+                <p class="ch-body">
+                    At some point during this decade, the employment rate of immigrants fell below that of natives. 
+                </p>
+
+                <div class="callout red">
+                    <p>
+                        When filtered to tertiary education, the gap widens to
+                        <strong> -16.9pp behind equally qualified natives,</strong> 
+                         exonerating education barrier as a possible cause for this disparity.
+                    </p>
+                </div>
+
+                <div class="bidir-badge red">
+                    <span>Slope chart</span> 
+                    <span class="bidir-arrow">⇄</span> 
+                    <span>Bar chart</span> 
+                    <span class="bidir-sub">bidirectional</span></p>
+
+
+                </div>
+            </div>
+
+            <!-- ========== Charts: Slope and Grouped bar ============= -->
+             <div class="charts-section">
+                
+                <div class="charts-stack">
+
+                    <!-- Slope Chart-->
+                    <div class="chart-wrap">
+                        <div class="chart-head">
+                            <span class="chart-name">Employment Rate - Immigrants vs Natives (Slope Chart) </span>
+
+                            <span class="chart-src">Labour</span>
+                        </div>
+
+                        <!-- Chart body -->
+                        <div class="chart-body">
+                            
+                            <!-- Legend and toggle buttons -->
+                            <div class="chart-int-filters">
+
+                                <div class="filter-group" id="level-toggle">
+                                    <button class="filter-btn active" data-edu="all-level">All education</button>
+                                    
+                                    <button class="filter-btn" data-edu="basic-level">Basic</button>
+
+                                    <button class="filter-btn" data-edu="secondary-level">Upper Secondary</button>
+
+                                    <button class="filter-btn" data-edu="tertiary-level">Tertiary</button>
+
+                                    <div class="legend">
+                                        Legend goes here
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Chart SVG goes here -->
+                            <div class="slope-chart">
+
+
+                            </div>
+
+                        </div>
+                        
+                        <!-- Chart footer -->
+                        <div class="chart-footer">
+                            <span>Filter updates bar chart below instantly</span>
+                            <span>Hover endpoints for exact rate</span>
+                            <span>Gap brackets show pp at each year</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- Grouped Bar Chart -->
+                    <div class="chart-wrap">
+                        <div class="chart-head">
+                            <span class="chart-name" d="selected-municipality-label">Employment Rate by Education Level- Immigrants vs Natives (Grouped Bar Chart)</span>
+
+                            <span class="chart-src">Labour</span>
+                        </div>
+
+                        <div class="chart-body">
+
+                            <!-- Legend and toggle buttons -->
+                            <div class="chart-int">
+                                <div class="legend">
+                                Legend goes here
+                                </div>
+
+                                <div class="toggle-group" id="bar-year-toggle">
+                                    <button class="toggle-btn active" data-year="2021">2021</button>
+                                    <button class="toggle-btn" data-year="2011">2011</button>
+                                </div>
+                            </div>
+
+
+                            <!-- Chart SVG goes here -->
+                            <div class="grouped-bar-chart">
+
+
+                            </div>
+                        </div>
+                        
+            
+                        <div class="chart-footer">
+                            <span>Click region to filter pyramid chart below</span>
+                            <span>Hover for immigrant share %</span>
+                            <span>Toggle 2011 / 2021</span>
+                        </div>
+
+                    </div>
+
+                </div>
+                
+            </div> <!-- Chart ends here-->
+
+        </div>
+        
+
+     </section>
+
+
+     <!-- ================================ Chapter 3 ========================================== -->
+     <section class="chapter a" id="chapter3">
+
+        <!-- Two column layout- Insighs (left) and Charts (right) -->
+        <div class="col chapter-grid">
+            <div class="insights">
+                <span class="ch-tag ch-tag-orange">Chapter 03 · Qualification Paradox</span>
+                
+                <h2 class="ch-head orange">Equal degrees,
+                    <em>unequal outcomes</em>
+                </h2>
+
+                <p class="ch-body">
+                    At basic education level, immigrants outperform natives by 11.3pp, indicating that they take any available work.
+                    However, at university level, an equally qualified immigrant is 16.9pp less likely to be employed. This is the case at every age group without exception.
+                </p>
+
+                <p class="ch-body">
+                    At some point during this decade, the employment rate of immigrants fell below that of natives. 
+                </p>
+
+                <div class="callout red">
+                    <p>
+                        Clicking an education 
+                        <strong> -16.9pp behind equally qualified natives,</strong> 
+                         exonerating education barrier as a possible cause for this disparity.
+                    </p>
+                </div>
+
+                <div class="bidir-badge red">
+                    <span>Slope chart</span> 
+                    <span class="bidir-arrow">⇄</span> 
+                    <span>Bar chart</span> 
+                    <span class="bidir-sub">bidirectional</span></p>
+
+
+                </div>
+            </div>
+
+
+            <!-- ========== Chart: Heatmap ============= -->
+             <div class="charts-section">
+                
+                <div class="charts-stack">
+
+                    <!-- Slope Chart-->
+                    <div class="chart-wrap">
+
+                        <!-- Chart header -->
+                        <div class="chart-head">
+                            <span class="chart-name">Employment Gap (immigrants - natives pp) by Education x Age Group (Heatmap Chart)</span>
+
+                            <span class="chart-src">Labour</span>
+                        </div>
+
+
+                        <!-- Chart Body -->
+                        <div class="chart-body">
+                            <!-- Legend and toggle buttons -->
+                            <div class="chart-int-filters">
+
+                                <div class="legend">
+                                    Legend goes here
+                                </div>
+                            </div>
+
+                            <div class="heatmap-chart">
+                            <!-- Chart SVG goes here -->
+
+
+                            </div>
+        
+                        </div>
+
+
+                        <div class="chart-footer">
+                            <span>Filter updates bar chart below instantly</span>
+                            <span>Hover endpoints for exact rate</span>
+                            <span>Gap brackets show pp at each year</span>
+                        </div>
+
+                    </div>
+
+                </div>
+                
+            </div> <!-- Chart ends here-->
+        </div>
+        
+
+     </section>
+    
+    
+    <!-- ====================== Policy Implication ================ -->
+    <section class="policy">
+        <div class="col policy-inner">
+            <div>
+                <div class="policy-prefix">Policy Implications</div>
+                <h2 class="policy-title">
+                    Iceland is importing talent it is <em>not fully using</em>
+
+                    <!-- Iceland's immigration surge 
+                    <br> is <em>sustaining the workforce</em> - <br>
+                    but integration is failing -->
+                </h2>
+                
+                <p class="policy-body">
+                    While the dependency ratio is stable today, the long-term cost of the structural barriers facing tertiary-educated immigrations would exceed the short-term demographic benefit, if not addressed. The data pinpoints where action is needed.
+                </p>
+            </div>
+            
+            <!-- Summary statistics -->
+            <div class="key-stat">
+                <div class="stat-card teal-card">
+                    <div class="stat-num teal">+115%</div>
+                    <div class="stat-label">Immigrant population growth<br>2011 to 2021</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-num">35%</div>
+                    <div class="stat-label">Depenh<br>2011 to 2021</div>
+                </div>
+
+                <div class="stat-card red-card">
+                    <div class="stat-num red">-16.9pp</div>
+                    <div class="stat-label">Depenh<br>2011 to 2021</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-num">35%</div>
+                    <div class="stat-label">Depenh<br>2011 to 2021</div>
+                </div>
 
             </div>
 
@@ -68,7 +517,27 @@
 
     </section>
     
+
+
+    <!-- ====================== Stats bar ================ -->
+    <section class="stats-bar">
+        <div class="col stats-bar-inner">
+
+
+
+
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ==== Load main.js script ========  -->
+    <script type="module" src='scripts/main.js'></script>
     
+
 </body>
 <!--Webpage body ends here-->
 

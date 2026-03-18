@@ -1,0 +1,145 @@
+Age_Group,Background,Year,Sex,Education,Population
+16-24,Immigrants,2011,Females,Basic education,913
+16-24,Immigrants,2011,Females,Tertiary education,115
+16-24,Immigrants,2011,Females,Upper secondary education,678
+16-24,Immigrants,2011,Males,Basic education,874
+16-24,Immigrants,2011,Males,Tertiary education,89
+16-24,Immigrants,2011,Males,Upper secondary education,527
+16-24,Immigrants,2021,Females,Basic education,1371
+16-24,Immigrants,2021,Females,Tertiary education,135
+16-24,Immigrants,2021,Females,Upper secondary education,1151
+16-24,Immigrants,2021,Males,Basic education,1717
+16-24,Immigrants,2021,Males,Tertiary education,98
+16-24,Immigrants,2021,Males,Upper secondary education,824
+16-24,Natives,2011,Females,Basic education,11012
+16-24,Natives,2011,Females,Tertiary education,525
+16-24,Natives,2011,Females,Upper secondary education,7191
+16-24,Natives,2011,Males,Basic education,13728
+16-24,Natives,2011,Males,Tertiary education,329
+16-24,Natives,2011,Males,Upper secondary education,6059
+16-24,Natives,2021,Females,Basic education,9422
+16-24,Natives,2021,Females,Tertiary education,655
+16-24,Natives,2021,Females,Upper secondary education,7502
+16-24,Natives,2021,Males,Basic education,12071
+16-24,Natives,2021,Males,Tertiary education,444
+16-24,Natives,2021,Males,Upper secondary education,6035
+25-34,Immigrants,2011,Females,Basic education,1010
+25-34,Immigrants,2011,Females,Tertiary education,1218
+25-34,Immigrants,2011,Females,Upper secondary education,1773
+25-34,Immigrants,2011,Males,Basic education,995
+25-34,Immigrants,2011,Males,Tertiary education,735
+25-34,Immigrants,2011,Males,Upper secondary education,1923
+25-34,Immigrants,2021,Females,Basic education,2099
+25-34,Immigrants,2021,Females,Tertiary education,2894
+25-34,Immigrants,2021,Females,Upper secondary education,2278
+25-34,Immigrants,2021,Males,Basic education,3820
+25-34,Immigrants,2021,Males,Tertiary education,2355
+25-34,Immigrants,2021,Males,Upper secondary education,2776
+25-34,Natives,2011,Females,Basic education,3596
+25-34,Natives,2011,Females,Tertiary education,7962
+25-34,Natives,2011,Females,Upper secondary education,5964
+25-34,Natives,2011,Males,Basic education,6386
+25-34,Natives,2011,Males,Tertiary education,4924
+25-34,Natives,2011,Males,Upper secondary education,7127
+25-34,Natives,2021,Females,Basic education,2846
+25-34,Natives,2021,Females,Tertiary education,9337
+25-34,Natives,2021,Females,Upper secondary education,6265
+25-34,Natives,2021,Males,Basic education,5903
+25-34,Natives,2021,Males,Tertiary education,5794
+25-34,Natives,2021,Males,Upper secondary education,8146
+35-44,Immigrants,2011,Females,Basic education,968
+35-44,Immigrants,2011,Females,Tertiary education,886
+35-44,Immigrants,2011,Females,Upper secondary education,973
+35-44,Immigrants,2011,Males,Basic education,879
+35-44,Immigrants,2011,Males,Tertiary education,586
+35-44,Immigrants,2011,Males,Upper secondary education,1280
+35-44,Immigrants,2021,Females,Basic education,1367
+35-44,Immigrants,2021,Females,Tertiary education,2390
+35-44,Immigrants,2021,Females,Upper secondary education,2033
+35-44,Immigrants,2021,Males,Basic education,2119
+35-44,Immigrants,2021,Males,Tertiary education,1892
+35-44,Immigrants,2021,Males,Upper secondary education,3321
+35-44,Natives,2011,Females,Basic education,3995
+35-44,Natives,2011,Females,Tertiary education,8848
+35-44,Natives,2011,Females,Upper secondary education,4848
+35-44,Natives,2011,Males,Basic education,5678
+35-44,Natives,2011,Males,Tertiary education,5666
+35-44,Natives,2011,Males,Upper secondary education,6736
+35-44,Natives,2021,Females,Basic education,2470
+35-44,Natives,2021,Females,Tertiary education,10970
+35-44,Natives,2021,Females,Upper secondary education,4324
+35-44,Natives,2021,Males,Basic education,4887
+35-44,Natives,2021,Males,Tertiary education,7143
+35-44,Natives,2021,Males,Upper secondary education,6315
+45-54,Immigrants,2011,Females,Basic education,827
+45-54,Immigrants,2011,Females,Tertiary education,452
+45-54,Immigrants,2011,Females,Upper secondary education,618
+45-54,Immigrants,2011,Males,Basic education,581
+45-54,Immigrants,2011,Males,Tertiary education,287
+45-54,Immigrants,2011,Males,Upper secondary education,781
+45-54,Immigrants,2021,Females,Basic education,1273
+45-54,Immigrants,2021,Females,Tertiary education,1189
+45-54,Immigrants,2021,Females,Upper secondary education,1410
+45-54,Immigrants,2021,Males,Basic education,1480
+45-54,Immigrants,2021,Males,Tertiary education,930
+45-54,Immigrants,2021,Males,Upper secondary education,2196
+45-54,Natives,2011,Females,Basic education,5953
+45-54,Natives,2011,Females,Tertiary education,7109
+45-54,Natives,2011,Females,Upper secondary education,6621
+45-54,Natives,2011,Males,Basic education,5468
+45-54,Natives,2011,Males,Tertiary education,4920
+45-54,Natives,2011,Males,Upper secondary education,9307
+45-54,Natives,2021,Females,Basic education,3502
+45-54,Natives,2021,Females,Tertiary education,9660
+45-54,Natives,2021,Females,Upper secondary education,4719
+45-54,Natives,2021,Males,Basic education,5014
+45-54,Natives,2021,Males,Tertiary education,6416
+45-54,Natives,2021,Males,Upper secondary education,6661
+55-64,Immigrants,2011,Females,Basic education,357
+55-64,Immigrants,2011,Females,Tertiary education,197
+55-64,Immigrants,2011,Females,Upper secondary education,268
+55-64,Immigrants,2011,Males,Basic education,247
+55-64,Immigrants,2011,Males,Tertiary education,194
+55-64,Immigrants,2011,Males,Upper secondary education,373
+55-64,Immigrants,2021,Females,Basic education,952
+55-64,Immigrants,2021,Females,Tertiary education,507
+55-64,Immigrants,2021,Females,Upper secondary education,661
+55-64,Immigrants,2021,Males,Basic education,747
+55-64,Immigrants,2021,Males,Tertiary education,375
+55-64,Immigrants,2021,Males,Upper secondary education,1053
+55-64,Natives,2011,Females,Basic education,7576
+55-64,Natives,2011,Females,Tertiary education,3934
+55-64,Natives,2011,Females,Upper secondary education,5083
+55-64,Natives,2011,Males,Basic education,4479
+55-64,Natives,2011,Males,Tertiary education,3975
+55-64,Natives,2011,Males,Upper secondary education,8485
+55-64,Natives,2021,Females,Basic education,5595
+55-64,Natives,2021,Females,Tertiary education,7178
+55-64,Natives,2021,Females,Upper secondary education,6276
+55-64,Natives,2021,Males,Basic education,4822
+55-64,Natives,2021,Males,Tertiary education,5191
+55-64,Natives,2021,Males,Upper secondary education,8923
+65 and over,Immigrants,2011,Females,Basic education,332
+65 and over,Immigrants,2011,Females,Tertiary education,115
+65 and over,Immigrants,2011,Females,Upper secondary education,219
+65 and over,Immigrants,2011,Males,Basic education,142
+65 and over,Immigrants,2011,Males,Tertiary education,83
+65 and over,Immigrants,2011,Males,Upper secondary education,139
+65 and over,Immigrants,2021,Females,Basic education,511
+65 and over,Immigrants,2021,Females,Tertiary education,283
+65 and over,Immigrants,2021,Females,Upper secondary education,384
+65 and over,Immigrants,2021,Males,Basic education,268
+65 and over,Immigrants,2021,Males,Tertiary education,231
+65 and over,Immigrants,2021,Males,Upper secondary education,365
+65 and over,Natives,2011,Females,Basic education,15366
+65 and over,Natives,2011,Females,Tertiary education,1548
+65 and over,Natives,2011,Females,Upper secondary education,4060
+65 and over,Natives,2011,Males,Basic education,6402
+65 and over,Natives,2011,Males,Tertiary education,2639
+65 and over,Natives,2011,Males,Upper secondary education,9237
+65 and over,Natives,2021,Females,Basic education,15457
+65 and over,Natives,2021,Females,Tertiary education,4649
+65 and over,Natives,2021,Females,Upper secondary education,6890
+65 and over,Natives,2021,Males,Basic education,6977
+65 and over,Natives,2021,Males,Tertiary education,5386
+65 and over,Natives,2021,Males,Upper secondary education,12779

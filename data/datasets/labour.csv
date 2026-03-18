@@ -1,0 +1,289 @@
+Age_Group,Employment_Status,Background,Education,Year,Sex,Population
+16-24,Employed,Immigrants,Basic education,2011,Females,664
+16-24,Employed,Immigrants,Basic education,2011,Males,592
+16-24,Employed,Immigrants,Basic education,2021,Females,718
+16-24,Employed,Immigrants,Basic education,2021,Males,953
+16-24,Employed,Immigrants,Tertiary education,2011,Females,70
+16-24,Employed,Immigrants,Tertiary education,2011,Males,58
+16-24,Employed,Immigrants,Tertiary education,2021,Females,80
+16-24,Employed,Immigrants,Tertiary education,2021,Males,54
+16-24,Employed,Immigrants,Upper secondary education,2011,Females,443
+16-24,Employed,Immigrants,Upper secondary education,2011,Males,319
+16-24,Employed,Immigrants,Upper secondary education,2021,Females,639
+16-24,Employed,Immigrants,Upper secondary education,2021,Males,442
+16-24,Employed,Natives,Basic education,2011,Females,6811
+16-24,Employed,Natives,Basic education,2011,Males,7357
+16-24,Employed,Natives,Basic education,2021,Females,5334
+16-24,Employed,Natives,Basic education,2021,Males,6529
+16-24,Employed,Natives,Tertiary education,2011,Females,406
+16-24,Employed,Natives,Tertiary education,2011,Males,228
+16-24,Employed,Natives,Tertiary education,2021,Females,546
+16-24,Employed,Natives,Tertiary education,2021,Males,354
+16-24,Employed,Natives,Upper secondary education,2011,Females,4981
+16-24,Employed,Natives,Upper secondary education,2011,Males,3801
+16-24,Employed,Natives,Upper secondary education,2021,Females,5647
+16-24,Employed,Natives,Upper secondary education,2021,Males,4215
+16-24,Not employed,Immigrants,Basic education,2011,Females,249
+16-24,Not employed,Immigrants,Basic education,2011,Males,282
+16-24,Not employed,Immigrants,Basic education,2021,Females,653
+16-24,Not employed,Immigrants,Basic education,2021,Males,764
+16-24,Not employed,Immigrants,Tertiary education,2011,Females,45
+16-24,Not employed,Immigrants,Tertiary education,2011,Males,31
+16-24,Not employed,Immigrants,Tertiary education,2021,Females,55
+16-24,Not employed,Immigrants,Tertiary education,2021,Males,44
+16-24,Not employed,Immigrants,Upper secondary education,2011,Females,235
+16-24,Not employed,Immigrants,Upper secondary education,2011,Males,208
+16-24,Not employed,Immigrants,Upper secondary education,2021,Females,512
+16-24,Not employed,Immigrants,Upper secondary education,2021,Males,382
+16-24,Not employed,Natives,Basic education,2011,Females,4201
+16-24,Not employed,Natives,Basic education,2011,Males,6371
+16-24,Not employed,Natives,Basic education,2021,Females,4088
+16-24,Not employed,Natives,Basic education,2021,Males,5542
+16-24,Not employed,Natives,Tertiary education,2011,Females,119
+16-24,Not employed,Natives,Tertiary education,2011,Males,101
+16-24,Not employed,Natives,Tertiary education,2021,Females,109
+16-24,Not employed,Natives,Tertiary education,2021,Males,90
+16-24,Not employed,Natives,Upper secondary education,2011,Females,2210
+16-24,Not employed,Natives,Upper secondary education,2011,Males,2258
+16-24,Not employed,Natives,Upper secondary education,2021,Females,1855
+16-24,Not employed,Natives,Upper secondary education,2021,Males,1820
+25-34,Employed,Immigrants,Basic education,2011,Females,775
+25-34,Employed,Immigrants,Basic education,2011,Males,775
+25-34,Employed,Immigrants,Basic education,2021,Females,1213
+25-34,Employed,Immigrants,Basic education,2021,Males,2419
+25-34,Employed,Immigrants,Tertiary education,2011,Females,962
+25-34,Employed,Immigrants,Tertiary education,2011,Males,619
+25-34,Employed,Immigrants,Tertiary education,2021,Females,1813
+25-34,Employed,Immigrants,Tertiary education,2021,Males,1531
+25-34,Employed,Immigrants,Upper secondary education,2011,Females,1342
+25-34,Employed,Immigrants,Upper secondary education,2011,Males,1552
+25-34,Employed,Immigrants,Upper secondary education,2021,Females,1398
+25-34,Employed,Immigrants,Upper secondary education,2021,Males,1835
+25-34,Employed,Natives,Basic education,2011,Females,2184
+25-34,Employed,Natives,Basic education,2011,Males,4746
+25-34,Employed,Natives,Basic education,2021,Females,1694
+25-34,Employed,Natives,Basic education,2021,Males,4265
+25-34,Employed,Natives,Tertiary education,2011,Females,6667
+25-34,Employed,Natives,Tertiary education,2011,Males,4328
+25-34,Employed,Natives,Tertiary education,2021,Females,8150
+25-34,Employed,Natives,Tertiary education,2021,Males,5234
+25-34,Employed,Natives,Upper secondary education,2011,Females,4050
+25-34,Employed,Natives,Upper secondary education,2011,Males,5716
+25-34,Employed,Natives,Upper secondary education,2021,Females,4710
+25-34,Employed,Natives,Upper secondary education,2021,Males,6778
+25-34,Not employed,Immigrants,Basic education,2011,Females,235
+25-34,Not employed,Immigrants,Basic education,2011,Males,220
+25-34,Not employed,Immigrants,Basic education,2021,Females,886
+25-34,Not employed,Immigrants,Basic education,2021,Males,1401
+25-34,Not employed,Immigrants,Tertiary education,2011,Females,256
+25-34,Not employed,Immigrants,Tertiary education,2011,Males,116
+25-34,Not employed,Immigrants,Tertiary education,2021,Females,1081
+25-34,Not employed,Immigrants,Tertiary education,2021,Males,824
+25-34,Not employed,Immigrants,Upper secondary education,2011,Females,431
+25-34,Not employed,Immigrants,Upper secondary education,2011,Males,371
+25-34,Not employed,Immigrants,Upper secondary education,2021,Females,880
+25-34,Not employed,Immigrants,Upper secondary education,2021,Males,941
+25-34,Not employed,Natives,Basic education,2011,Females,1412
+25-34,Not employed,Natives,Basic education,2011,Males,1640
+25-34,Not employed,Natives,Basic education,2021,Females,1152
+25-34,Not employed,Natives,Basic education,2021,Males,1638
+25-34,Not employed,Natives,Tertiary education,2011,Females,1295
+25-34,Not employed,Natives,Tertiary education,2011,Males,596
+25-34,Not employed,Natives,Tertiary education,2021,Females,1187
+25-34,Not employed,Natives,Tertiary education,2021,Males,560
+25-34,Not employed,Natives,Upper secondary education,2011,Females,1914
+25-34,Not employed,Natives,Upper secondary education,2011,Males,1411
+25-34,Not employed,Natives,Upper secondary education,2021,Females,1555
+25-34,Not employed,Natives,Upper secondary education,2021,Males,1368
+35-44,Employed,Immigrants,Basic education,2011,Females,767
+35-44,Employed,Immigrants,Basic education,2011,Males,735
+35-44,Employed,Immigrants,Basic education,2021,Females,913
+35-44,Employed,Immigrants,Basic education,2021,Males,1422
+35-44,Employed,Immigrants,Tertiary education,2011,Females,715
+35-44,Employed,Immigrants,Tertiary education,2011,Males,487
+35-44,Employed,Immigrants,Tertiary education,2021,Females,1664
+35-44,Employed,Immigrants,Tertiary education,2021,Males,1289
+35-44,Employed,Immigrants,Upper secondary education,2011,Females,774
+35-44,Employed,Immigrants,Upper secondary education,2011,Males,1027
+35-44,Employed,Immigrants,Upper secondary education,2021,Females,1409
+35-44,Employed,Immigrants,Upper secondary education,2021,Males,2324
+35-44,Employed,Natives,Basic education,2011,Females,2821
+35-44,Employed,Natives,Basic education,2011,Males,4599
+35-44,Employed,Natives,Basic education,2021,Females,1391
+35-44,Employed,Natives,Basic education,2021,Males,3587
+35-44,Employed,Natives,Tertiary education,2011,Females,7860
+35-44,Employed,Natives,Tertiary education,2011,Males,5286
+35-44,Employed,Natives,Tertiary education,2021,Females,9807
+35-44,Employed,Natives,Tertiary education,2021,Males,6606
+35-44,Employed,Natives,Upper secondary education,2011,Females,3763
+35-44,Employed,Natives,Upper secondary education,2011,Males,6032
+35-44,Employed,Natives,Upper secondary education,2021,Females,3136
+35-44,Employed,Natives,Upper secondary education,2021,Males,5371
+35-44,Not employed,Immigrants,Basic education,2011,Females,201
+35-44,Not employed,Immigrants,Basic education,2011,Males,144
+35-44,Not employed,Immigrants,Basic education,2021,Females,454
+35-44,Not employed,Immigrants,Basic education,2021,Males,697
+35-44,Not employed,Immigrants,Tertiary education,2011,Females,171
+35-44,Not employed,Immigrants,Tertiary education,2011,Males,99
+35-44,Not employed,Immigrants,Tertiary education,2021,Females,726
+35-44,Not employed,Immigrants,Tertiary education,2021,Males,603
+35-44,Not employed,Immigrants,Upper secondary education,2011,Females,199
+35-44,Not employed,Immigrants,Upper secondary education,2011,Males,253
+35-44,Not employed,Immigrants,Upper secondary education,2021,Females,624
+35-44,Not employed,Immigrants,Upper secondary education,2021,Males,997
+35-44,Not employed,Natives,Basic education,2011,Females,1174
+35-44,Not employed,Natives,Basic education,2011,Males,1079
+35-44,Not employed,Natives,Basic education,2021,Females,1079
+35-44,Not employed,Natives,Basic education,2021,Males,1300
+35-44,Not employed,Natives,Tertiary education,2011,Females,988
+35-44,Not employed,Natives,Tertiary education,2011,Males,380
+35-44,Not employed,Natives,Tertiary education,2021,Females,1163
+35-44,Not employed,Natives,Tertiary education,2021,Males,537
+35-44,Not employed,Natives,Upper secondary education,2011,Females,1085
+35-44,Not employed,Natives,Upper secondary education,2011,Males,704
+35-44,Not employed,Natives,Upper secondary education,2021,Females,1188
+35-44,Not employed,Natives,Upper secondary education,2021,Males,944
+45-54,Employed,Immigrants,Basic education,2011,Females,662
+45-54,Employed,Immigrants,Basic education,2011,Males,448
+45-54,Employed,Immigrants,Basic education,2021,Females,852
+45-54,Employed,Immigrants,Basic education,2021,Males,1018
+45-54,Employed,Immigrants,Tertiary education,2011,Females,371
+45-54,Employed,Immigrants,Tertiary education,2011,Males,228
+45-54,Employed,Immigrants,Tertiary education,2021,Females,867
+45-54,Employed,Immigrants,Tertiary education,2021,Males,635
+45-54,Employed,Immigrants,Upper secondary education,2011,Females,508
+45-54,Employed,Immigrants,Upper secondary education,2011,Males,614
+45-54,Employed,Immigrants,Upper secondary education,2021,Females,1000
+45-54,Employed,Immigrants,Upper secondary education,2021,Males,1518
+45-54,Employed,Natives,Basic education,2011,Females,4304
+45-54,Employed,Natives,Basic education,2011,Males,4245
+45-54,Employed,Natives,Basic education,2021,Females,2240
+45-54,Employed,Natives,Basic education,2021,Males,3759
+45-54,Employed,Natives,Tertiary education,2011,Females,6465
+45-54,Employed,Natives,Tertiary education,2011,Males,4508
+45-54,Employed,Natives,Tertiary education,2021,Females,8692
+45-54,Employed,Natives,Tertiary education,2021,Males,5852
+45-54,Employed,Natives,Upper secondary education,2011,Females,5555
+45-54,Employed,Natives,Upper secondary education,2011,Males,8270
+45-54,Employed,Natives,Upper secondary education,2021,Females,3685
+45-54,Employed,Natives,Upper secondary education,2021,Males,5855
+45-54,Not employed,Immigrants,Basic education,2011,Females,165
+45-54,Not employed,Immigrants,Basic education,2011,Males,133
+45-54,Not employed,Immigrants,Basic education,2021,Females,421
+45-54,Not employed,Immigrants,Basic education,2021,Males,462
+45-54,Not employed,Immigrants,Tertiary education,2011,Females,81
+45-54,Not employed,Immigrants,Tertiary education,2011,Males,59
+45-54,Not employed,Immigrants,Tertiary education,2021,Females,322
+45-54,Not employed,Immigrants,Tertiary education,2021,Males,295
+45-54,Not employed,Immigrants,Upper secondary education,2011,Females,110
+45-54,Not employed,Immigrants,Upper secondary education,2011,Males,167
+45-54,Not employed,Immigrants,Upper secondary education,2021,Females,410
+45-54,Not employed,Immigrants,Upper secondary education,2021,Males,678
+45-54,Not employed,Natives,Basic education,2011,Females,1649
+45-54,Not employed,Natives,Basic education,2011,Males,1223
+45-54,Not employed,Natives,Basic education,2021,Females,1262
+45-54,Not employed,Natives,Basic education,2021,Males,1255
+45-54,Not employed,Natives,Tertiary education,2011,Females,644
+45-54,Not employed,Natives,Tertiary education,2011,Males,412
+45-54,Not employed,Natives,Tertiary education,2021,Females,968
+45-54,Not employed,Natives,Tertiary education,2021,Males,564
+45-54,Not employed,Natives,Upper secondary education,2011,Females,1066
+45-54,Not employed,Natives,Upper secondary education,2011,Males,1037
+45-54,Not employed,Natives,Upper secondary education,2021,Females,1034
+45-54,Not employed,Natives,Upper secondary education,2021,Males,806
+55-64,Employed,Immigrants,Basic education,2011,Females,252
+55-64,Employed,Immigrants,Basic education,2011,Males,165
+55-64,Employed,Immigrants,Basic education,2021,Females,566
+55-64,Employed,Immigrants,Basic education,2021,Males,469
+55-64,Employed,Immigrants,Tertiary education,2011,Females,139
+55-64,Employed,Immigrants,Tertiary education,2011,Males,147
+55-64,Employed,Immigrants,Tertiary education,2021,Females,347
+55-64,Employed,Immigrants,Tertiary education,2021,Males,250
+55-64,Employed,Immigrants,Upper secondary education,2011,Females,198
+55-64,Employed,Immigrants,Upper secondary education,2011,Males,275
+55-64,Employed,Immigrants,Upper secondary education,2021,Females,386
+55-64,Employed,Immigrants,Upper secondary education,2021,Males,662
+55-64,Employed,Natives,Basic education,2011,Females,5258
+55-64,Employed,Natives,Basic education,2011,Males,3302
+55-64,Employed,Natives,Basic education,2021,Females,3340
+55-64,Employed,Natives,Basic education,2021,Males,3341
+55-64,Employed,Natives,Tertiary education,2011,Females,3431
+55-64,Employed,Natives,Tertiary education,2011,Males,3538
+55-64,Employed,Natives,Tertiary education,2021,Females,6163
+55-64,Employed,Natives,Tertiary education,2021,Males,4570
+55-64,Employed,Natives,Upper secondary education,2011,Females,4047
+55-64,Employed,Natives,Upper secondary education,2011,Males,7104
+55-64,Employed,Natives,Upper secondary education,2021,Females,4777
+55-64,Employed,Natives,Upper secondary education,2021,Males,7346
+55-64,Not employed,Immigrants,Basic education,2011,Females,105
+55-64,Not employed,Immigrants,Basic education,2011,Males,82
+55-64,Not employed,Immigrants,Basic education,2021,Females,386
+55-64,Not employed,Immigrants,Basic education,2021,Males,278
+55-64,Not employed,Immigrants,Tertiary education,2011,Females,58
+55-64,Not employed,Immigrants,Tertiary education,2011,Males,47
+55-64,Not employed,Immigrants,Tertiary education,2021,Females,160
+55-64,Not employed,Immigrants,Tertiary education,2021,Males,125
+55-64,Not employed,Immigrants,Upper secondary education,2011,Females,70
+55-64,Not employed,Immigrants,Upper secondary education,2011,Males,98
+55-64,Not employed,Immigrants,Upper secondary education,2021,Females,275
+55-64,Not employed,Immigrants,Upper secondary education,2021,Males,391
+55-64,Not employed,Natives,Basic education,2011,Females,2318
+55-64,Not employed,Natives,Basic education,2011,Males,1177
+55-64,Not employed,Natives,Basic education,2021,Females,2255
+55-64,Not employed,Natives,Basic education,2021,Males,1481
+55-64,Not employed,Natives,Tertiary education,2011,Females,503
+55-64,Not employed,Natives,Tertiary education,2011,Males,437
+55-64,Not employed,Natives,Tertiary education,2021,Females,1015
+55-64,Not employed,Natives,Tertiary education,2021,Males,621
+55-64,Not employed,Natives,Upper secondary education,2011,Females,1036
+55-64,Not employed,Natives,Upper secondary education,2011,Males,1381
+55-64,Not employed,Natives,Upper secondary education,2021,Females,1499
+55-64,Not employed,Natives,Upper secondary education,2021,Males,1577
+65 and over,Employed,Immigrants,Basic education,2011,Females,41
+65 and over,Employed,Immigrants,Basic education,2011,Males,36
+65 and over,Employed,Immigrants,Basic education,2021,Females,78
+65 and over,Employed,Immigrants,Basic education,2021,Males,75
+65 and over,Employed,Immigrants,Tertiary education,2011,Females,29
+65 and over,Employed,Immigrants,Tertiary education,2011,Males,33
+65 and over,Employed,Immigrants,Tertiary education,2021,Females,78
+65 and over,Employed,Immigrants,Tertiary education,2021,Males,91
+65 and over,Employed,Immigrants,Upper secondary education,2011,Females,28
+65 and over,Employed,Immigrants,Upper secondary education,2011,Males,32
+65 and over,Employed,Immigrants,Upper secondary education,2021,Females,81
+65 and over,Employed,Immigrants,Upper secondary education,2021,Males,117
+65 and over,Employed,Natives,Basic education,2011,Females,1648
+65 and over,Employed,Natives,Basic education,2011,Males,1327
+65 and over,Employed,Natives,Basic education,2021,Females,1607
+65 and over,Employed,Natives,Basic education,2021,Males,1643
+65 and over,Employed,Natives,Tertiary education,2011,Females,433
+65 and over,Employed,Natives,Tertiary education,2011,Males,1014
+65 and over,Employed,Natives,Tertiary education,2021,Females,1628
+65 and over,Employed,Natives,Tertiary education,2021,Males,2408
+65 and over,Employed,Natives,Upper secondary education,2011,Females,797
+65 and over,Employed,Natives,Upper secondary education,2011,Males,2420
+65 and over,Employed,Natives,Upper secondary education,2021,Females,1410
+65 and over,Employed,Natives,Upper secondary education,2021,Males,3771
+65 and over,Not employed,Immigrants,Basic education,2011,Females,291
+65 and over,Not employed,Immigrants,Basic education,2011,Males,106
+65 and over,Not employed,Immigrants,Basic education,2021,Females,433
+65 and over,Not employed,Immigrants,Basic education,2021,Males,193
+65 and over,Not employed,Immigrants,Tertiary education,2011,Females,86
+65 and over,Not employed,Immigrants,Tertiary education,2011,Males,50
+65 and over,Not employed,Immigrants,Tertiary education,2021,Females,205
+65 and over,Not employed,Immigrants,Tertiary education,2021,Males,140
+65 and over,Not employed,Immigrants,Upper secondary education,2011,Females,191
+65 and over,Not employed,Immigrants,Upper secondary education,2011,Males,107
+65 and over,Not employed,Immigrants,Upper secondary education,2021,Females,303
+65 and over,Not employed,Immigrants,Upper secondary education,2021,Males,248
+65 and over,Not employed,Natives,Basic education,2011,Females,13718
+65 and over,Not employed,Natives,Basic education,2011,Males,5075
+65 and over,Not employed,Natives,Basic education,2021,Females,13850
+65 and over,Not employed,Natives,Basic education,2021,Males,5334
+65 and over,Not employed,Natives,Tertiary education,2011,Females,1115
+65 and over,Not employed,Natives,Tertiary education,2011,Males,1625
+65 and over,Not employed,Natives,Tertiary education,2021,Females,3021
+65 and over,Not employed,Natives,Tertiary education,2021,Males,2978
+65 and over,Not employed,Natives,Upper secondary education,2011,Females,3263
+65 and over,Not employed,Natives,Upper secondary education,2011,Males,6817
+65 and over,Not employed,Natives,Upper secondary education,2021,Females,5480
+65 and over,Not employed,Natives,Upper secondary education,2021,Males,9008
