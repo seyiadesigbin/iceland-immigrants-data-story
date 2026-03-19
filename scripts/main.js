@@ -1,7 +1,13 @@
+'use strict';
+
+// Import required modules and functions
+// import 
+
 // Define directory of data files
 const backgroundDir = "data/datasets/background.csv"
 const educationDir = "data/datasets/education.csv"
 const labourDir = "data/datasets/labour.csv"
+const geoDir = "data/geo_json/iceland_municipalities.geojson"
 
 // Shared app state- to store selectons needed for bidirectional interactions
 const state = {
@@ -9,13 +15,17 @@ const state = {
     selectedMunicipality: null,
     selectedEducation: null,
     selectedAgeGroup: null
-}; 
+};
+
 
 // To store loaded data
 const appData = {
     background: [],
     education: [],
-    labour: []
+    labour: [],
+    municipalityShare: [],
+    employmentRates: [],
+    geo: null
 };
 
 /* Datasets row parse */
@@ -57,74 +67,31 @@ function parseLabourRow(d){
     };
 }
 
-/* Load all dataset
-Promise.all lets all three CSV files load at the same time
-*/
 
+/* Load all datasets required for the app */
 async function loadData(){
+
+    // Promise.all lets all files load at the same time
     const loadedData = await Promise.all([
         d3.csv(backgroundDir, parseBackgroundRow),
         d3.csv(educationDir, parseEducationRow),
-        d3.csv(labourDir, parseLabourRow)
+        d3.csv(labourDir, parseLabourRow),
+        d3.json(geoDir)
     ]);
 
     appData.background = loadedData[0];
     appData.education = loadedData[1];
     appData.labour = loadedData[2];
+    appData.geo = loadedData[3];
+
 }
-
-
-// Compute municipality share for Choropleth chart
-function calculateMunicipalityShare(){
-    const data = appData.background;
-
-    // Group the data by municipality + year
-    const grouped = d3.rollup(
-        data, 
-        (rows) => {
-            let total = 0;
-            let immigrants = 0;
-
-            rows.forEach((d) => {
-                total += d.population;
-
-                if (d.background == "Immigrants"){
-                    immigrants += d.population;
-                }
-            });
-
-            return {
-                totalPopulation: total,
-                immigrantPopulation: immigrants,
-                immigrantShare: (immigrants/total) * 100
-            };
-        },
-        (d) => d.municipality,
-        (d) => d.year
-    );
-
-
-    // Convert Map to array
-    const result = []
-
-    grouped.forEach((yearMap, municipality) => {
-        yearMap.forEach((values, year) => {
-            result.push({
-                municipality,
-                year,
-                ...values
-            });
-        });
-    });
-
-    return result;
-}
-
 
 
 
 // Verify loaded data
 function validateLoadedData(){
+
+    console.log("================= Validate Loaded Data =================")
     console.log("Background row count: ", appData.background.length);
     console.log("Education row count: ", appData.education.length);
     console.log("Labour row count: ", appData.labour.length);
@@ -132,29 +99,33 @@ function validateLoadedData(){
     console.log("Background sample row: ", appData.background[0]);
     console.log("Education sample row: ", appData.education[0]);
     console.log("Labour sample row: ", appData.labour[0]);
+
+    console.log("Geo Sample: ", appData.geo.features[0].properties);
+
+    console.log("\n\n================= End of Validation =================\n\n")
 }
 
 
 // Functions to draw the charts
-function renderChoropleth(){
+    function renderChoropleth(){
     console.log("Render choroleth chart")
-}
+    }
 
-function renderPyramid(){
+    function renderPyramid(){
     console.log("Render population pyramid");
-}
+    }
 
-function renderSlope(){
+    function renderSlope(){
     console.log("Render slope chart")
-}
+    }
 
-function renderGroupedBar(){
+    function renderGroupedBar(){
     console.log("Render grouped bar chart")
-}
+    }
 
-function renderHeatmap(){
+    function renderHeatmap(){
     console.log("Render heatmap")
-}
+    }
 
 
 // Render all charts
@@ -171,6 +142,18 @@ async function init(){
     try{
         await loadData();
         validateLoadedData();
+
+        appData.municipalityShare = calculateMunicipalityShare();
+        appData.employmentRates = calculateEmploymentRates();
+
+        // Test municipality share and employment rates functions
+        console.log("Municipality Share: ", appData.municipalityShare);
+        console.log("Employment Rates: ", appData.employmentRates);
+
+
+        console.log("Check: ", appData.employmentRates.filter(d => d.year === 2021 && d.background === "Immigrants" ))
+
+
         renderAll();
 
         console.log("App initialized successfully.");

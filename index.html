@@ -152,11 +152,11 @@
 
                             <!-- Legend and toggle buttons -->
                             <div class="chart-int">
-                                <div class="legend">
+                                <div id="choropleth-legend">
                                 Legend goes here
                                 </div>
 
-                                <div class="toggle-group" id="map-year-toggle">
+                                <div class="toggle-group" id="chapter1-year-toggle">
                                     <button class="toggle-btn active" data-year="2021">2021</button>
                                     <button class="toggle-btn" data-year="2011">2011</button>
                                 </div>
@@ -164,7 +164,7 @@
 
 
                             <!-- Chart SVG goes in here -->
-                            <div class="choropleth-chart">
+                            <div id="choropleth-chart">
 
 
                             </div>
@@ -194,19 +194,19 @@
 
                             <!-- Legend and toggle buttons -->
                             <div class="chart-int">
-                                <div class="legend">
+                                <div id="pyramid-legend">
                                 Legend goes here
                                 </div>
 
-                                <div class="toggle-group" id="map-year-toggle">
+                                <div class="toggle-group" id="pyramid-year-toggle">
                                     <button class="toggle-btn active" data-year="2021">2021</button>
                                     <button class="toggle-btn" data-year="2011">2011</button>
                                 </div>
                             </div>
 
-                            
+
                             <!-- Chart SVG goes here -->
-                            <div class="pyramid-chart">
+                            <div id="pyramid-chart">
 
 
                             </div>
@@ -306,14 +306,14 @@
 
                                     <button class="filter-btn" data-edu="tertiary-level">Tertiary</button>
 
-                                    <div class="legend">
+                                    <div id="slope-legend">
                                         Legend goes here
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Chart SVG goes here -->
-                            <div class="slope-chart">
+                            <div id="slope-chart">
 
 
                             </div>
@@ -342,11 +342,11 @@
 
                             <!-- Legend and toggle buttons -->
                             <div class="chart-int">
-                                <div class="legend">
+                                <div id="grouped-bar-legend">
                                 Legend goes here
                                 </div>
 
-                                <div class="toggle-group" id="bar-year-toggle">
+                                <div class="toggle-group" id="grouped-bar-year-toggle">
                                     <button class="toggle-btn active" data-year="2021">2021</button>
                                     <button class="toggle-btn" data-year="2011">2011</button>
                                 </div>
@@ -354,7 +354,7 @@
 
 
                             <!-- Chart SVG goes here -->
-                            <div class="grouped-bar-chart">
+                            <div id="grouped-bar-chart">
 
 
                             </div>
@@ -440,12 +440,12 @@
                             <!-- Legend and toggle buttons -->
                             <div class="chart-int-filters">
 
-                                <div class="legend">
+                                <div id="heatmap-legend">
                                     Legend goes here
                                 </div>
                             </div>
 
-                            <div class="heatmap-chart">
+                            <div id="heatmap-chart">
                             <!-- Chart SVG goes here -->
 
 
@@ -535,6 +535,8 @@
 
 
     <!-- ==== Load main.js script ========  -->
+    <script type="module" src="scripts/utils.js"></script>
+    <script type="module" src="scripts/choropleth.js"></script>
     <script type="module" src='scripts/main.js'></script>
     
 
