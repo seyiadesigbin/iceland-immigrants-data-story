@@ -28,7 +28,7 @@ const state = {
 };
 
 
-// To store loaded data
+// To store loaded data required for app to function
 const appData = {
     background: [],
     education: [],
@@ -121,28 +121,6 @@ function validateLoadedData(){
 }
 
 
-// // Functions to draw the charts
-// function renderChoropleth(){
-//     console.log("Render choroleth chart")
-//     }
-
-//     function renderPyramid(){
-//     console.log("Render population pyramid");
-//     }
-
-//     function renderSlope(){
-//     console.log("Render slope chart")
-//     }
-
-//     function renderGroupedBar(){
-//     console.log("Render grouped bar chart")
-//     }
-
-//     function renderHeatmap(){
-//     console.log("Render heatmap")
-//}
-
-
 // Create chart objects
 const choroplethChart = new ChoroplethChart(
     "#choropleth-chart",
@@ -156,17 +134,11 @@ const choroplethChart = new ChoroplethChart(
 // Render all charts
 function renderAll(){
 
-    choroplethChart.render(appData.municipalityShare, appData.geo, state)
+    choroplethChart.render(appData.municipalityShare, appData.geo, state) // render choropleth chart
 
-    // renderPyramid()
-    // renderSlope();
-    // renderGroupedBar();
-    // renderHeatmap();
 }
 
 // Start the application
-
-
 async function init(){
     try{
         await loadData();

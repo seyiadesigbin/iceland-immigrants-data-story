@@ -6,22 +6,63 @@ Assigned team member: Seyi
 */
 
 // Import required functions/variables
-import { palette } from './utils.js';
+import { palette, chartConfig } from './utils.js';
 
 export default class PyramidChart{
 
     // Attributes
-    width; height; margin;
-    width; height; margin;
-    svg; chart;
-    path;
-    colorScale;
+    width; height; margins;
+    svg; chartGroup;
 
-    constructor (container, legendContainer, width, height, margin){
+    data; state;
 
-        
+    constructor (container, legendContainer, width, height, margins) {
+
+        this.width = width;
+        this.height = height;
+        this.margins = margins;
+
+        this.svg = d3.select(container).append('svg')
+            .classed('viz pyramid-chart', true)
+            .attr('width', width)
+            .attr('height', height);
+
+        this.chartGroup = this.svg.append('g')
+            .attr('transform', `translate(${margins.left}, ${margins.top})`);
 
     }
 
+    /*
+    Chart scales
+    */
+    #updateScales() {
+
+    }
+
+    /*
+    Chart marks
+    */
+    #updateMarks(){
+        
+    }
+
+    /*
+    Legend logic goes in here 
+    */
+    #updateLegend(){
+        
+    }
+
+    // Render the chart
+    render (data = [], state = {}){
+        this.data = data;
+        this.state = state;
+
+        this.#updateScales();
+        this.#updateMarks();
+        this.#updateLegend();
+
+        return this;
+    }
 
 }

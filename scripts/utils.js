@@ -45,31 +45,56 @@ export const chartConfig = {
     choroplethChart: {
         width: chartWidth,
         height: 360,
-        margins: [12, 12, 12, 12]
+        margins: {
+            top: 12,
+            right: 12,
+            bottom: 12,
+            left: 12,
+        }
     },
 
     pyramidChart: {
         width: chartWidth,
         height: 340,
-        margins: [24, 48, 44, 48]
+        margins: {
+            top: 24,
+            right: 48,
+            bottom: 44,
+            left: 48,
+        }
     },
 
     slopeChart: {
         width: chartWidth,
         height: 260,
-        margins: [24, 56, 44, 56]
+        margins: {
+            top: 24,
+            right: 56,
+            bottom: 44,
+            left: 56,
+        }
     },
 
     groupedBarChart: {
         width: chartWidth,
         height: 300,
-        margins: [24, 56, 52, 56]
+        margins: {
+            top: 24,
+            right: 56,
+            bottom: 52,
+            left: 56,
+        }
     },
 
     heatmapChart: {
         width: 636,
         height: 250,
-        margins: [24, 40, 52, 88]
+        margins: {
+            top: 24,
+            right: 40,
+            bottom: 52,
+            left: 88,
+        }
     }
 };
 
