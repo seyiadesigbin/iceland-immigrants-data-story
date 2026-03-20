@@ -42,15 +42,36 @@ export default class ChoroplethChart{
 
     }
 
+    #getMunicipalityMatch(feature){
+        let name = normalizeName(feature.properties.shapeName);
+        return this.lookup.get(name) || null;
+    }
+
     #getMunicipalityFill(feature){
-        const name = normalizeName(feature.properties.shapeName);
-        const match = this.lookup.get(name);
+        let match = this.#getMunicipalityMatch(feature);
 
         return match ? this.colorScale(match.immigrantShare) : '#eee';
     }
 
+    #updateEvents(){
+        this.regionSelection
+            .on('mouseover', (event, d) => {
+                let match = this.#getMunicipalityMatch(d);
+                this.regionHover(event, d, match);
+            })
+            .on('mouseout', (event, d) => {
+                let match = this.#getMunicipalityMatch(d);
+                this.regionOut(event, d, match);
+            })
+            .on('click', (event, d) => {
+                let match = this.#getMunicipalityMatch(d);
+                this.regionClick(event, d, match);
+            });
+    }
+    
+
     // Function to render the base map
-    #renderMap(projection = d3.geoMercator){
+    #updateMap(projection = d3.geoMercator){
 
         this.projection = projection()
             .fitSize([this.width, this.height], this.regions);
@@ -66,12 +87,13 @@ export default class ChoroplethChart{
             .attr('fill', d => this.#getMunicipalityFill(d))
             .attr('stroke', palette.border)
             .attr('stroke-width', d => {
-                const name = normalizeName(d.properties.shapeName);
-                const isSelected = this.state.selectedMunicipality &&
+                let name = normalizeName(d.properties.shapeName);
+                let isSelected = this.state.selectedMunicipality &&
                     normalizeName(this.state.selectedMunicipality) === name;
 
                 return isSelected ? 2 : 0.8;
-            });
+            })
+            .style('cursor', 'pointer');
 
     }
 
@@ -84,6 +106,25 @@ export default class ChoroplethChart{
             .text('Immigrant share (%)');
     }
 
+    setRegionClick(f = () => {}){
+        this.regionClick = f;
+        this.#updateEvents();
+        return this;
+    }
+
+    setRegionHover(f = () => {}){
+        this.regionHover = f;
+        this.#updateEvents();
+        return this;
+    }
+
+    setRegionOut(f = () => {}){
+        this.regionOut = f;
+        this.#updateEvents();
+        return this;
+    }
+
+
     // Render the Choropleth map
     render(data = [], regions = null, state = {}){
         this.data = data;
@@ -91,7 +132,7 @@ export default class ChoroplethChart{
         this.state = state;
 
         // Filter the data to the selected year
-        const filtered = this.data.filter(d => d.year === this.state.year);
+        let filtered = this.data.filter(d => d.year === this.state.year);
 
         // Create lookup table for matching municipality names
         this.lookup = new Map(
@@ -104,7 +145,7 @@ export default class ChoroplethChart{
             .interpolator(t => d3.interpolateBlues(0.25 + t * 0.75));
 
         // Render the map and legend
-        this.#renderMap(d3.geoMercator);
+        this.#updateMap(d3.geoMercator);
         this.#renderLegend();
 
         return this;

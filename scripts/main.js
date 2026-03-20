@@ -121,7 +121,9 @@ function validateLoadedData(){
 }
 
 
-// Create chart objects
+/*
+Create chart objects 
+*/
 const choroplethChart = new ChoroplethChart(
     "#choropleth-chart",
     "#choropleth-legend",
@@ -130,6 +132,49 @@ const choroplethChart = new ChoroplethChart(
     chartConfig.choroplethChart.margins,
 );
 
+
+
+function handleChartNav(){
+    const tooltip = d3.select('body').append('div')
+    .classed('chart-tooltip', true)
+    .style('opacity', 0);
+
+function moveTooltip(event){
+    tooltip
+        .style('left', `${event.pageX + 12}px`)
+        .style('top', `${event.pageY - 28}px`);
+}
+
+function showRegionTooltip(event, feature, row){
+    let shareText = row ? `${row.immigrantShare.toFixed(1)}%` : 'No data';
+
+    tooltip
+        .style('opacity', 1)
+        .html(`
+            <strong>${feature.properties.shapeName}</strong>
+            <span>Year: ${state.year}</span>
+            <span>Immigrant share: ${shareText}</span>
+        `);
+
+    moveTooltip(event);
+}
+
+function hideRegionTooltip(){
+    tooltip.style('opacity', 0);
+}
+
+function selectMunicipality(event, feature, row){
+    state.selectedMunicipality = row ? row.municipality : feature.properties.shapeName;
+    renderAll();
+}
+
+function bindControls(){
+    d3.selectAll('#chapter1-year-toggle .toggle-btn, #pyramid-year-toggle .toggle-btn')
+        .on('cluck', function(){
+            setYear(+this.dataset.year);
+        });
+}
+}
 
 // Render all charts
 function renderAll(){
@@ -155,6 +200,7 @@ async function init(){
         console.log("Check: ", appData.employmentRates.filter(d => d.year === 2021 && d.background === "Immigrants" ))
 
 
+        handleChartNav();
         renderAll();
 
         console.log("App initialized successfully.");
