@@ -5,20 +5,35 @@ Assigned team member:
 
 */
 
+// Import required functions/variables
+import { palette, chartConfig } from './utils.js';
+
 export default class GroupedBarChart{
 
     // Attributes
-    width; height; margin;
-    width; height; margin;
-    svg; chart;
-    path;
-    colorScale;
+    width; height; margins;
+    svg; chartGroup;
 
-    constructor (container, legendContainer, width, height, margin){
+    data; state;
+
+    constructor (container, legendContainer, width, height, margins) {
+
+        this.width = width;
+        this.height = height;
+        this.margins = margins;
+
+        this.svg = d3.select(container).append('svg')
+            .classed('viz grouped-bar-chart', true)
+            .attr('width', width)
+            .attr('height', height);
+
+        this.chartGroup = this.svg.append('g')
+            .attr('transform', `translate(${margins.left}, ${margins.top})`);
+
+    }
 
         
 
-    }
 
 
 }

@@ -1,6 +1,8 @@
 /* CSS Variables */
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap');
+
 
 
 :root {
@@ -59,6 +61,11 @@
     --font-serif: 'Playfair Display', serif;
     --font-sans:  'DM Sans', sans-serif;
     --font-mono:  'DM Mono', monospace;
+
+    /* Fonts - Version 2*/
+    /* --font-serif: 'Instrument Serif', serif;
+    --font-sans: 'Manrope', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace; */
 
     --col-width: 900px;
     --transition: 300ms ease;
@@ -129,7 +136,7 @@ html {
 }
 
 .nav-pill{
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     color: white;
     padding: 4px 12px;
@@ -157,7 +164,7 @@ html {
 }
 
 .header-prefix{
-    font-family: 'DM Mono', monospace;
+    font-family: var(--font-mono);
     font-size: 10px;
     letter-spacing: .14em;
     display: flex;
@@ -177,7 +184,7 @@ html {
 
 
 .header-title{
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-size: 42px;
     line-height: 1.12;
     font-weight: 700;
@@ -219,7 +226,7 @@ html {
 }
 
 .stat-num{
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-size: 26px;
     font-weight: 700;
     color: #fff;
@@ -281,7 +288,7 @@ html {
 /* Chapter typography */
 
 .ch-head{
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-size: 21px;
     line-height: 1.25;
     font-weight: 600;
@@ -544,7 +551,7 @@ html {
 
 
 .policy-title{
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-serif);
     font-size: 28px;
     line-height: 1.12;
     font-weight: 700;

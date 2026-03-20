@@ -6,15 +6,16 @@ Assigned team member: Seyi
 */
 
 // Import required functions/variables
-import { normalizedName } from './utils.js';
+import { normalizeName, palette } from './utils.js';
 
 export default class ChoroplethChart{
 
     // Attributes
     width; height; margin;
-    svg; chart;
-    path;
-    colorScale;
+    svg; mapGroup;
+    projection; pathGen;
+    data; state; regions;
+    colorScale; lookup;
 
     constructor (container, legendContainer, width, height, margin){
 
@@ -22,61 +23,90 @@ export default class ChoroplethChart{
         this.height = height;
         this.margin = margin;
 
-        this.svg = d3.select(container)
-            .append("svg")
-            .classed("")
-            .attr("width", this.width)
-            .attr("height", this.height);
+        // Set up selection
+        this.svg = d3.select(container).append("svg")
+            .classed("viz choropleth", true)
+            .attr("width", width)
+            .attr("height", height);
 
-        this.chart = this.svg.append("g");
+        // Group to hold the map
+        this.mapGroup = this.svg.append('g')
+            .classed('map', true);
 
-        this.path = d3.geoPath();
+        // Legend container
+        this.legendContainer = d3.select(legendContainer);
 
-    }
+        // this.chart = this.svg.append("g");
 
-    #updateMap(){
-
-        this.chart.selectAll("path")
-            .data(this.geo.features)
-            .join("path")
-            .attr("d", this.path)
-            .attr("fill", d => {
-                let name = this.normalizeName(d.properties.shapeName);
-                let match = this.lookup.get(name);
-                return match ? this.colorScale(match.immigrantShare) : "#eee";
-            })
-            .attr("stroke", "#333");
+        // this.path = d3.geoPath();
 
     }
 
-    render(data, geo, state, normalizeName){
+    #getMunicipalityFill(feature){
+        const name = normalizeName(feature.properties.shapeName);
+        const match = this.lookup.get(name);
 
+        return match ? this.colorScale(match.immigrantShare) : '#eee';
+    }
+
+    // Function to render the base map
+    #renderMap(projection = d3.geoMercator){
+
+        this.projection = projection()
+            .fitSize([this.width, this.height], this.regions);
+
+        this.pathGen = d3.geoPath()
+            .projection(this.projection);
+
+        this.mapGroup.selectAll('path.regions')
+            .data(this.regions.features)
+            .join('path')
+            .classed('regions', true)
+            .attr('d', this.pathGen)
+            .attr('fill', d => this.#getMunicipalityFill(d))
+            .attr('stroke', palette.border)
+            .attr('stroke-width', d => {
+                const name = normalizeName(d.properties.shapeName);
+                const isSelected = this.state.selectedMunicipality &&
+                    normalizeName(this.state.selectedMunicipality) === name;
+
+                return isSelected ? 2 : 0.8;
+            });
+
+    }
+
+    // Function to render the Legend
+    #renderLegend(){
+        this.legendContainer.html('');
+
+        this.legendContainer.append('div')
+            .classed('legend', true)
+            .text('Immigrant share (%)');
+    }
+
+    // Render the Choropleth map
+    render(data = [], regions = null, state = {}){
         this.data = data;
-        this.geo = geo;
+        this.regions = regions;
         this.state = state;
-        this.normalizeName = normalizeName;
 
-        let filtered = this.data.filter(d => d.year === this.state.year);
+        // Filter the data to the selected year
+        const filtered = this.data.filter(d => d.year === this.state.year);
 
-        this.lookup = new Map();
-        filtered.forEach(d=>{
-            this.lookup.set(normalizeName(d.municipality), d);
-        });
+        // Create lookup table for matching municipality names
+        this.lookup = new Map(
+            filtered.map(d => [normalizeName(d.municipality), d])
+        );
 
-        let projection = d3.getoMercator()
-            .fitSize([this.width, this.height], this.geo);
-
-        this.path.projection(projection);
-
-        let max = d3.max(this.data, d=>d.immigrantShare);
-
+        // Create color scale
         this.colorScale = d3.scaleSequential()
-            .domain([0, max])
-            .interpolator(d3.interpolateBlues);
+            .domain([0, d3.max(this.data, d => d.immigrantShare)])
+            .interpolator(t => d3.interpolateBlues(0.25 + t * 0.75));
 
-        this.#updateMap()
+        // Render the map and legend
+        this.#renderMap(d3.geoMercator);
+        this.#renderLegend();
 
         return this;
     }
-
 }

@@ -5,6 +5,9 @@ Assigned team member:
 
 */
 
+// Import required functions/variables
+import { palette } from './utils.js';
+
 export default class SlopeChart{
 
     // Attributes

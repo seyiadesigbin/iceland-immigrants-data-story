@@ -5,6 +5,9 @@ Assigned team member: Ee Ern
 
 */
 
+// Import required functions/variables
+import { palette } from './utils.js';
+
 export default class HeatmapChart{
 
     // Attributes

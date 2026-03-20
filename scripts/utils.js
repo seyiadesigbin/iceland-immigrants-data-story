@@ -45,31 +45,31 @@ export const chartConfig = {
     choroplethChart: {
         width: chartWidth,
         height: 360,
-        margin: [12, 12, 12, 12]
+        margins: [12, 12, 12, 12]
     },
 
     pyramidChart: {
         width: chartWidth,
         height: 340,
-        margin: [24, 48, 44, 48]
+        margins: [24, 48, 44, 48]
     },
 
     slopeChart: {
         width: chartWidth,
         height: 260,
-        margin: [24, 56, 44, 56]
+        margins: [24, 56, 44, 56]
     },
 
     groupedBarChart: {
         width: chartWidth,
-        heigh: 300,
-        margin: [24, 56, 52, 56]
+        height: 300,
+        margins: [24, 56, 52, 56]
     },
 
     heatmapChart: {
         width: 636,
         height: 250,
-        margin: [24, 40, 52, 88]
+        margins: [24, 40, 52, 88]
     }
 };
 
@@ -100,14 +100,47 @@ export const palette = {
 };
 
 
+
+// Municipality name mapping geoJSON vs CSV
+const municipalityAliases = {
+    'hafnarfjardarbaer': 'hafnarfjardarkaupstadur',
+    'sandgerdisbaer': 'sudurnesjabaer',
+    'sveitarfelagid gardur': 'sudurnesjabaer',
+    'sveitarfelagid skagafjordu': 'sveitarfelagid skagafjordur',
+    'akureyrarkaupstadur': 'akureyrarbaer',
+    'seydisfjardarkaupstadur': 'mulathing',
+    'borgarfjardarhreppur': 'mulathing',
+    'breiddalshreppur': 'fjardabyggd',
+    'djupavogshreppur': 'mulathing',
+    'fljotsdalsherad': 'mulathing',
+    'sveitarfelagid hornafjordu': 'sveitarfelagid hornafjordur'
+};
+
+
 /*
 * Converts the municipality name in the dataset to the format in the geoJSON
 * @param {string} name - Municipality name from dataset
 */
 export function normalizeName(name){
 
-    let normalizedName = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    // let normalizedName = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
 
-    return normalizedName;
+    let normalizedName = name
+        .toLowerCase()
+        .trim()
+        .replaceAll('á', 'a')
+        .replaceAll('é', 'e')
+        .replaceAll('í', 'i')
+        .replaceAll('ó', 'o')
+        .replaceAll('ú', 'u')
+        .replaceAll('ý', 'y')
+        .replaceAll('ö', 'o')
+        .replaceAll('æ', 'ae')
+        .replaceAll('ð', 'd')
+        .replaceAll('þ', 'th')
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "");
+
+    return municipalityAliases[normalizedName] || normalizedName;
 }
 

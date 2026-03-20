@@ -1,17 +1,27 @@
 'use strict';
 
-// Import required modules and functions
-// import 
+// Import required functions
+import {calculateEmploymentRates, calculateMunicipalityShare} from './preprocess.js'
+import {chartConfig, values} from './utils.js'
+
+// Import the charts
+import ChoroplethChart from './ChoroplethChart.js'
+import GroupedBarChart from './GroupedBarChart.js'
+import HeatmapChart from './HeatmapChart.js'
+import PyramidChart from './PyramidChart.js'
+import SlopeChart from './SlopeChart.js'
 
 // Define directory of data files
 const backgroundDir = "data/datasets/background.csv"
 const educationDir = "data/datasets/education.csv"
 const labourDir = "data/datasets/labour.csv"
-const geoDir = "data/geo_json/iceland_municipalities.geojson"
+// const geoDir = "data/geo_json/iceland_municipalities.geojson"
+const geoDir = "data/json/geoBoundaries-ISL-ADM2.topo.json"
+
 
 // Shared app state- to store selectons needed for bidirectional interactions
 const state = {
-    year: "2021",
+    year: 2021,
     selectedMunicipality: null,
     selectedEducation: null,
     selectedAgeGroup: null
@@ -82,9 +92,14 @@ async function loadData(){
     appData.background = loadedData[0];
     appData.education = loadedData[1];
     appData.labour = loadedData[2];
-    appData.geo = loadedData[3];
+
+    // Convert topojson data
+    const topoData = loadedData[3]
+    appData.geo = topojson.feature(topoData, topoData.objects.ISLADM2gbOpen);
 
 }
+
+
 
 
 
@@ -106,45 +121,59 @@ function validateLoadedData(){
 }
 
 
-// Functions to draw the charts
-    function renderChoropleth(){
-    console.log("Render choroleth chart")
-    }
+// // Functions to draw the charts
+// function renderChoropleth(){
+//     console.log("Render choroleth chart")
+//     }
 
-    function renderPyramid(){
-    console.log("Render population pyramid");
-    }
+//     function renderPyramid(){
+//     console.log("Render population pyramid");
+//     }
 
-    function renderSlope(){
-    console.log("Render slope chart")
-    }
+//     function renderSlope(){
+//     console.log("Render slope chart")
+//     }
 
-    function renderGroupedBar(){
-    console.log("Render grouped bar chart")
-    }
+//     function renderGroupedBar(){
+//     console.log("Render grouped bar chart")
+//     }
 
-    function renderHeatmap(){
-    console.log("Render heatmap")
-    }
+//     function renderHeatmap(){
+//     console.log("Render heatmap")
+//}
+
+
+// Create chart objects
+const choroplethChart = new ChoroplethChart(
+    "#choropleth-chart",
+    "#choropleth-legend",
+    chartConfig.choroplethChart.width,
+    chartConfig.choroplethChart.height,
+    chartConfig.choroplethChart.margins,
+);
 
 
 // Render all charts
 function renderAll(){
-    renderChoropleth();
-    renderPyramid()
-    renderSlope();
-    renderGroupedBar();
-    renderHeatmap();
+
+    choroplethChart.render(appData.municipalityShare, appData.geo, state)
+
+    // renderPyramid()
+    // renderSlope();
+    // renderGroupedBar();
+    // renderHeatmap();
 }
 
 // Start the application
+
+
 async function init(){
     try{
         await loadData();
         validateLoadedData();
 
-        appData.municipalityShare = calculateMunicipalityShare();
-        appData.employmentRates = calculateEmploymentRates();
+        appData.municipalityShare = calculateMunicipalityShare(appData.background);
+        appData.employmentRates = calculateEmploymentRates(appData.labour);
 
         // Test municipality share and employment rates functions
         console.log("Municipality Share: ", appData.municipalityShare);

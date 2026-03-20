@@ -2,7 +2,7 @@
 
 // This js file handles the preprocessing of all data to be used for charting.
 
-import values from 'scripts/utils.js'
+import { values } from './utils.js'
 
 
 /*
@@ -10,7 +10,7 @@ import values from 'scripts/utils.js'
 * @param {object} backgroundData - Background statistics dataset
 * @param {object} values - Datasets attribute values
 */
-export function calculateMunicipalityShare(backgroundData, values){
+export function calculateMunicipalityShare(backgroundData){
 
     const data = backgroundData; // get background dataset
 
@@ -65,7 +65,7 @@ export function calculateMunicipalityShare(backgroundData, values){
 * @param {object} values - Datasets attribute values
 */
 
-export function calculateEmploymentRates(labourData, values){
+export function calculateEmploymentRates(labourData){
     
     const data = labourData; // get labour dataset
 
