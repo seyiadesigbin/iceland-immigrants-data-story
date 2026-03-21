@@ -510,7 +510,28 @@ html {
     color: var(--white);
 }
 
+/* Tooltip */
+.chart-tooltip{
+    position: absolute;
+    pointer-events: none;
+    background-color: var(--ink);
+    color: var(--white);
+    border-radius: 4px;
+    padding: 8px 10px;
+    box-shadow: 0 10px 24px var(--ink2);
+    font-size: 11px;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    transition: opacity 160ms ease;
+    z-index: 200;
+}
 
+.chart-tooltip strong{
+    font-size: 11.5px;
+    font-weight: 600;
+}
 
 
 

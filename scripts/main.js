@@ -134,8 +134,7 @@ const choroplethChart = new ChoroplethChart(
 
 
 
-function handleChartNav(){
-    const tooltip = d3.select('body').append('div')
+const tooltip = d3.select('body').append('div')
     .classed('chart-tooltip', true)
     .style('opacity', 0);
 
@@ -168,13 +167,28 @@ function selectMunicipality(event, feature, row){
     renderAll();
 }
 
+function syncYearToggleButtons(){
+    d3.selectAll('#chapter1-year-toggle .toggle-btn, #pyramid-year-toggle .toggle-btn')
+        .classed('active', false)
+        .filter(function(){
+            return +this.dataset.year === state.year;
+        })
+        .classed('active', true);
+}
+
+function setYear(year){
+    state.year = year;
+    syncYearToggleButtons();
+    renderAll();
+}
+
 function bindControls(){
     d3.selectAll('#chapter1-year-toggle .toggle-btn, #pyramid-year-toggle .toggle-btn')
-        .on('cluck', function(){
+        .on('click', function(){
             setYear(+this.dataset.year);
         });
 }
-}
+
 
 // Render all charts
 function renderAll(){
@@ -199,8 +213,13 @@ async function init(){
 
         console.log("Check: ", appData.employmentRates.filter(d => d.year === 2021 && d.background === "Immigrants" ))
 
-
-        handleChartNav();
+        choroplethChart
+            .setRegionHover(showRegionTooltip)
+            .setRegionOut(hideRegionTooltip)
+            .setRegionClick(selectMunicipality);
+            
+        bindControls();
+        syncYearToggleButtons();
         renderAll();
 
         console.log("App initialized successfully.");

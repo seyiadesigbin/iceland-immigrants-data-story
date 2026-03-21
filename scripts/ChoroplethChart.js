@@ -12,10 +12,11 @@ export default class ChoroplethChart{
 
     // Attributes
     width; height; margin;
-    svg; mapGroup;
+    svg; mapGroup; regionSelection;
     projection; pathGen;
     data; state; regions;
     colorScale; lookup;
+    isMapInitialised = false;
 
     constructor (container, legendContainer, width, height, margin){
 
@@ -54,6 +55,9 @@ export default class ChoroplethChart{
     }
 
     #updateEvents(){
+
+        if (!this.regionSelection) return;
+
         this.regionSelection
             .on('mouseover', (event, d) => {
                 let match = this.#getMunicipalityMatch(d);
@@ -70,31 +74,53 @@ export default class ChoroplethChart{
     }
     
 
-    // Function to render the base map
+    // Build the static map once, then only update visual properties afterwards.
     #updateMap(projection = d3.geoMercator){
 
-        this.projection = projection()
-            .fitSize([this.width, this.height], this.regions);
+        if (!this.isMapInitialised){
+                
+            this.projection = projection()
+                .fitSize([this.width, this.height], this.regions);
 
-        this.pathGen = d3.geoPath()
-            .projection(this.projection);
+            this.pathGen = d3.geoPath()
+                .projection(this.projection);
 
-        this.mapGroup.selectAll('path.regions')
-            .data(this.regions.features)
-            .join('path')
-            .classed('regions', true)
-            .attr('d', this.pathGen)
+            this.regionSelection = this.mapGroup.selectAll('path.regions')
+                .data(this.regions.features)
+                .join('path')
+                .classed('regions', true)
+                .attr('d', this.pathGen)
+                .attr('stroke', palette.border)
+                .style('cursor', 'pointer');
+
+            this.isMapInitialised = true;
+        }
+
+        // Refresh interactions after the selection has been updated.
+        this.#updateRegionStyles(); 
+        this.#updateEvents();
+
+    }
+
+    /*
+    Update only the visual components that change with filters or selections.
+    This optimizes the chart rather than rebuilding the geometry on every render.
+    */
+    #updateRegionStyles(){
+        const anim = 350;
+
+        this.regionSelection
+            .transition()
+            .duration(anim)
+            // .ease(d3.easeCubicInOut)
             .attr('fill', d => this.#getMunicipalityFill(d))
-            .attr('stroke', palette.border)
             .attr('stroke-width', d => {
                 let name = normalizeName(d.properties.shapeName);
                 let isSelected = this.state.selectedMunicipality &&
                     normalizeName(this.state.selectedMunicipality) === name;
 
                 return isSelected ? 2 : 0.8;
-            })
-            .style('cursor', 'pointer');
-
+            });
     }
 
     // Function to render the Legend
