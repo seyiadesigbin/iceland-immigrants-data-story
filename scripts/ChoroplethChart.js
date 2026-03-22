@@ -27,8 +27,8 @@ export default class ChoroplethChart{
         // Set up selection
         this.svg = d3.select(container).append("svg")
             .classed("viz choropleth", true)
-            .attr("width", width)
-            .attr("height", height);
+            .attr("width", this.width)
+            .attr("height", this.height);
 
         // Group to hold the map
         this.mapGroup = this.svg.append('g')

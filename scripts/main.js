@@ -122,7 +122,7 @@ function validateLoadedData(){
 
 
 /*
-Create chart objects 
+Create Choropleth chart object and interactivity functions
 */
 const choroplethChart = new ChoroplethChart(
     "#choropleth-chart",
@@ -190,11 +190,25 @@ function bindControls(){
 }
 
 
+
+/*
+Create Pyramid chart object and interactivity functions
+*/
+const pyramidChart = new PyramidChart(
+    "#pyramid-chart",
+    "#pyramid-legend",
+    chartConfig.pyramidChart.width,
+    chartConfig.pyramidChart.height,
+    chartConfig.pyramidChart.margins,
+);
+
+
+
 // Render all charts
 function renderAll(){
 
     choroplethChart.render(appData.municipalityShare, appData.geo, state) // render choropleth chart
-
+    pyramidChart.render(appData.background, state);
 }
 
 // Start the application

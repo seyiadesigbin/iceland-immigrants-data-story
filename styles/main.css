@@ -463,10 +463,11 @@ html {
     margin-bottom: 8px;;
 }
 
-.filter-group{
+/* .filter-group{
     /* display: flex;
-    gap: 5px; */
+    gap: 5px;
 }
+*/
 
 .filter-btn{
     font-family: var(--font-sans);
