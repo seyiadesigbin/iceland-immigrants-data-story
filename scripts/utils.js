@@ -82,7 +82,7 @@ export const chartConfig = {
             top: 24,
             right: 56,
             bottom: 52,
-            left: 56,
+            left: 80,
         }
     },
 
@@ -120,7 +120,7 @@ export const palette = {
 
     ink: '#111827',
     muted: '#6b7280',
-    border: '#59595c'
+    border: '#717174'
 
 };
 

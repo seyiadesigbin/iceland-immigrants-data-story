@@ -443,6 +443,44 @@ html {
 }
 
 
+/* Legend styling starts here */
+.legend{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 8px;
+    margin-left: 20px;
+}
+
+.legend-item{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: 12px;
+    font-size: 11px;
+    color: var(--ink2);
+}
+
+.legend-swatch{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.legend-label{
+    display: inline-block;
+}
+
+.axis-title{
+    font-family: var(--font-sans);
+    font-size: 13px;
+}
+
+/* Legend styling ends here */
+
 /* Interactivity Controls */
 
 .chart-int{
@@ -455,13 +493,8 @@ html {
     display: flex;
 }
 
-.legend{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-bottom: 8px;;
-}
+
+
 
 /* .filter-group{
     /* display: flex;

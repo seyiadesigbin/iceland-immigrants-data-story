@@ -122,7 +122,7 @@ function validateLoadedData(){
 
 
 /*
-Create Choropleth chart object and interactivity functions
+Create Choropleth chart object and interactivity functions starts here
 */
 const choroplethChart = new ChoroplethChart(
     "#choropleth-chart",
@@ -162,7 +162,16 @@ function hideRegionTooltip(){
 }
 
 function selectMunicipality(event, feature, row){
-    state.selectedMunicipality = row ? row.municipality : feature.properties.shapeName;
+    let municipalityName = row ? row.municipality : feature.properties.shapeName;
+
+    state.selectedMunicipality = 
+        state.selectedMunicipality === municipalityName ? null : municipalityName;
+
+    renderAll();
+}
+
+function clearMunicipalitySelection(){
+    state.selectedMunicipality = null;
     renderAll();
 }
 
@@ -197,6 +206,10 @@ function updateChapter1DetailTitle(){
     d3.select('#chapter1-detail-title').text(titleText);
 }
 
+
+/*
+Create Choropleth chart object and interactivity functions ends here
+*/
 
 
 // /*
@@ -276,7 +289,8 @@ async function init(){
         choroplethChart
             .setRegionHover(showRegionTooltip)
             .setRegionOut(hideRegionTooltip)
-            .setRegionClick(selectMunicipality);
+            .setRegionClick(selectMunicipality)
+            .setMapBackgroundClick(clearMunicipalitySelection);
 
         chapter1GroupBarChart
             .setBarHover((event, d) => showAgeGrowthTooltip(event, d))

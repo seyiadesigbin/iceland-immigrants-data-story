@@ -12,11 +12,13 @@ export default class ChoroplethChart{
 
     // Attributes
     width; height; margin;
-    svg; mapGroup; regionSelection;
+    svg; mapGroup; regionSelection; backgroundRect;
     projection; pathGen;
     data; state; regions;
     colorScale; lookup;
     isMapInitialised = false;
+
+    mapBackgroundClick = () => {};
 
     constructor (container, legendContainer, width, height, margin){
 
@@ -29,6 +31,17 @@ export default class ChoroplethChart{
             .classed("viz choropleth", true)
             .attr("width", this.width)
             .attr("height", this.height);
+
+        // Transparent background to catch clicks outside municipalities
+        this.backgroundRect = this.svg.append('rect')
+            .classed('map-background', true)
+            .attr('width', this.width)
+            .attr('height', this.height)
+            .attr('fill', 'transparent')
+            .style('pointer-events', 'all')
+            .on('click', (event) => {
+                this.mapBackgroundClick(event);
+            });
 
         // Group to hold the map
         this.mapGroup = this.svg.append('g')
@@ -68,6 +81,10 @@ export default class ChoroplethChart{
                 this.regionOut(event, d, match);
             })
             .on('click', (event, d) => {
+
+                // Prevent region clicks causing the background to clear.
+                event.stopPropagation();
+
                 let match = this.#getMunicipalityMatch(d);
                 this.regionClick(event, d, match);
             });
@@ -109,10 +126,22 @@ export default class ChoroplethChart{
     #updateRegionStyles(){
         const anim = 350;
 
+        // this.regionSelection
+        //     .transition()
+        //     .duration(anim)
+        //     // .ease(d3.easeCubicInOut)
+        //     .attr('fill', d => this.#getMunicipalityFill(d))
+        //     .attr('stroke-width', d => {
+        //         let name = normalizeName(d.properties.shapeName);
+        //         let isSelected = this.state.selectedMunicipality &&
+        //             normalizeName(this.state.selectedMunicipality) === name;
+
+        //         return isSelected ? 2 : 0.8;
+        //     });
+
         this.regionSelection
             .transition()
             .duration(anim)
-            // .ease(d3.easeCubicInOut)
             .attr('fill', d => this.#getMunicipalityFill(d))
             .attr('stroke-width', d => {
                 let name = normalizeName(d.properties.shapeName);
@@ -120,6 +149,17 @@ export default class ChoroplethChart{
                     normalizeName(this.state.selectedMunicipality) === name;
 
                 return isSelected ? 2 : 0.8;
+            })
+            .attr('opacity', d => {
+                // When nothing is selected, show all municipalities equally.
+                if (!this.state.selectedMunicipality) return 1;
+
+                let name = normalizeName(d.properties.shapeName);
+                let isSelected =
+                    normalizeName(this.state.selectedMunicipality) === name;
+
+                // Fade non-selected municipalities so the active one stands out.
+                return isSelected ? 1 : 0.35;
             });
     }
 
@@ -147,6 +187,11 @@ export default class ChoroplethChart{
     setRegionOut(f = () => {}){
         this.regionOut = f;
         this.#updateEvents();
+        return this;
+    }
+
+    setMapBackgroundClick(f = () => {}){
+        this.mapBackgroundClick = f;
         return this;
     }
 

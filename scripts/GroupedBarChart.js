@@ -54,13 +54,16 @@ export default class GroupedBarChart{
             .attr('transform', `translate(${this.width/2}, ${this.height})`)
             .style('text-anchor', 'middle')
             .attr('dy', -5)
-            .text('Age Group');
+            .text('Age Group')
+            .classed('axis-title', true);
 
         this.labelY = this.svg.append('text')
             .attr('transform', `translate(10, ${this.margins.top}) rotate(-90)`)
             .style('text-anchor', 'end')
-            .attr('dy', 15)
-            .text('Population Growth (%)');
+            .attr('dy', 10)
+            .attr('dx', -50)
+            .text('Population Change')
+            .classed('axis-title', true);
 
         this.title = this.svg.append('text')
             .classed('title', true)
