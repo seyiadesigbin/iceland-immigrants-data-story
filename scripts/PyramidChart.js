@@ -127,6 +127,11 @@ export default class PyramidChart{
         const chartHeight = this.height - this.margins.top - this.margins.bottom;
         const maxValue = d3.max(this.barData, d => d.absValue) || 0;
 
+        // let maxValue = d3.max(
+        //     this.data.filter(d => d.background === values.background.immigrants),
+        //     d => d.population
+        // ) || 0;
+
         this.scaleX = d3.scaleLinear()
             .domain([-maxValue, maxValue])
             .range([0, chartWidth])
@@ -135,7 +140,7 @@ export default class PyramidChart{
         this.scaleY = d3.scaleBand()
             .domain(this.ageData.map(d => d.ageGroup))
             .range([chartHeight, 0])
-            .padding(0.16);
+            .padding(0.1);
     }
 
     // Refresh bar interactions after the join
@@ -187,7 +192,7 @@ export default class PyramidChart{
         this.bars.selectAll('title')
             .data(d => [d])
             .join('title')
-            .text(d => `${d.ageGroup} . ${d.sex}: ${this.axisFormat(d.absVali)}`);
+            .text(d => `${d.ageGroup} | ${d.sex}: ${this.axisFormat(d.absValue)}`);
 
         this.#updateEvents();
         
