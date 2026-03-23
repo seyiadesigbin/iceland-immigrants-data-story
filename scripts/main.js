@@ -133,7 +133,6 @@ const choroplethChart = new ChoroplethChart(
 );
 
 
-
 const tooltip = d3.select('body').append('div')
     .classed('chart-tooltip', true)
     .style('opacity', 0);
@@ -168,7 +167,7 @@ function selectMunicipality(event, feature, row){
 }
 
 function syncYearToggleButtons(){
-    d3.selectAll('#chapter1-year-toggle .toggle-btn, #pyramid-year-toggle .toggle-btn')
+    d3.selectAll('#chapter1-year-toggle .toggle-btn')
         .classed('active', false)
         .filter(function(){
             return +this.dataset.year === state.year;
@@ -183,24 +182,66 @@ function setYear(year){
 }
 
 function bindControls(){
-    d3.selectAll('#chapter1-year-toggle .toggle-btn, #pyramid-year-toggle .toggle-btn')
+    d3.selectAll('#chapter1-year-toggle .toggle-btn')
         .on('click', function(){
             setYear(+this.dataset.year);
         });
 }
 
+// Update Chapter 1 chart title
+function updateChapter1DetailTitle(){
+    let titleText = state.selectedMunicipality
+        ? `Population Growth by Age Group - ${state.selectedMunicipality}`
+        : `Population Growth by Age Group - All municipalities`;
+
+    d3.select('#chapter1-detail-title').text(titleText);
+}
 
 
-/*
-Create Pyramid chart object and interactivity functions
-*/
-const pyramidChart = new PyramidChart(
-    "#pyramid-chart",
-    "#pyramid-legend",
-    chartConfig.pyramidChart.width,
-    chartConfig.pyramidChart.height,
-    chartConfig.pyramidChart.margins,
+
+// /*
+// Create Pyramid chart object and interactivity functions
+// */
+// const pyramidChart = new PyramidChart(
+//     "#pyramid-chart",
+//     "#pyramid-legend",
+//     chartConfig.pyramidChart.width,
+//     chartConfig.pyramidChart.height,
+//     chartConfig.pyramidChart.margins,
+// );
+
+
+
+// Create Chapter1 Grouped bar chart object 
+const chapter1GroupBarChart = new GroupedBarChart (
+    "#chp1-grouped-bar-chart",
+    "#chp1-groupedbar-legend",
+    chartConfig.groupedBarChart.width,
+    chartConfig.groupedBarChart.height,
+    chartConfig.groupedBarChart.margins,
 );
+
+// Tooltip callback
+function showAgeGrowthTooltip(event, d){
+    let growthText = d.value === null ? 'n/a (2021 baseline = 0' : `${d.value.toFixed(1)}%`;
+
+    tooltip
+        .style('opactity', 1)
+        .html(`
+            <strong>${d.ageGroup}</strong>
+            <span>${d.background}</span>
+            <span>2011 population: ${d3.format(',')(d.startValue)}</span>
+            <span>2021 population: ${d3.format(',')(d.endValue)}</span>
+            <span>Growth: ${growthText}</span> 
+        `);
+
+    moveTooltip(event);
+}
+
+function selectedAgeGroup(event, d){
+    state.selectedAgeGroup = state.selectedAgeGroup === d.ageGroup ? null : d.ageGroup;
+    renderAll();
+}
 
 
 
@@ -208,7 +249,12 @@ const pyramidChart = new PyramidChart(
 function renderAll(){
 
     choroplethChart.render(appData.municipalityShare, appData.geo, state) // render choropleth chart
-    pyramidChart.render(appData.background, state);
+    chapter1GroupBarChart.render(appData.background, state);
+
+    // pyramidChart.render(appData.background, state);
+
+    updateChapter1DetailTitle();
+
 }
 
 // Start the application
@@ -231,6 +277,11 @@ async function init(){
             .setRegionHover(showRegionTooltip)
             .setRegionOut(hideRegionTooltip)
             .setRegionClick(selectMunicipality);
+
+        chapter1GroupBarChart
+            .setBarHover((event, d) => showAgeGrowthTooltip(event, d))
+            .setBarOut(hideRegionTooltip)
+            .setBarClick(selectedAgeGroup);
             
         bindControls();
         syncYearToggleButtons();

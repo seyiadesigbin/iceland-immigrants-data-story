@@ -120,7 +120,7 @@ export const palette = {
 
     ink: '#111827',
     muted: '#6b7280',
-    border: '#d1d5db'
+    border: '#59595c'
 
 };
 

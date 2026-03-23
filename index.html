@@ -49,7 +49,7 @@
     <section class="header" id="header">
         <div class="col header-inner">
             <div>
-                <div class="header-prefix">A Data Story · Government & Policy</div>
+                <div class="header-prefix">A Data Story | Government & Policy</div>
                 <h1 class="header-title">
                     Iceland's immigration <br>
                     surge is <em>sustaining <br>the workforce</em> - <br>
@@ -105,7 +105,7 @@
         <div class="col chapter-grid">
 
             <div class="insights">
-                <span class="ch-tag ch-tag-green">Chapter 01 · Population Shift</span>
+                <span class="ch-tag ch-tag-green">Chapter 01 | Population Shift</span>
                 
                 <h2 class="ch-head">Immigration is reshaping Iceland -
                     <em>geopgraphically and demographically</em>
@@ -146,7 +146,7 @@
                     <!-- Choropleth Chart-->
                     <div class="chart-wrap">
                         <div class="chart-head">
-                            <span class="chart-name">Immigrant Share % by Region - click to filter pyramid (Cholopleth Chart- Seyi)</span>
+                            <span class="chart-name">Immigrant Share % by Municipality - click to filter pyramid (Cholopleth Chart- Seyi)</span>
 
                             <span class="chart-src">Background</span>
                         </div>
@@ -186,6 +186,7 @@
 
 
                     <!-- Population Pyramid Chart -->
+                    <!--
                     <div class="chart-wrap">
                         <div class="chart-head">
                             <span class="chart-name" d="selected-municipality-label">Population Pyramid - All municipalities (Pyramid Chart - Seyi)</span>
@@ -195,7 +196,7 @@
 
                         <div class="chart-body">
 
-                            <!-- Legend and toggle buttons -->
+                            <!- - Legend and toggle buttons - ->
                             <div class="chart-int">
                                 <div id="pyramid-legend">
                                 Legend goes here
@@ -208,8 +209,51 @@
                             </div>
 
 
-                            <!-- Chart SVG goes here -->
+                            <!- - Chart SVG goes here - ->
                             <div id="pyramid-chart">
+
+
+                            </div>
+
+                        </div>
+                        
+                        
+
+                        <div class="chart-footer">
+                            <span>Click region to filter pyramid chart below</span>
+                            <span>Hover for immigrant share %</span>
+                            <span>Toggle 2011 / 2021</span>
+                        </div>
+
+                    </div>
+
+                -->
+
+                    <!-- Population Grouped Bar Chart -->
+                    <div class="chart-wrap">
+                        <div class="chart-head">
+                            <span class="chart-name" id="chapter1-detail-title"></span>
+
+                            <span class="chart-src">Background</span>
+                        </div>
+
+                        <div class="chart-body">
+
+                            <!-- Legend and toggle buttons -->
+                            <div class="chart-int">
+                                <div id="chp1-groupedbar-legend">
+                                Legend goes here
+                                </div>
+
+                                <div class="toggle-group" id="pyramid-year-toggle">
+                                    <button class="toggle-btn active" data-year="2021">2021</button>
+                                    <button class="toggle-btn" data-year="2011">2011</button>
+                                </div>
+                            </div>
+
+
+                            <!-- Chart SVG goes here -->
+                            <div id="chp1-grouped-bar-chart">
 
 
                             </div>
@@ -247,7 +291,7 @@
 
             <!-- Insights -->
             <div class="insights">
-                <span class="ch-tag ch-tag-red">Chapter 02 · Employment collapse</span>
+                <span class="ch-tag ch-tag-red">Chapter 02 | Employment collapse</span>
                 
                 <h2 class="ch-head red">In 2021, immigrants were
                     <em>better employed.</em>
@@ -388,7 +432,7 @@
         <!-- Two column layout- Insighs (left) and Charts (right) -->
         <div class="col chapter-grid">
             <div class="insights">
-                <span class="ch-tag ch-tag-orange">Chapter 03 · Qualification Paradox</span>
+                <span class="ch-tag ch-tag-orange">Chapter 03 | Qualification Paradox</span>
                 
                 <h2 class="ch-head orange">Equal degrees,
                     <em>unequal outcomes</em>
