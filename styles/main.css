@@ -187,20 +187,27 @@ html {
 .header-title{
     font-family: var(--font-serif);
     font-size: 42px;
-    line-height: 1.12;
+    line-height: 1.38;
     font-weight: 700;
     color: white;
 }
 
 .header em{
     /* text-decoration: underline; */
-    border-bottom: 2px solid var(--blue)
+    /* border-bottom: 2px solid var(--blue); */
 }
 
 .header-body{
     color: var(--ink4);
     font-size: 14px;
     line-height: 2em;
+}
+
+.h-bg {
+    background-color: var(--blue);
+    background-color: #04254a;
+    padding: 0px 10px;
+    line-height: 0!important;
 }
 
 
@@ -218,12 +225,12 @@ html {
 
 .stat-card.red-card{
     background-color: #2a1010;
-    border-left: 3px solid var(--red);
+    /* border-left: 3px solid var(--red); */
 }
 
 .stat-card.teal-card{
     background-color: rgba(0,119,182,.15);
-    border-left: 3px solid var(--immigrants);
+    /* border-left: 3px solid var(--immigrants); */
 }
 
 .stat-num{
@@ -250,7 +257,7 @@ html {
 .chapter{
     padding-top: 50px;
     padding-bottom: 50px;
-    border-top: 1px solid var(--border)
+    border-top: 1px solid var(--border);
 }
 
 .chapter.a{
@@ -266,6 +273,11 @@ html {
     grid-template-columns: 220px 1fr;
     gap: 36px;
     /* align-items: start; */
+}
+
+/* Insights column */
+.insights{
+    position: sticky;
 }
 
 /* Chapter tags */
@@ -339,6 +351,10 @@ html {
 .callout.teal{ background: var(--teal3); border-left: 3px var(--teal) solid; color: var(--teal-dark);}
 .callout.red{ background: var(--red3); border-left: 3px var(--red) solid; color: var(--red-dark);}
 .callout.blue {background-color: var(--blue3); color: var(--iceland-blue); border-left: 3px var(--blue) solid;}
+
+.callout{
+    border-left: none!important;
+}
 
 
 /* Bi-directional callout */
