@@ -35,6 +35,7 @@
 
     /* Natives data color */
     --blue:      #1a4f8a;
+    --blue2:      #4a75a7;
     --blue3:     #dbeafe;
 
     /* Orange palette — natives + chapter 3 */
@@ -160,7 +161,7 @@ html {
 }
 
 .header-prefix::before{
-    background-color: var(--red2);
+    background-color: var(--blue);
 }
 
 .header-prefix{
@@ -193,7 +194,7 @@ html {
 
 .header em{
     /* text-decoration: underline; */
-    border-bottom: 2px solid var(--red2)
+    border-bottom: 2px solid var(--blue)
 }
 
 .header-body{
@@ -278,12 +279,13 @@ html {
     padding: 3px 10px;
     letter-spacing: 0.1em;
     font-weight: 500;
+    background-color: var(--blue3)
 }
 
-.ch-tag-green{ background-color: var(--teal3); color:var(--teal) }
+/* .ch-tag-green{ background-color: var(--teal3); color:var(--teal) }
 .ch-tag-red{ background-color: var(--red3); color:var(--red) }
 .ch-tag-orange{ background-color: var(--orange3); color:var(--orange) }
-.ch-tag-amber{ background-color: var(--amber3); color:var(--amber) }
+.ch-tag-amber{ background-color: var(--amber3); color:var(--amber) } */
 
 /* Chapter typography */
 
@@ -298,7 +300,6 @@ html {
 
 .ch-head em{ 
     font-style: italic;
-    color: var(--teal); 
 }
 
 .ch-head.red em{
@@ -311,6 +312,10 @@ html {
 
 .ch-head.orange em{
     color: var(--orange-dark);
+}
+
+.ch-head.blue em{
+    color: var(--iceland-blue);
 }
 
 .ch-body{
@@ -333,6 +338,7 @@ html {
 .callout strong{ font-weight: 500; }
 .callout.teal{ background: var(--teal3); border-left: 3px var(--teal) solid; color: var(--teal-dark);}
 .callout.red{ background: var(--red3); border-left: 3px var(--red) solid; color: var(--red-dark);}
+.callout.blue {background-color: var(--blue3); color: var(--iceland-blue); border-left: 3px var(--blue) solid;}
 
 
 /* Bi-directional callout */
