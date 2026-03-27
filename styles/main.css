@@ -236,7 +236,7 @@ html {
 
 .stat-num{
     font-family: var(--font-serif);
-    font-size: 26px;
+    font-size: 23px;
     font-weight: 700;
     color: #fff;
     line-height: 1;
@@ -650,8 +650,9 @@ html {
 }
 
 
-
 /* Footers */
+
+/* Policy Implications */
 .policy{
     background-color: var(--navy);
     padding: 56px;
@@ -706,6 +707,46 @@ html {
     line-height: 2em;
 }
 
+.policy-implications{
+    display: flex; 
+    flex-direction: column;
+    gap: 2px;
+}
+
+.policy-card{
+    padding: 12px 14px;
+    background-color: rgba(255,255,255,.04);
+    display: grid;
+    grid-template-columns: 20px 1fr;
+}
+
+.policy-card.teal-card{
+    background-color: rgba(0,119,182,.15);
+    /* border-left: 3px solid var(--immigrants); */
+}
+
+.policy-num{
+    font-family: var(--font-mono);
+    font-size: 10px;
+    /* font-weight: 700; */
+    color: var(--ink3);
+    /* line-height: 1; */
+}
+
+.policy-num.teal{ color: #7ec8e3; }
+.policy-num.red{ color: var(--red2); }
+
+.policy-label{
+    color: rgb(209, 213, 219);
+    font-size: 11.5px;
+    line-height: 1.4;
+    font-family: var(--font-sans);
+}
+
+.policy-card span{
+    font-weight: 700;
+}
+
 
 
 /* == Statsbar == */
@@ -729,9 +770,10 @@ html {
 }
 
 .footer-inner{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    text-align: center;
+    font-family: var(--font-sans);
 } 
 
 .footer span{

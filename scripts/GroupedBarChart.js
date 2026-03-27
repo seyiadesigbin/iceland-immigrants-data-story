@@ -32,6 +32,9 @@ export default class GroupedBarChart{
         this.margins = margins;
         this.legendContainer = d3.select(legendContainer);
 
+        this.anim = 450; // Value to control animation speed
+
+
         this.svg = d3.select(container).append('svg')
             .classed('viz grouped-bar-chart', true)
             .attr('width', width)
@@ -224,7 +227,6 @@ export default class GroupedBarChart{
 
     // Draw or update the bars
     #updateMarks(){
-        let anim = 350;
         let zeroY = this.scaleY(0);
 
         this.bars = this.bars
@@ -236,7 +238,7 @@ export default class GroupedBarChart{
                     .attr('width', this.scaleGroup.bandwidth())
                     .attr('height', 0),
                 update => update,
-                exit => exit.transition().duration(anim)
+                exit => exit.transition().duration(this.anim)
                     .attr('y', zeroY)
                     .attr('height', 0)
                     .remove()
@@ -250,7 +252,13 @@ export default class GroupedBarChart{
                 d.background === values.background.immigrants
                     ? palette.immigrants
                     : palette.natives
-            )
+            );                
+
+        this.bars.transition().duration(this.anim)
+            .attr('x', d => this.scaleX(d.ageGroup) + this.scaleGroup(d.background))
+            .attr('y', d => d.value === null ? zeroY : Math.min(this.scaleY(d.value), zeroY))
+            .attr('width', this.scaleGroup.bandwidth())
+            .attr('height', d => d.value === null ? 0 : Math.abs(this.scaleY(d.value) - zeroY))
             .attr('opacity', d => {
                 let hasSelectedBar = 
                     this.state.selectedAgeGroup && this.state.selectedBackground;
@@ -268,13 +276,7 @@ export default class GroupedBarChart{
                 // Interaction state: keep the selected bar strong and dim the rest.
                 return isSelected ? 1 : 0.25;
 
-            });                
-
-        this.bars.transition().duration(anim)
-            .attr('x', d => this.scaleX(d.ageGroup) + this.scaleGroup(d.background))
-            .attr('y', d => d.value === null ? zeroY : Math.min(this.scaleY(d.value), zeroY))
-            .attr('width', this.scaleGroup.bandwidth())
-            .attr('height', d => d.value === null ? 0 : Math.abs(this.scaleY(d.value) - zeroY));
+            });
 
         // this.bars.selectAll('title')
         //     .data(d => [d])
@@ -312,7 +314,7 @@ export default class GroupedBarChart{
 
 
         /* Format Y-axis */
-        this.axisY.transition().duration(300).call(axisGenY)
+        this.axisY.transition().duration(this.anim).call(axisGenY)
 
         this.axisY.selectAll('.tick line').remove();
 
