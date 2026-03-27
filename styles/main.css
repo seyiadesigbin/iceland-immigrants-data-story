@@ -192,10 +192,11 @@ html {
     color: white;
 }
 
-.header em{
+/* .header em */
     /* text-decoration: underline; */
     /* border-bottom: 2px solid var(--blue); */
-}
+
+/* } */
 
 .header-body{
     color: var(--ink4);

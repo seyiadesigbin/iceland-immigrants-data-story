@@ -225,21 +225,6 @@ function bindControls(){
 //     d3.select('#chapter1-detail-title').text(titleText);
 // }
 
-/*
-Update the small helper text beneath the Chapter 1 detail-chart title.
-*/
-function updateChapter1DetailStatus(){
-    let statusText = 'Currently showing all municipalities. Click a municipality on the map to filter this chart.';
-
-    if (state.selectedMunicipality){
-        statusText = 'Filtered by map selection. Click the selected municipality again, or click outside the map, to clear.';
-    }else if (state.selectedAgeGroup && state.selectedBackground){
-        statusText = `Map highlights municipalities that most strongly match ${state.selectedBackground.toLowerCase()} change in age group ${state.selectedAgeGroup}. Click the same bar again to clear.`;
-    }
-
-    d3.select('#chapter1-detail-status').text(statusText);
-}
-
 
 /*
 Grouped bar chart functionalities
