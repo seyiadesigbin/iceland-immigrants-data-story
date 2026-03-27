@@ -208,11 +208,50 @@ export default class ChoroplethChart{
 
     // Function to render the Legend
     #renderLegend(){
+
+        // let minValue = 0;
+        // let maxValue = d3.max(this.data, d => d.immigrantShare) || 0;
+
+        let [minValue, maxValue] = this.colorScale.domain();
+        let gradientSteps = d3.range(0, 1.01, 0.1);
+
+        // Sample the actual color scale, so the legend matches the map exactly.
+        let gradientStops = gradientSteps.map(t => {
+            let value = minValue + (maxValue - minValue) * t;
+            return `${this.colorScale(value)} ${t * 100}%`;
+        }).join(', ');
+
+        // Use readable interior ticks, but always include the exact max at the end.
+        let tickValues = d3.ticks(minValue, maxValue, 1.5);
+
+        if (tickValues[tickValues.length - 1] !== maxValue){
+            tickValues = [...tickValues, maxValue];
+        }
+
         this.legendContainer.html('');
 
         this.legendContainer.append('div')
             .classed('legend', true)
             .text('Immigrant share (%)');
+
+        let legendScale = this.legendContainer.append('div')
+            .classed('choropleth-legend-scale', true);
+
+        // Build a CSS gradient from the 
+        legendScale.append('div')
+            .classed('choropleth-legend-gradient', true)
+            .style('background', `linear-gradient(to right, ${gradientStops})`);
+          
+        let legendLabels = legendScale.append('div')
+            .classed('choropleth-legend-labels', true);
+
+        legendLabels.selectAll('span')
+            .data(tickValues)
+            .join('span')
+            .text((d, i) => {
+                let isLastTick = i === tickValues.length - 1;
+                return isLastTick ? `${d.toFixed(1)}%` : `${d.toFixed(0)}%`;
+            });
     }
 
     setRegionClick(f = () => {}){
@@ -255,7 +294,7 @@ export default class ChoroplethChart{
 
         // Create color scale
         this.colorScale = d3.scaleSequential()
-            .domain([0, d3.max(this.data, d => d.immigrantShare)])
+            .domain([0, d3.max(filtered, d => d.immigrantShare)])
             .interpolator(t => d3.interpolateBlues(0.25 + t * 0.75));
 
         // Render the map and legend

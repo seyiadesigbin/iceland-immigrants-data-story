@@ -497,10 +497,69 @@ html {
     display: inline-block;
 }
 
+.legend{
+    font-size: 11px;
+    color: var(--ink2);
+    margin-bottom: 2px;
+    margin-top: 2px;
+}
+
+.choropleth-legend-scale{
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 130px;
+    margin-left: 20px;
+}
+
+.choropleth-legend-gradient{
+    width: 100%;
+    height: 10px;
+    border-radius: 0px;
+    /* border: 1px solid var(--border); */
+}
+
+.choropleth-legend-labels{
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--ink3);
+}
+
+
+/* Chart axis formatting */
+
 .axis-title{
     font-family: var(--font-sans);
     font-size: 13px;
 }
+
+.axis path,
+.axis line{
+    stroke: var(--ink4);
+    stroke-width: 0.8px;
+}
+
+.axis text{
+    fill: var(--ink3);
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+}
+
+.axis-title{
+    fill: var(--ink2);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.zero-line{
+    stroke: var(--ink4);
+    stroke-width: 0.9px;
+    stroke-dasharray: 3, 3;
+}
+
+/* Chart axis formatting */
 
 /* Legend styling ends here */
 

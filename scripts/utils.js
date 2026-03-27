@@ -141,6 +141,81 @@ const municipalityAliases = {
     'sveitarfelagid hornafjordu': 'sveitarfelagid hornafjordur'
 };
 
+/*
+* Municipality to region mapping.
+* Keys are stored using the same normalized style used throughout the project.
+* Regions follow Iceland's standard regional grouping in English.
+*/
+export const municipalityToRegion = {
+    'akrahreppur': 'Northwest',
+    'akraneskaupstadur': 'West',
+    'akureyrarbaer': 'Northeast',
+    'arneshreppur': 'Westfjords',
+    'asahreppur': 'South',
+    'blaskogabyggd': 'South',
+    'blonduosbaer': 'Northwest',
+    'bolungarvikurkaupstadur': 'Westfjords',
+    'borgarbyggd': 'West',
+    'dalabyggd': 'West',
+    'dalvikurbyggd': 'Northeast',
+    'eyja- og miklaholtshreppur': 'West',
+    'eyjafjardarsveit': 'Northeast',
+    'fjallabyggd': 'Northeast',
+    'fjardabyggd': 'East',
+    'fljotsdalshreppur': 'East',
+    'floahreppur': 'South',
+    'gardabaer': 'Capital Region',
+    'grimsnes- og grafningshreppur': 'South',
+    'grindavikurbaer': 'Southern Peninsula',
+    'grundarfjardarbaer': 'West',
+    'grytubakkahreppur': 'Northeast',
+    'hafnarfjardarkaupstadur': 'Capital Region',
+    'helgafellssveit': 'West',
+    'hrunamannahreppur': 'South',
+    'hunathing vestra': 'Northwest',
+    'hunavatnshreppur': 'Northwest',
+    'hvalfjardarsveit': 'West',
+    'hveragerdisbaer': 'South',
+    'isafjardarbaer': 'Westfjords',
+    'kaldrananeshreppur': 'Westfjords',
+    'kjosarhreppur': 'Capital Region',
+    'kopavogsbaer': 'Capital Region',
+    'langanesbyggd': 'Northeast',
+    'mosfellsbaer': 'Capital Region',
+    'mulathing': 'East',
+    'myrdalshreppur': 'South',
+    'nordurthing': 'Northeast',
+    'rangarthing eystra': 'South',
+    'rangarthing ytra': 'South',
+    'reykholahreppur': 'Westfjords',
+    'reykjanesbaer': 'Southern Peninsula',
+    'reykjavikurborg': 'Capital Region',
+    'seltjarnarnesbaer': 'Capital Region',
+    'skaftarhreppur': 'South',
+    'skagabyggd': 'Northwest',
+    'skeida- og gnupverjahreppur': 'South',
+    'skorradalshreppur': 'West',
+    'skutustadahreppur': 'Northeast',
+    'snaefellsbaer': 'West',
+    'strandabyggd': 'Westfjords',
+    'stykkisholmsbaer': 'West',
+    'sudavikurhreppur': 'Westfjords',
+    'sudurnesjabaer': 'Southern Peninsula',
+    'svalbardshreppur': 'Northeast',
+    'svalbardsstrandarhreppur': 'Northeast',
+    'sveitarfelagid arborg': 'South',
+    'sveitarfelagid hornafjordur': 'South',
+    'sveitarfelagid olfus': 'South',
+    'sveitarfelagid skagafjordur': 'Northwest',
+    'sveitarfelagid skagastrond': 'Northwest',
+    'sveitarfelagid vogar': 'Southern Peninsula',
+    'talknafjardarhreppur': 'Westfjords',
+    'thingeyjarsveit': 'Northeast',
+    'tjorneshreppur': 'Northeast',
+    'vestmannaeyjabaer': 'South',
+    'vesturbyggd': 'Westfjords',
+    'vopnafjardarhreppur': 'East'
+};
 
 /*
 * Converts the municipality name in the dataset to the format in the geoJSON
@@ -167,5 +242,13 @@ export function normalizeName(name){
         .replace(/[\u0300-\u036f]/g, "");
 
     return municipalityAliases[normalizedName] || normalizedName;
+}
+
+/*
+* Return the Icelandic region for a municipality name.
+* The input can be a dataset municipality name or a map feature name.
+*/
+export function getMunicipalityRegion(name){
+    return municipalityToRegion[normalizeName(name)] || 'Region unavailable';
 }
 

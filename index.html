@@ -51,7 +51,7 @@
                 <h1 class="header-title">
                     Iceland's immigration <br>
                     surge <em><span class="h-bg">sustained</span> <br> </em><span class="">the workforce</span> - <br>
-                    but integration fell
+                    but integration did not follow
 
                     <!-- Iceland's immigration surge 
                     <br> is <em>sustaining the workforce</em> - <br>
@@ -59,11 +59,9 @@
                 </h1>
                 
                 <p class="header-body">
-                    Between 2011 and 2021 Iceland's immigrant population more than doubled, with immigrants arriving 
-                    young, educated, and willing to work. But a decade later, a university-educated immigrant is 
-                    16.9 percentage points (pp) less likely to be employed than an equally qualified Icelander.
-                    This data story presents findings from an explanatory data analysis on Iceland's population
-                    shift from 2011 to 2021.
+                    Between 2011 and 2021 Iceland's immigrant population more than doubled. Many arrivals were young, educated, and of working age.
+                    Yet a decade later, a university-educated immigrant was still 16.9 percentage points (pp) less likely to be employed than an equally qualified Icelander.
+                    This data story presents findings from an exploratory analysis of Iceland's population and labour-market shift between 2011 and 2021.
                 </p>
             </div>
             
@@ -71,22 +69,22 @@
             <div class="key-stat">
                 <div class="stat-card teal-card">
                     <div class="stat-num teal">+115%</div>
-                    <div class="stat-label">Immigrant population growth<br>2011 to 2021</div>
+                    <div class="stat-label">Immigrant population growth, <br>2011 to 2021</div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-num">35%</div>
-                    <div class="stat-label">Dependency ratio - <br>stable both years</div>
+                    <div class="stat-num">+7.6pp to -2.7pp</div>
+                    <div class="stat-label">Immigrant employment lead turned into a deficit</div>
                 </div>
 
                 <div class="stat-card red-card">
                     <div class="stat-num red">-24.8pp</div>
-                    <div class="stat-label">Tertiary employment gap ages 25-34, in 20211</div>
+                    <div class="stat-label">Employment gap for tertiary-educated ages 25-34, 2021</div>
                 </div>
 
                 <div class="stat-card">
-                    <div class="stat-num">6 of 6</div>
-                    <div class="stat-label">Age groups where tertiary immigrants trail natives</div>
+                    <div class="stat-num">All 6</div>
+                    <div class="stat-label">Tertoary age groups show lower immigrant employment</div>
                 </div>
 
             </div>
@@ -110,24 +108,26 @@
                 </h2>
 
                 <p class="ch-body">
-                    In 2011 most municipalities had an immigrant share below 8%. By 2021 the capital region and southwest show shares approaching 30%.
+                    In 2011, most municipalities had immigrant shares below 8%. By 2021, municipalities in the capital area and 
+                    southwest stood out with much higher shares, in some cases approaching 30%.
                 </p>
 
                 <p class="ch-body">
-                    The working class group accounted for the highest number of immigrants within this period. This can be linked to the economic recovery in the aftermath of the 2008 - 2011 
-                    <a href="">Icelandic Financial Crisis</a>, which resulted in a renewed inflow of migrants, largely motivated by labour market demand. 
-                    <a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/11/immigration-in-iceland_e1b2c815/645ca1ac-en.pdf" target="_blank">(OECD, 2024)</a>.
+                    This growth was concentrated in working-age groups, while native population change was much lower and some age bands negative.
+                    The pattern is consistent with the 2008 - 2011 Icelandic Financial post-crisis recovery, during which renewed labour demand appears to have
+                    attracted a larger inflow of migrants <a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/11/immigration-in-iceland_e1b2c815/645ca1ac-en.pdf" target="_blank">(OECD, 2024)</a>.
                 </p>
 
                 <div class="callout blue">
-                    <p><strong>Click an area</strong> on the map tso see its age breakdown in the grouped bar chart below.</p>
+                    <p><strong>Click a municipality</strong> on the map to see population change by age group differs there.</p>
+                    <p><strong>Click a bar in the grouped chart</strong> to highlight municipalities where that age-group trend is strongest.</p>
                 </div>
 
                 <div class="bidir-badge blue">
                     <span>Map</span> 
-                    <span class="bidir-arrow">→</span> 
+                    <span class="bidir-arrow">⇄</span> 
                     <span>Pyramid</span> 
-                    <span class="bidir-sub">unidirectional</span></p>
+                    <span class="bidir-sub">bi-directional</span></p>
 
 
                 </div>
@@ -141,7 +141,7 @@
                     <!-- Choropleth Chart-->
                     <div class="chart-wrap">
                         <div class="chart-head">
-                            <span class="chart-name">Immigrant Share % by Municipality - click to filter pyramid (Cholopleth Chart- Seyi)</span>
+                            <span class="chart-name">Immigrant Share % by Municipality</span>
 
                             <span class="chart-src">Background</span>
                         </div>
@@ -151,7 +151,7 @@
                             <!-- Legend and toggle buttons -->
                             <div class="chart-int">
                                 <div id="choropleth-legend">
-                                Legend goes here
+                                
                                 </div>
 
                                 <div class="toggle-group" id="chapter1-year-toggle">
@@ -375,7 +375,7 @@
                     <!-- Grouped Bar Chart -->
                     <div class="chart-wrap">
                         <div class="chart-head">
-                            <span class="chart-name" d="selected-municipality-label">Employment Rate by Education Level- Immigrants vs Natives (Grouped Bar Chart)</span>
+                            <span class="chart-name" d="selected-municipality-label">Employment Rate by Education Level- Immigrants vs Natives (Horizontal Dot Plot)</span>
 
                             <span class="chart-src">Labour</span>
                         </div>
@@ -396,7 +396,7 @@
 
 
                             <!-- Chart SVG goes here -->
-                            <div id="grouped-bar-chart">
+                            <div id="horizontal-plot-chart">
 
 
                             </div>

@@ -12,7 +12,7 @@ export default class GroupedBarChart{
 
     // Attributes
     width; height; margins;
-    svg; chart; bars; axisX; axisY; labelX; labelY; title;
+    svg; chart; bars; axisX; axisY; labelX; labelY; title; backgroundRect;
     scaleX; scaleY;
 
     data; state;
@@ -23,6 +23,7 @@ export default class GroupedBarChart{
     barClick = () => {};
     barHover = () => {};
     barOut = () => {};
+    chartBackgroundClick = () => {};
 
     constructor (container, legendContainer, width, height, margins) {
 
@@ -39,12 +40,20 @@ export default class GroupedBarChart{
         this.chart = this.svg.append('g')
             .attr('transform', `translate(${margins.left}, ${margins.top})`);
 
+        // Transparent background to catch clicks outside the bars.
+        this.backgroundRect = this.chart.append('rect')
+            .classed('chart-background', true)
+            .attr('fill', 'transparent')
+            .style('pointer-events', 'all');
+
         this.bars = this.chart.selectAll('rect.bar');
 
         this.axisX = this.svg.append('g')
+            .classed('axis axis-x', true)
             .attr('transform', `translate(${this.margins.left}, ${this.height - this.margins.bottom})`);
         
         this.axisY = this.svg.append('g')
+            .classed('axis axis-y', true)
             .attr('transform',  `translate(${this.margins.left}, ${this.margins.top})`);
 
         this.zeroLine = this.chart.append('line')
@@ -161,9 +170,9 @@ export default class GroupedBarChart{
             .map(d => d.value)
             .filter(d => Number.isFinite(d));
 
-        let maxAbsValue = validValues.length > 0
-            ? d3.max(validValues, d => Math.abs(d))
-            : 1;
+        // let maxAbsValue = validValues.length > 0
+        //     ? d3.max(validValues, d => Math.abs(d))
+        //     : 1;
 
         let minValue = validValues.length > 0 ? Math.min(0, d3.min(validValues)) : 0;
         let maxValue = validValues.length > 0 ? Math.max(0, d3.max(validValues)) : 1;
@@ -183,6 +192,12 @@ export default class GroupedBarChart{
             .domain([minValue, maxValue])
             .range([chartHeight, 0])
             .nice();
+
+        // Keep the click-catcher the same size as the plotting area
+        this.backgroundRect
+            .attr('width', chartWidth)
+            .attr('height', chartHeight);
+        
     }
 
     // Refresh bar interactions after the join
@@ -194,8 +209,17 @@ export default class GroupedBarChart{
             .on('mouseover', this.barHover)
             .on('mouseout', this.barOut)
             .on('click', (event, d) => {
-                this.barClick(event, d)
+                // Prevent bar clicks from also triggering the background reset.
+                event.stopPropagation();
+                this.barClick(event, d);
             });
+    }
+
+    // Refresh click handling for the empty chart area.
+    #updateBackgroundEvent(){
+        this.backgroundRect.on('click', (event) => {
+            this.chartBackgroundClick(event);
+        });
     }
 
     // Draw or update the bars
@@ -218,13 +242,33 @@ export default class GroupedBarChart{
                     .remove()
             )
             .classed('bar', true)
-            .classed('selected', d => this.state.selectedAgeGroup === d.ageGroup)
+            .classed('selected', d => 
+                this.state.selectedAgeGroup === d.ageGroup &&
+                this.state.selectedBackground === d.background
+            )
             .attr('fill', d =>
                 d.background === values.background.immigrants
                     ? palette.immigrants
                     : palette.natives
             )
-            .attr('opacity', d => d.value === null ? 0.35 : 1);
+            .attr('opacity', d => {
+                let hasSelectedBar = 
+                    this.state.selectedAgeGroup && this.state.selectedBackground;
+
+                let isSelected =
+                    this.state.selectedAgeGroup === d.ageGroup &&
+                    this.state.selectedBackground === d.background;
+
+                // Keep this bar faint if it has no usuable value
+                if (!Number.isFinite(d.value)) return 0.25;
+
+                // Default state: show all bars normally.
+                if (!hasSelectedBar) return 1;
+
+                // Interaction state: keep the selected bar strong and dim the rest.
+                return isSelected ? 1 : 0.25;
+
+            });                
 
         this.bars.transition().duration(anim)
             .attr('x', d => this.scaleX(d.ageGroup) + this.scaleGroup(d.background))
@@ -232,16 +276,17 @@ export default class GroupedBarChart{
             .attr('width', this.scaleGroup.bandwidth())
             .attr('height', d => d.value === null ? 0 : Math.abs(this.scaleY(d.value) - zeroY));
 
-        this.bars.selectAll('title')
-            .data(d => [d])
-            .join('title')
-            .text(d => {
-                let growthText = d.value === null ? 'n/a' : `${d.value.toLocaleString()}`;
-                // let growthText = d.value === null ? 'n/a' : `${d.value.toFixed(1)}%`;
-                return `${d.ageGroup} | ${d.background}: ${growthText}`;
-            });
+        // this.bars.selectAll('title')
+        //     .data(d => [d])
+        //     .join('title')
+        //     .text(d => {
+        //         let growthText = d.value === null ? 'n/a' : `${d.value.toLocaleString()}`;
+        //         // let growthText = d.value === null ? 'n/a' : `${d.value.toFixed(1)}%`;
+        //         return `${d.ageGroup} | ${d.background}: ${growthText}`;
+        //     });
 
         this.#updateEvents();
+        this.#updateBackgroundEvent();
         
     }
 
@@ -253,15 +298,23 @@ export default class GroupedBarChart{
         let axisGenX = d3.axisBottom(this.scaleX);
         let axisGenY = d3.axisLeft(this.scaleY);
 
+        /* Format X-axis */
         this.axisX.call(axisGenX);
 
         this.axisX.selectAll('text')
-            .style('text-anchor', 'end')
-            .attr('dx', '-0.6em')
-            .attr('dy', '0.15em')
-            .attr('transform', 'rotate(-35)');
+            .style('text-anchor', 'center')
+            // .attr('dx', '-0.6em')
+            // .attr('dy', '0.15em')
+            .attr('transform', null);
 
+        // Remove tick line
+        this.axisX.selectAll('.tick line').remove();
+
+
+        /* Format Y-axis */
         this.axisY.transition().duration(300).call(axisGenY)
+
+        this.axisY.selectAll('.tick line').remove();
 
         this.zeroLine
             .attr('x1', 0)
@@ -336,6 +389,12 @@ export default class GroupedBarChart{
     setBarOut(f = () => {}){
         this.barOut = f;
         this.#updateEvents();
+        return this;
+    }
+
+    setChartBackgroundClick (f = () => {}){
+        this.chartBackgroundClick = f;
+        this.#updateBackgroundEvent();
         return this;
     }
 

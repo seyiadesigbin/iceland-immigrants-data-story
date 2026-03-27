@@ -2,7 +2,7 @@
 
 // Import required functions
 import {calculateEmploymentRates, calculateMunicipalityShare} from './preprocess.js'
-import {chartConfig, values} from './utils.js'
+import {chartConfig, values, getMunicipalityRegion} from './utils.js'
 
 // Import the charts
 import ChoroplethChart from './ChoroplethChart.js'
@@ -102,9 +102,6 @@ async function loadData(){
 }
 
 
-
-
-
 // Verify loaded data
 function validateLoadedData(){
 
@@ -123,9 +120,9 @@ function validateLoadedData(){
 }
 
 
-/*
-Create Choropleth chart object and interactivity functions starts here
-*/
+/* =========================== Seyi's codes start here ==========================*/
+
+// Create choropleth chart object
 const choroplethChart = new ChoroplethChart(
     "#choropleth-chart",
     "#choropleth-legend",
@@ -134,6 +131,14 @@ const choroplethChart = new ChoroplethChart(
     chartConfig.choroplethChart.margins,
 );
 
+// Create Chapter1 Grouped bar chart object 
+const chapter1GroupBarChart = new GroupedBarChart (
+    "#chp1-grouped-bar-chart",
+    "#chp1-groupedbar-legend",
+    chartConfig.groupedBarChart.width,
+    chartConfig.groupedBarChart.height,
+    chartConfig.groupedBarChart.margins,
+);
 
 const tooltip = d3.select('body').append('div')
     .classed('chart-tooltip', true)
@@ -147,11 +152,13 @@ function moveTooltip(event){
 
 function showRegionTooltip(event, feature, row){
     let shareText = row ? `${row.immigrantShare.toFixed(1)}%` : 'No data';
+    let region = getMunicipalityRegion(feature.properties.shapeName);
 
     tooltip
         .style('opacity', 1)
         .html(`
             <strong>${feature.properties.shapeName}</strong>
+            <span>Region: ${region}</span>
             <span>Year: ${state.year}</span>
             <span>Immigrant share: ${shareText}</span>
         `);
@@ -175,8 +182,6 @@ back to municipality selection mode.
 function selectMunicipality(event, feature, row){
     let municipalityName = row ? row.municipality : feature.properties.shapeName;
 
-    let isSameMunicipality = state.selectedMunicipality === municipalityName;
-
     state.selectedMunicipality = 
         state.selectedMunicipality === municipalityName ? null : municipalityName;
 
@@ -189,8 +194,13 @@ function selectMunicipality(event, feature, row){
     renderAll();
 }
 
+// Clear all interaction state for chapter 1, when the user clicks outside the map regions
 function clearMunicipalitySelection(){
     state.selectedMunicipality = null;
+    state.selectedAgeGroup = null;
+    state.selectedBackground = null;
+    state.highlightedMunicipalities = [];
+
     renderAll();
 }
 
@@ -217,13 +227,13 @@ function bindControls(){
 }
 
 // Update Chapter 1 chart title
-// function updateChapter1DetailTitle(){
-//     let titleText = state.selectedMunicipality
-//         ? `Population Growth by Age Group - ${state.selectedMunicipality}`
-//         : `Population Growth by Age Group - All municipalities`;
+function updateChapter1DetailTitle(){
+    let titleText = state.selectedMunicipality
+        ? `Population Growth by Age Group - ${state.selectedMunicipality}`
+        : `Population Growth by Age Group - All municipalities`;
 
-//     d3.select('#chapter1-detail-title').text(titleText);
-// }
+    d3.select('#chapter1-detail-title').text(titleText);
+}
 
 
 /*
@@ -233,8 +243,8 @@ Grouped bar chart functionalities
 /*
 Return a small set of municipalities that best match the clicked grouped-bar value.
 
-If the clicked bar is positive, highlight the municipalities with the strongest positive change.
-If the clicked bar is negative, highlight the municipalities with the strongest negative change.
+If the clicked bar is positive, highlight the municipalities with the 5 strongest positive change.
+If the clicked bar is negative, highlight the municipalities with the 5 strongest negative change.
 */
 function getHighlightedMunicipalitiesForBar(barData){
     let grouped = d3.rollup(
@@ -291,7 +301,7 @@ function toggleGroupedBarMapHighlight(event, d){
         // Switch out of municipality filter mode before applying the reverse interaction
         state.selectedMunicipality = null;
         state.selectedAgeGroup = d.ageGroup;
-        state.selectedBackground = d.backgroud;
+        state.selectedBackground = d.background;
         state.highlightedMunicipalities = getHighlightedMunicipalitiesForBar(d);
     }
 
@@ -315,29 +325,18 @@ Create Choropleth chart object and interactivity functions ends here
 //     chartConfig.pyramidChart.margins,
 // );
 
-
-
-// Create Chapter1 Grouped bar chart object 
-const chapter1GroupBarChart = new GroupedBarChart (
-    "#chp1-grouped-bar-chart",
-    "#chp1-groupedbar-legend",
-    chartConfig.groupedBarChart.width,
-    chartConfig.groupedBarChart.height,
-    chartConfig.groupedBarChart.margins,
-);
-
 // Tooltip callback
 function showAgeGrowthTooltip(event, d){
-    let growthText = d.value === null ? 'n/a (2021 baseline = 0' : `${d.value.toFixed(1)}%`;
+    let growthText = d.value === null ? 'n/a' : `${d.value.toLocaleString()}`;
 
     tooltip
-        .style('opactity', 1)
+        .style('opacity', 1)
         .html(`
             <strong>${d.ageGroup}</strong>
             <span>${d.background}</span>
             <span>2011 population: ${d3.format(',')(d.startValue)}</span>
             <span>2021 population: ${d3.format(',')(d.endValue)}</span>
-            <span>Growth: ${growthText}</span> 
+            <span>Change: ${growthText}</span> 
         `);
 
     moveTooltip(event);
@@ -347,6 +346,59 @@ function selectedAgeGroup(event, d){
     state.selectedAgeGroup = state.selectedAgeGroup === d.ageGroup ? null : d.ageGroup;
     renderAll();
 }
+
+function clearGroupedBarSelection(){
+    state.selectedAgeGroup = null;
+    state.selectedBackground = null;
+    state.highlightedMunicipalities = [];
+
+    renderAll();
+}
+
+/* ======================= Seyi's codes end here ================================= */
+
+
+/* ======================= Sanket's codes start here ======================= */
+
+
+
+
+
+
+/* ======================= Sanket's codes end here ======================= */
+
+
+
+/* ======================= Ee-Erns's codes start here ======================= */
+
+
+
+
+
+
+/* ======================= Ee-Erns's codes end here ======================= */
+
+
+
+
+/* ======================= Shashank's codes start here ======================= */
+
+
+
+
+
+
+/* ================================= Shashank's codes end here ======================= */
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -387,7 +439,8 @@ async function init(){
         chapter1GroupBarChart
             .setBarHover((event, d) => showAgeGrowthTooltip(event, d))
             .setBarOut(hideRegionTooltip)
-            .setBarClick(toggleGroupedBarMapHighlight);
+            .setBarClick(toggleGroupedBarMapHighlight)
+            .setChartBackgroundClick(clearGroupedBarSelection);
             // .setBarClick(selectedAgeGroup);
             
         bindControls();
