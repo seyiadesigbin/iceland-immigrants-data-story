@@ -129,7 +129,6 @@ export default class ChoroplethChart{
         // this.regionSelection
         //     .transition()
         //     .duration(anim)
-        //     // .ease(d3.easeCubicInOut)
         //     .attr('fill', d => this.#getMunicipalityFill(d))
         //     .attr('stroke-width', d => {
         //         let name = normalizeName(d.properties.shapeName);
@@ -137,6 +136,17 @@ export default class ChoroplethChart{
         //             normalizeName(this.state.selectedMunicipality) === name;
 
         //         return isSelected ? 2 : 0.8;
+        //     })
+        //     .attr('opacity', d => {
+        //         // When nothing is selected, show all municipalities equally.
+        //         if (!this.state.selectedMunicipality) return 1;
+
+        //         let name = normalizeName(d.properties.shapeName);
+        //         let isSelected =
+        //             normalizeName(this.state.selectedMunicipality) === name;
+
+        //         // Fade non-selected municipalities so the active one stands out.
+        //         return isSelected ? 1 : 0.35;
         //     });
 
         this.regionSelection
@@ -145,22 +155,55 @@ export default class ChoroplethChart{
             .attr('fill', d => this.#getMunicipalityFill(d))
             .attr('stroke-width', d => {
                 let name = normalizeName(d.properties.shapeName);
+                let highlightedNames = (this.state.highlightedMunicipalities || []).map(normalizeName);
+
                 let isSelected = this.state.selectedMunicipality &&
                     normalizeName(this.state.selectedMunicipality) === name;
 
-                return isSelected ? 2 : 0.8;
-            })
-            .attr('opacity', d => {
-                // When nothing is selected, show all municipalities equally.
-                if (!this.state.selectedMunicipality) return 1;
+                let isHighlighted = highlightedNames.includes(name);
 
+                return (isSelected || isHighlighted) ? palette.ink : palette.border;
+            })
+            .attr('stroke-width', d => {
                 let name = normalizeName(d.properties.shapeName);
-                let isSelected =
+
+                let highlightedNames = (this.state.highlightedMunicipalities || []).map(normalizeName);
+
+                let isSelected = this.state.selectedMunicipality &&
                     normalizeName(this.state.selectedMunicipality) === name;
 
-                // Fade non-selected municipalities so the active one stands out.
-                return isSelected ? 1 : 0.35;
-            });
+
+                let isHighlighted = highlightedNames.includes(name);
+
+                if (isSelected) return 2.4;
+                if (isHighlighted) return 1.6;
+
+                // return isSelected ? 2 : 0.8;
+            })
+            .attr('opacity', d => {
+                let name = normalizeName(d.properties.shapeName);
+                let highlightedNames = (this.state.highlightedMunicipalities || []).map(normalizeName);
+                
+                let hasBarDrivenHighlight = highlightedNames.length > 0;
+
+                let isSelected = this.state.selectedMunicipality &&
+                    normalizeName(this.state.selectedMunicipality) === name;
+
+                let isHighlighted = highlightedNames.includes(name);
+
+                // Municipality selection mode
+                if (this.state.selectedMunicipality) {
+                    return isSelected ? 1 : 0.35;
+                }
+
+                // Grouped-bar reverse interaction mode
+                if (hasBarDrivenHighlight){
+                    return isHighlighted ? 1 : 0.22;
+                }
+
+                // Default map view
+                return 1;
+            })
     }
 
     // Function to render the Legend

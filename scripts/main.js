@@ -24,7 +24,9 @@ const state = {
     year: 2021,
     selectedMunicipality: null,
     selectedEducation: null,
-    selectedAgeGroup: null
+    selectedAgeGroup: null,
+    selectedBackground: null,
+    highlightedMunicipalities: []
 };
 
 
@@ -161,11 +163,28 @@ function hideRegionTooltip(){
     tooltip.style('opacity', 0);
 }
 
+/*
+Clicking a municipality selects it.
+Clicking the same municipality again clears the municipality filter.
+
+Any grouped-bar driven map highlight is cleared when the user switches
+back to municipality selection mode.
+
+*/
+
 function selectMunicipality(event, feature, row){
     let municipalityName = row ? row.municipality : feature.properties.shapeName;
 
+    let isSameMunicipality = state.selectedMunicipality === municipalityName;
+
     state.selectedMunicipality = 
         state.selectedMunicipality === municipalityName ? null : municipalityName;
+
+    
+    // Reset the reverse interaction when the user returns to the map
+    state.selectedAgeGroup = null;
+    state.selectedBackground = null;
+    state.highlightedMunicipalities = [];
 
     renderAll();
 }
@@ -198,12 +217,100 @@ function bindControls(){
 }
 
 // Update Chapter 1 chart title
-function updateChapter1DetailTitle(){
-    let titleText = state.selectedMunicipality
-        ? `Population Growth by Age Group - ${state.selectedMunicipality}`
-        : `Population Growth by Age Group - All municipalities`;
+// function updateChapter1DetailTitle(){
+//     let titleText = state.selectedMunicipality
+//         ? `Population Growth by Age Group - ${state.selectedMunicipality}`
+//         : `Population Growth by Age Group - All municipalities`;
 
-    d3.select('#chapter1-detail-title').text(titleText);
+//     d3.select('#chapter1-detail-title').text(titleText);
+// }
+
+/*
+Update the small helper text beneath the Chapter 1 detail-chart title.
+*/
+function updateChapter1DetailStatus(){
+    let statusText = 'Currently showing all municipalities. Click a municipality on the map to filter this chart.';
+
+    if (state.selectedMunicipality){
+        statusText = 'Filtered by map selection. Click the selected municipality again, or click outside the map, to clear.';
+    }else if (state.selectedAgeGroup && state.selectedBackground){
+        statusText = `Map highlights municipalities that most strongly match ${state.selectedBackground.toLowerCase()} change in age group ${state.selectedAgeGroup}. Click the same bar again to clear.`;
+    }
+
+    d3.select('#chapter1-detail-status').text(statusText);
+}
+
+
+/*
+Grouped bar chart functionalities
+*/
+
+/*
+Return a small set of municipalities that best match the clicked grouped-bar value.
+
+If the clicked bar is positive, highlight the municipalities with the strongest positive change.
+If the clicked bar is negative, highlight the municipalities with the strongest negative change.
+*/
+function getHighlightedMunicipalitiesForBar(barData){
+    let grouped = d3.rollup(
+        appData.background.filter(d => 
+            d.ageGroup === barData.ageGroup &&
+            d.background === barData.background
+        ),
+        v => d3.sum(v, d => d.population),
+        d => d.municipality,
+        d => d.year
+    );
+
+    let changes = Array.from(grouped, ([municipality, yearMap]) => {
+        let population2011 = yearMap.get(2011) || 0;
+        let population2021 = yearMap.get(2021) ||0;
+
+        return {
+            municipality,
+            change: population2021 - population2011
+        };
+    });
+
+    let sameDirection = changes.filter(d =>
+        barData.value >= 0 ? d.change > 0: d.change < 0
+    );
+
+    sameDirection.sort((a, b) => 
+        barData.value >= 0
+            ? d3.descending(a.change, b.change)
+            : d3.ascending(a.change, b.change)
+    );
+
+    // Keep the highlight small so the map is not cluttered
+    return sameDirection.slice(0, 5).map(d => d.municipality);
+}
+
+/*
+Clicking a grouped-bar bar highlights the municipalities that best match
+that age-group/background trend.
+
+Clicking the same bar again clears the reverse interaction.
+*/
+function toggleGroupedBarMapHighlight(event, d){
+    let isSameBar = 
+        state.selectedAgeGroup === d.ageGroup &&
+        state.selectedBackground === d.background;
+
+    if (isSameBar){
+        state.selectedAgeGroup = null;
+        state.selectedBackground = null;
+        state.highlightedMunicipalities = [];
+    }
+    else{
+        // Switch out of municipality filter mode before applying the reverse interaction
+        state.selectedMunicipality = null;
+        state.selectedAgeGroup = d.ageGroup;
+        state.selectedBackground = d.backgroud;
+        state.highlightedMunicipalities = getHighlightedMunicipalitiesForBar(d);
+    }
+
+    renderAll();
 }
 
 
@@ -295,7 +402,8 @@ async function init(){
         chapter1GroupBarChart
             .setBarHover((event, d) => showAgeGrowthTooltip(event, d))
             .setBarOut(hideRegionTooltip)
-            .setBarClick(selectedAgeGroup);
+            .setBarClick(toggleGroupedBarMapHighlight);
+            // .setBarClick(selectedAgeGroup);
             
         bindControls();
         syncYearToggleButtons();
