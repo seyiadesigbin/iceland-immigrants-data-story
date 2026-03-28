@@ -465,6 +465,20 @@ html {
     flex-shrink: 0;
 }
 
+.preprocess-note{
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background-color: var(--paper3);
+    /* background-color: transparent;
+    border: 1px dashed var(--border); */
+    color: var(--ink2);
+    font-size: 10.5px;
+    line-height: 1.4;
+}
+
 
 /* Legend styling starts here */
 .legend{
