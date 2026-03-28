@@ -7,7 +7,7 @@ import {chartConfig, values, getMunicipalityRegion} from './utils.js'
 // Import the charts
 import ChoroplethChart from './ChoroplethChart.js'
 import GroupedBarChart from './GroupedBarChart.js'
-import HeatmapChart from './HeatmapChart.js'
+// import HeatmapChart from './HeatmapChart.js'
 import PyramidChart from './PyramidChart.js'
 import SlopeChart from './SlopeChart.js'
 

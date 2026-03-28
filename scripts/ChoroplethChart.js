@@ -294,7 +294,7 @@ export default class ChoroplethChart{
 
         // Create color scale
         this.colorScale = d3.scaleSequential()
-            .domain([0, d3.max(filtered, d => d.immigrantShare)])
+            .domain([0, d3.max(this.data, d => d.immigrantShare)])
             .interpolator(t => d3.interpolateBlues(0.25 + t * 0.75));
 
         // Render the map and legend
