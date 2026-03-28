@@ -130,6 +130,7 @@ html {
 
 .logo{
     height: 100px;
+    margin-top: 5px;
 }
 
 .nav-links li{
@@ -384,28 +385,6 @@ html {
     transform: translateX(-50%) translateY(0);
 
 }
-
-/* .link-preview-thumb{
-    width: 56px;
-    height: 56px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 10px;
-    background: linear-gradient(135deg, #0b5fa5, #7fb3d5);
-    color: white;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-}
-
-.link-preview-body{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    min-width: 0;
-} */
 
 .link-preview-source{
     font-size: 10px;
