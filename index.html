@@ -16,10 +16,131 @@
 
     <!-- Load styles -->
     <link rel='stylesheet' type='text/css' media='screen' href='styles/main.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='styles/about.css'>
+
 </head>
 
 <!-- Webpage body starts here-->
 <body>
+
+    <!-- ==================== About section overlay =================================== -->
+     <div id="about-overlay" role="dialog" aria-modal="true" aria-label="About this project">
+
+        <div class="about-shell">
+            <div class="about-topbar">
+                <div class="about-topbar-label">F21DV · Group 1 · Heriot-Watt University</div>
+                <button class="about-close-btn" id="about-close-btn" aria-label="Close and enter the data story">
+                    Enter Data Story
+                </button>
+            </div>
+
+            <div class="about-content col">
+                <section class="about-hero">
+                    <div class="about-kicker">About this project</div>
+                    <h1 class="about-title">Why this story was made</h1>
+                    <p class="about-body">
+                        This interactive data story examines how immigration reshaped Iceland between 2011 and 2021, first geographically and then through labour-market outcomes. It is aimed at a policy-oriented audience and was deliberately narrowed from a broader exploratory analysis into one focused narrative.
+                    </p>
+                </section>
+
+                <section class="about-section">
+                    <div class="about-section-label">Visualisation purpose</div>
+                    <div class="about-grid about-grid-3">
+                        <article class="about-card">
+                            <h2 class="about-card-title">Chapter 1</h2>
+                            <p class="about-card-body">
+                                The choropleth map shows where immigrant share rose across municipalities, while the grouped bar chart shows how population change differed by age group for immigrants and natives.
+                            </p>
+                        </article>
+
+                        <article class="about-card">
+                            <h2 class="about-card-title">Chapter 2</h2>
+                            <p class="about-card-body">
+                                The slope chart shows how immigrant employment moved from advantage to deficit between 2011 and 2021. The dot plot then breaks that reversal down by age group and education level.
+                            </p>
+                        </article>
+
+                        <article class="about-card">
+                            <h2 class="about-card-title">Chapter 3</h2>
+                            <p class="about-card-body">
+                                The heatmap shows the employment-rate gap between immigrants and natives across age groups and education levels, revealing where the disparity is most persistent.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="about-section">
+                    <div class="about-section-label">Changes after feedback</div>
+                    <div class="about-grid about-grid-2">
+                        <article class="about-card">
+                            <h2 class="about-card-title">Sharper focus</h2>
+                            <p class="about-card-body">
+                                The story was narrowed from a broad exploratory analysis to one central theme: how Iceland’s immigrant population shift connects to labour-market inequality.
+                            </p>
+                        </article>
+
+                        <article class="about-card">
+                            <h2 class="about-card-title">One target audience</h2>
+                            <p class="about-card-body">
+                                The original design proposed three audiences. The final version focuses on a policy and government audience so that the tone, chart choices, and interactions remain more coherent.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="about-section">
+                    <div class="about-section-label">Limitations and future work</div>
+                    <div class="about-grid about-grid-2">
+                        <article class="about-card">
+                            <h2 class="about-card-title">Current limitation</h2>
+                            <p class="about-card-body">
+                                The available data does not break employment down by both sector and background. This means the story cannot test whether native employment advantages are concentrated in particular industries.
+                            </p>
+                        </article>
+
+                        <article class="about-card">
+                            <h2 class="about-card-title">Future improvement</h2>
+                            <p class="about-card-body">
+                                A dataset linking sector, background, and education would make it possible to identify where immigrant disadvantage is strongest and support more targeted policy recommendations.
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="about-section">
+                    <div class="about-section-label">Team and course</div>
+                    <div class="about-grid about-grid-2">
+                        <article class="about-card">
+                            <h2 class="about-card-title">Team</h2>
+                            <div class="about-people">
+                                <a href="REPLACE_WITH_LINKEDIN_URL" target="_blank" rel="noopener noreferrer">Full Name 1</a>
+                                <a href="REPLACE_WITH_LINKEDIN_URL" target="_blank" rel="noopener noreferrer">Full Name 2</a>
+                                <a href="REPLACE_WITH_LINKEDIN_URL" target="_blank" rel="noopener noreferrer">Full Name 3</a>
+                                <a href="REPLACE_WITH_LINKEDIN_URL" target="_blank" rel="noopener noreferrer">Full Name 4</a>
+                            </div>
+                        </article>
+
+                        <article class="about-card">
+                            <h2 class="about-card-title">Course</h2>
+                            <p class="about-card-body">
+                                F21DV Data Visualization and Analytics<br>
+                                Heriot-Watt University<br>
+                                Lecturer: REPLACE_WITH_LECTURER_NAME
+                            </p>
+                        </article>
+                    </div>
+                </section>
+
+                <div class="about-cta-wrap">
+                    <button class="about-cta-btn" id="about-cta-btn">
+                        Dive into the Data Story
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
 
     <!-- ============================= Navigation bar ================================= -->
     <nav class="nav">
@@ -30,10 +151,10 @@
                 </a>
             </span>
             <div class="nav-links">
+                <a href="#" id="about-nav-link">ReadMe</a>
                 <a href="#chapter1">The Shift</a>
                 <a href="#chapter2">Employment Collapse</a>
                 <a href="#chapter3">Opportunity Inequality</a>
-                <!-- <a href="#chapter4">Origins</a> -->
 
             </div> 
             <span class="nav-pill">Iceland 2011-2021</span>
@@ -633,9 +754,9 @@
 
 
 
-    <!-- ==== Load main.js script ========  -->
+    <!-- ==== Load .js scripts ========  -->
     <script type="module" src='scripts/main.js'></script>
-    
+    <script src='scripts/about.js'></script>
 
 </body>
 <!--Webpage body ends here-->
