@@ -1,13 +1,13 @@
 'use strict';
 
 // Import required functions
-import {calculateEmploymentRates, calculateMunicipalityShare} from './preprocess.js'
+import {calculateEmploymentRates, calculateMunicipalityShare, buildHeatmapData} from './preprocess.js'
 import {chartConfig, values, getMunicipalityRegion} from './utils.js'
 
 // Import the charts
 import ChoroplethChart from './ChoroplethChart.js'
 import GroupedBarChart from './GroupedBarChart.js'
-// import HeatmapChart from './HeatmapChart.js'
+import HeatmapChart from './HeatmapChart.js'
 import SlopeChart from './SlopeChart.js'
 import HorizontalDotPlot from './HorizontalDotPlot.js'
 
@@ -37,6 +37,7 @@ const appData = {
     labour: [],
     municipalityShare: [],
     employmentRates: [],
+    heatmapData: [],
     geo: null
 };
 
@@ -69,13 +70,13 @@ function parseEducationRow(d){
 // Labour dataset
 function parseLabourRow(d){
     return {
-        ageGroup: d.Age_Group,
-        empStatus: d.Employment_Status,
-        background: d.Background,
-        education: d.Education,
+        ageGroup: String(d.Age_Group).trim().replace("65 and over", "65+"),
+        empStatus: String(d.Employment_Status).trim(),
+        background: String(d.Background).trim(),
+        education: String(d.Education).trim(),
         year: +d.Year,
-        sex: d.Sex,
-        population: +d.Population,
+        sex: String(d.Sex).trim(),
+        population: +String(d.Population).replace(/,/g, "").trim(),
     };
 }
 
@@ -398,11 +399,32 @@ function bindDotPlotControls(){
 
 
 /* ======================= Ee-Erns's codes start here ======================= */
+const heatmapChart = new HeatmapChart(
+    "#heatmap-chart",
+    "#heatmap-legend",
+    chartConfig.heatmapChart.width,
+    chartConfig.heatmapChart.height,
+    chartConfig.heatmapChart.margins,
+    tooltip
+);
 
+function syncChapter3YearToggleButtons(){
+    d3.selectAll('#chapter3-year-toggle .toggle-btn')
+        .classed('active', false)
+        .filter(function(){
+            return +this.dataset.year === state.year;
+        })
+        .classed('active', true);
+}
 
-
-
-
+function bindChapter3Controls(){
+    d3.selectAll('#chapter3-year-toggle .toggle-btn')
+        .on('click', function(){
+            state.year = +this.dataset.year;
+            syncChapter3YearToggleButtons();
+            renderAll();
+        });
+}
 
 /* ======================= Ee-Erns's codes end here ======================= */
 
@@ -443,6 +465,7 @@ function renderAll(){
     chapter1GroupBarChart.render(appData.background, state);
     horizontalDotPlot.render(appData.labour, state); // render horizontal dot plot
     slopeChart.render(appData.employmentRates, state);// render SlopeChart
+    heatmapChart.render(appData.heatmapData, state);
 
     // pyramidChart.render(appData.background, state);
 
@@ -458,6 +481,7 @@ async function init(){
 
         appData.municipalityShare = calculateMunicipalityShare(appData.background);
         appData.employmentRates = calculateEmploymentRates(appData.labour);
+        appData.heatmapData = buildHeatmapData(appData.employmentRates);
 
         // Test municipality share and employment rates functions
         console.log("Municipality Share: ", appData.municipalityShare);
@@ -489,6 +513,8 @@ async function init(){
         bindControls();
         bindDotPlotControls();
         syncYearToggleButtons();
+        bindChapter3Controls();
+        syncChapter3YearToggleButtons();
         renderAll();
 
         console.log("App initialized successfully.");

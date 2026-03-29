@@ -612,6 +612,25 @@ html {
     color: var(--ink3);
 }
 
+.heatmap-row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding-left: 20px;
+    gap: 1px;
+}
+
+#heatmap-chart {
+    align-items: center;
+}
+
+#heatmap-legend {
+    width: 40px;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+}
 
 /* Chart axis formatting */
 

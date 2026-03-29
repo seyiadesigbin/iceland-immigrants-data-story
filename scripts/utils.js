@@ -87,13 +87,13 @@ export const chartConfig = {
     },
 
     heatmapChart: {
-        width: 636,
-        height: 250,
+        width: 600,
+        height: 300,
         margins: {
             top: 24,
-            right: 40,
-            bottom: 52,
-            left: 88,
+            right: 56,
+            bottom: 30,
+            left: 100,
         }
     },
 
@@ -262,4 +262,20 @@ export function normalizeName(name){
 export function getMunicipalityRegion(name){
     return municipalityToRegion[normalizeName(name)] || 'Region unavailable';
 }
+
+export const heatmapOrder = {
+    education: [
+        values.education.basic,
+        values.education.upperSecondary,
+        values.education.tertiary
+    ],
+    ageGroup: [
+        "16-24",
+        "25-34",
+        "35-44",
+        "45-54",
+        "55-64",
+        "65+"
+    ]
+};
 

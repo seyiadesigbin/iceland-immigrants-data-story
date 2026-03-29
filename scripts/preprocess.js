@@ -130,3 +130,48 @@ export function calculateEmploymentRates(labourData){
     return result;
 
 }
+
+export function buildHeatmapData(employmentRates){
+
+    // Group by year -> education -> ageGroup -> background
+    const grouped = d3.rollup(
+        employmentRates,
+        rows => rows[0], // one row per combination already exists
+        d => d.year,
+        d => d.education,
+        d => d.ageGroup,
+        d => d.background
+    );
+
+    const result = [];
+
+    grouped.forEach((educationMap, year) => {
+        educationMap.forEach((ageMap, education) => {
+            ageMap.forEach((backgroundMap, ageGroup) => {
+
+                const immigrantRow = backgroundMap.get(values.background.immigrants);
+                const nativeRow = backgroundMap.get(values.background.natives);
+
+                if (!immigrantRow || !nativeRow) return;
+
+                const immigrantRate = immigrantRow.employmentRate;
+                const nativeRate = nativeRow.employmentRate;
+
+                if (!Number.isFinite(immigrantRate) || !Number.isFinite(nativeRate)) return;
+
+                const gap = immigrantRate - nativeRate;
+
+                result.push({
+                    year: +year,
+                    education,
+                    ageGroup,
+                    immigrantRate: +immigrantRate.toFixed(1),
+                    nativeRate: +nativeRate.toFixed(1),
+                    gap: +gap.toFixed(1)
+                });
+            });
+        });
+    });
+
+    return result;
+}
