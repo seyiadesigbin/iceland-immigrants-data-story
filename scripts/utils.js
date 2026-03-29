@@ -95,7 +95,18 @@ export const chartConfig = {
             bottom: 52,
             left: 88,
         }
+    },
+
+    horizontalDotPlot: {
+    width: chartWidth,
+    height: 300,
+    margins: {
+        top: 24,
+        right: 40,
+        bottom: 52,
+        left: 120,
     }
+}
 };
 
 
