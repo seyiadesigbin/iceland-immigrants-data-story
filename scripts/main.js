@@ -9,6 +9,7 @@ import ChoroplethChart from './ChoroplethChart.js'
 import GroupedBarChart from './GroupedBarChart.js'
 // import HeatmapChart from './HeatmapChart.js'
 import SlopeChart from './SlopeChart.js'
+import HorizontalDotPlot from './HorizontalDotPlot.js'
 
 // Define directory of data files
 const backgroundDir = "data/datasets/background.csv"
