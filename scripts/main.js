@@ -410,7 +410,13 @@ function bindDotPlotControls(){
 
 
 /* ======================= Shashank's codes start here ======================= */
-
+const slopeChart = new SlopeChart(
+    "#slope-chart",
+    "#slope-legend",
+    chartConfig.slopeChart.width,
+    chartConfig.slopeChart.height,
+    chartConfig.slopeChart.margins
+);
 
 
 
@@ -436,6 +442,7 @@ function renderAll(){
     choroplethChart.render(appData.municipalityShare, appData.geo, state) // render choropleth chart
     chapter1GroupBarChart.render(appData.background, state);
     horizontalDotPlot.render(appData.labour, state); // render horizontal dot plot
+    slopeChart.render(appData.employmentRates, state);// render SlopeChart
 
     // pyramidChart.render(appData.background, state);
 
