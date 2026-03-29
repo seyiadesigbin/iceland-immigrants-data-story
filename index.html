@@ -25,259 +25,259 @@
     <!-- ============================= Project Overview section ================================= -->
     <div id="overview-overlay" role="dialog" aria-modal="true" aria-label="Project Overview">
 
-        <button class="overview-x-btn" id="overview-close-btn" aria-label="Close Project Overview and enter the data story">
-            x
-        </button>
-
-        <!-- Overview header -->
-        <section class="overview-header-band">
-            <div class="col overview-header-inner">
-                <div class="overview-prefix">Project Overview</div>
-
-                <div class="overview-header-grid">
-                    <div>
-                        <h1 class="overview-title">
-                            A focused story about immigration, employment, and unequal outcomes in Iceland
-                        </h1>
-
-                        <p class="overview-lead">
-                            This project examines the impact of immigration on Iceland between 2011 and 2021, geographically and labour-market wise.  It is the result of a broader exploratory analysis conducted on the population statistics of Iceland within this period, across background, education, and labour thematic areas.
-                        </p>
-                    </div>
-
-                    <div class="overview-header-side">
-                        <div class="overview-mini-label">Target audience</div>
-                        <p class="overview-side-body">
-                            Policy and government readers interested in demographic change, workforce sustainability, and labour-market integration.
-                        </p>
-
-                        <button class="overview-cta-btn" id="overview-cta-btn">
-                            Enter Data Story
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Chapter descriptions -->
-        <section class="overview-band overview-band-light">
-            <div class="col">
-                <div class="overview-section-label">What the visualizations do</div>
-
-                <div class="overview-card-grid overview-card-grid-3">
-                    <article class="overview-card">
-                        <h2 class="overview-subtitle">Chapter 1 | The Shift</h2>
-                        <p class="overview-body">
-                            The choropleth map highlights the immigrant share byIceland's municipalities and the grouped bar chart shows the change in population disaggregated by age group, both among immigrants and natives.
-                        </p>
-                    </article>
-
-                    <article class="overview-card">
-                        <h2 class="overview-subtitle">Chapter 2 | Employment Reversal</h2>
-                        <p class="overview-body">
-                            The slope charts shows immigrant employment rates moved from being ahead of natives' as of 2011 and behind by 2021. The dot plot further breaks that reversal down by age group, with an education level for both charts.
-                        </p>
-                    </article>
-
-                    <article class="overview-card">
-                        <h2 class="overview-subtitle">Chapter 3 | Qualification Paradox</h2>
-                        <p class="overview-body">
-                            The heatmap shows the employment-rate between between immigrants and natives across the different age groups and education levels, highlighting where inequality occurs the most.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- How the interactions work -->
-        <section class="overview-band overview-band-muted">
-            <div class="col overview-split">
-                <div>
-                    <div class="overview-section-label">How the interactions work</div>
-
-                    <p class="overview-body">
-                        Chapter 1 features a bi-directional interaction between the Choropleth and Grouped Bar Charts. 
-                        <br> Clicking a municipality on the map filters the grouped bar chart to show figures for that location, while clicking a bar on the grouped bar chart highlights the five municipalities where that age-group trend is strongest.
-                    </p>
-
-                    <p class="overview-body">
-                        Chapter 2 features a uni-directional interaction between the Slope and Horizontal Dot Plot Charts. 
-                        <br> The education-level filters update the data in both charts, showing the outcomes in the selected level.
-                    </p>
-                </div>
-
-                <div>
-                    <div class="overview-section-label">Design decisions</div>
-
-                    <p class="overview-body">
-                        Following feedback from the Design phase, the project was narrowed from several findings during the EDA to one central theme: <i>how immigration changed Iceland's population structure and how that shift connects to labour-market ineqaulity.</i>
-                    </p>
-
-                    <p class="overview-body">
-                        The intial design considered three audiences. The final version focuses on a policy and government audience to ensure the narrative and interaction designs remain more purposeful.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Changes after feedback -->
-        <!-- <section class="overview-band overview-band-light">
-            <div class="col">
-                <div class="overview-section-label">Changes after feedback</div>
-
-                <div class="overview-card-grid overview-card-grid-2">
-                    <article class="overview-card">
-                        <h2 class="overview-subtitle">Sharper focus</h2>
-                        <p class="overview-body">
-                            The project was narrowed from several exploratory findings to one central theme: how immigration changed Iceland’s population structure and how that shift connects to labour-market inequality.
-                        </p>
-                    </article>
-
-                    <article class="overview-card">
-                        <h2 class="overview-subtitle">One target audience</h2>
-                        <p class="overview-body">
-                            The original design considered three audiences. The final version focuses on a policy and government audience so the narrative and interaction design remain more purposeful.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section> -->
-
-        <!-- Limitations and Future Work -->
-        <section class="overview-band overview-band-light">
-            <div class="col">
-                <div class="overview-section-label">Limitations and Future Work</div>
-
-                <div class="overview-card-grid overview-card-grid-2">
-                    <article class="overview-card">
-                        <h2 class="overview-subtitle">Current Limitation</h2>
-                        <p class="overview-body">
-                            Attempts to test if native employment advantages are concentrated in particular industries proved futile as the available datasets on Statistics Iceland do not break down employment by sector and background.
-                        </p>
-                    </article>
-
-                    <article class="overview-card">
-                        <h2 class="overview-subtitle">Future Improvement</h2>
-                        <p class="overview-body">
-                            Future improves would focus on extending the interactivity and usability of the story.
-                            <br> Possible next steps include: linking Chapter 2 and 3 more directly, adding clearer active-filter and reset controls, zoom functionality for the choropleth map, and improving accessibility through keyboard navigation, stronger focus states, and a more mobile-responsibe interface.
-                        </p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- The team and course details -->
-        <section class="overview-band overview-band-muted">
-            <div class="col overview-split">
-
-                <!-- Meet the Team Section -->
-                <div>
-                    <div class="overview-section-label">Meet the Team</div>
-
-                    <!-- Team members -->
-                    <div class="overview-team">
-
-                        <!-- Oluwaseyi Adesigbin -->
-                        <div class="overview-person">
-                            <span class="overview-person-name">Oluwaseyi Adesigbin | Team Lead</span>
-                            <a href="https://www.linkedin.com/in/seyiadesigbin/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Oluwaseyi Adesigbin">
-                                <img src="./img/LinkedIn_icon.svg" alt="" class="linkedin-icon">
-                            </a>
-                        </div>
-
-                        <!-- Oluwaseyi Adesigbin -->
-                        <div class="overview-person">
-                            <span class="overview-person-name">Oluwaseyi Adesigbin | Team Lead</span>
-                            <a href="https://www.linkedin.com/in/seyiadesigbin/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Oluwaseyi Adesigbin">
-                                <img src="./img/LinkedIn_icon.svg" alt="" class="linkedin-icon">
-                            </a>
-                        </div>
-
-                        <!-- Oluwaseyi Adesigbin -->
-                        <div class="overview-person">
-                            <span class="overview-person-name">Oluwaseyi Adesigbin | Team Lead</span>
-                            <a href="https://www.linkedin.com/in/seyiadesigbin/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Oluwaseyi Adesigbin">
-                                <img src="./img/LinkedIn_icon.svg" alt="" class="linkedin-icon">
-                            </a>
-                        </div>
-
-                        <!-- Oluwaseyi Adesigbin -->
-                        <div class="overview-person">
-                            <span class="overview-person-name">Oluwaseyi Adesigbin | Team Lead</span>
-                            <a href="https://www.linkedin.com/in/seyiadesigbin/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Oluwaseyi Adesigbin">
-                                <img src="./img/LinkedIn_icon.svg" alt="" class="linkedin-icon">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Course and lecturer's details -->
-                <div>
-                    <div class="overview-section-label">Course</div>
-                    <p class="overview-body overview-course-note">
-                        F21DV Data Visualization and Analytics | Heriot-Watt University 
-                        <br> <b>Lecturer:</b> Dr Pierre Le Bras (PhD, FHEA)
-                    </p>
-                </div>
-            </div>
-
-        </section>
-
-
-        <!-- References -->
-        <section class="overview-band overview-band-light">
-            <div class="col">
-                <div class="overview-section-label">References</div>
-
-                <div class="overview-text-list">
-                    <div class="overview-text-item">
-                        <p class="overview-body">
-                            OECD. (2024). <em>Immigration in Iceland</em>.
-                            <a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/11/immigration-in-iceland_e1b2c815/645ca1ac-en.pdf" target="_blank" rel="noopener noreferrer">
-                               | View source
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="overview-text-item">
-                        <p class="overview-body">
-                            Statistics Iceland (Hagstofa Íslands)- <em>Census datasets used throughout the project.</em>
-                            <a href="https://statice.is/statistics/population/census/census-2021/" target="_blank" rel="noopener noreferrer">
-                                | View source
-                            </a>
-                        </p>
-                    </div>
-
-                    <div class="overview-text-item">
-                        <p class="overview-body">
-                            Wikipedia <em>2008-2011 Icelandic Financial Crisis</em>.
-                            <a href="https://en.wikipedia.org/wiki/2008%E2%80%932011_Icelandic_financial_crisis" target="_blank" rel="noopener noreferrer">
-                               | View source
-                            </a>
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <section class="overview-band overview-band-footer">
-            <div class="col overview-footer-cta">
-                <p class="overview-body footer">
-                    This project combines demographic and labour-market evidence to show not only where immigration changed Iceland, but also where integration has falled short.
-                </p>
-
-                <button class="overview-cta-btn" id="overview-cta-btn-footer">
-                    Enter Data Story
-                </button>
-            </div>
-
+        <div class="overview-shell">
+            <button class="overview-x-btn" id="overview-close-btn" aria-label="Close Project Overview and enter the data story">
+                x
+            </button>
             
-        </section>
-        
+            <!-- Overview header -->
+            <section class="overview-header-band">
+                <div class="col overview-header-inner">
+                    <div class="overview-prefix">Project Overview</div>
+
+                    <div class="overview-header-grid">
+                        <div>
+                            <h1 class="overview-title">
+                                A focused story about immigration, employment, and unequal outcomes in Iceland
+                            </h1>
+
+                            <p class="overview-lead">
+                                This project examines the impact of immigration on Iceland between 2011 and 2021, geographically and labour-market wise.  It is the result of a broader exploratory analysis conducted on the population statistics of Iceland within this period, across background, education, and labour thematic areas.
+                            </p>
+                        </div>
+
+                        <div class="overview-header-side">
+                            <div class="overview-mini-label">Target audience</div>
+                            <p class="overview-side-body">
+                                Policy and government readers interested in demographic change, workforce sustainability, and labour-market integration.
+                            </p>
+
+                            <button class="overview-cta-btn" id="overview-cta-btn">
+                                Enter Data Story
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Chapter descriptions -->
+            <section class="overview-band overview-band-light">
+                <div class="col">
+                    <div class="overview-section-label">What the visualizations do</div>
+
+                    <div class="overview-card-grid overview-card-grid-3">
+                        <article class="overview-card">
+                            <h2 class="overview-subtitle">Chapter 1 | The Shift</h2>
+                            <p class="overview-body">
+                                The choropleth map highlights the immigrant share byIceland's municipalities and the grouped bar chart shows the change in population disaggregated by age group, both among immigrants and natives.
+                            </p>
+                        </article>
+
+                        <article class="overview-card">
+                            <h2 class="overview-subtitle">Chapter 2 | Employment Reversal</h2>
+                            <p class="overview-body">
+                                The slope charts shows immigrant employment rates moved from being ahead of natives' as of 2011 and behind by 2021. The dot plot further breaks that reversal down by age group, with an education level for both charts.
+                            </p>
+                        </article>
+
+                        <article class="overview-card">
+                            <h2 class="overview-subtitle">Chapter 3 | Qualification Paradox</h2>
+                            <p class="overview-body">
+                                The heatmap shows the employment-rate between between immigrants and natives across the different age groups and education levels, highlighting where inequality occurs the most.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- How the interactions work -->
+            <section class="overview-band overview-band-muted">
+                <div class="col overview-split">
+                    <div>
+                        <div class="overview-section-label">How the interactions work</div>
+
+                        <p class="overview-body">
+                            Chapter 1 features a bi-directional interaction between the Choropleth and Grouped Bar Charts. 
+                            <br> Clicking a municipality on the map filters the grouped bar chart to show figures for that location, while clicking a bar on the grouped bar chart highlights the five municipalities where that age-group trend is strongest.
+                        </p>
+
+                        <p class="overview-body">
+                            Chapter 2 features a uni-directional interaction between the Slope and Horizontal Dot Plot Charts. 
+                            <br> The education-level filters update the data in both charts, showing the outcomes in the selected level.
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="overview-section-label">Design decisions</div>
+
+                        <p class="overview-body">
+                            Following feedback from the Design phase, the project was narrowed from several findings during the EDA to one central theme: <i>how immigration changed Iceland's population structure and how that shift connects to labour-market ineqaulity.</i>
+                        </p>
+
+                        <p class="overview-body">
+                            The intial design considered three audiences. The final version focuses on a policy and government audience to ensure the narrative and interaction designs remain more purposeful.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Changes after feedback -->
+            <!-- <section class="overview-band overview-band-light">
+                <div class="col">
+                    <div class="overview-section-label">Changes after feedback</div>
+
+                    <div class="overview-card-grid overview-card-grid-2">
+                        <article class="overview-card">
+                            <h2 class="overview-subtitle">Sharper focus</h2>
+                            <p class="overview-body">
+                                The project was narrowed from several exploratory findings to one central theme: how immigration changed Iceland’s population structure and how that shift connects to labour-market inequality.
+                            </p>
+                        </article>
+
+                        <article class="overview-card">
+                            <h2 class="overview-subtitle">One target audience</h2>
+                            <p class="overview-body">
+                                The original design considered three audiences. The final version focuses on a policy and government audience so the narrative and interaction design remain more purposeful.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section> -->
+
+            <!-- Limitations and Future Work -->
+            <section class="overview-band overview-band-light">
+                <div class="col">
+                    <div class="overview-section-label">Limitations and Future Work</div>
+
+                    <div class="overview-card-grid overview-card-grid-2">
+                        <article class="overview-card">
+                            <h2 class="overview-subtitle">Current Limitation</h2>
+                            <p class="overview-body">
+                                Attempts to test if native employment advantages are concentrated in particular industries proved futile as the available datasets on Statistics Iceland do not break down employment by sector and background.
+                            </p>
+                        </article>
+
+                        <article class="overview-card">
+                            <h2 class="overview-subtitle">Future Improvement</h2>
+                            <p class="overview-body">
+                                Future improves would focus on extending the interactivity and usability of the story.
+                                <br> Possible next steps include: linking Chapter 2 and 3 more directly, adding clearer active-filter and reset controls, zoom functionality for the choropleth map, and improving accessibility through keyboard navigation, stronger focus states, and a more mobile-responsibe interface.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- The team and course details -->
+            <section class="overview-band overview-band-muted">
+                <div class="col overview-split">
+
+                    <!-- Meet the Team Section -->
+                    <div>
+                        <div class="overview-section-label">Meet the Team</div>
+
+                        <!-- Team members -->
+                        <div class="overview-team">
+
+                            <!-- Oluwaseyi Adesigbin -->
+                            <div class="overview-person">
+                                <span class="overview-person-name">Oluwaseyi Adesigbin | Team Lead</span>
+                                <a href="https://www.linkedin.com/in/seyiadesigbin/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Oluwaseyi Adesigbin">
+                                    <img src="./img/LinkedIn_icon.svg" alt="" class="linkedin-icon">
+                                </a>
+                            </div>
+
+                            <!-- Oluwaseyi Adesigbin -->
+                            <div class="overview-person">
+                                <span class="overview-person-name">Oluwaseyi Adesigbin | Team Lead</span>
+                                <a href="https://www.linkedin.com/in/seyiadesigbin/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Oluwaseyi Adesigbin">
+                                    <img src="./img/LinkedIn_icon.svg" alt="" class="linkedin-icon">
+                                </a>
+                            </div>
+
+                            <!-- Oluwaseyi Adesigbin -->
+                            <div class="overview-person">
+                                <span class="overview-person-name">Oluwaseyi Adesigbin | Team Lead</span>
+                                <a href="https://www.linkedin.com/in/seyiadesigbin/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Oluwaseyi Adesigbin">
+                                    <img src="./img/LinkedIn_icon.svg" alt="" class="linkedin-icon">
+                                </a>
+                            </div>
+
+                            <!-- Oluwaseyi Adesigbin -->
+                            <div class="overview-person">
+                                <span class="overview-person-name">Oluwaseyi Adesigbin | Team Lead</span>
+                                <a href="https://www.linkedin.com/in/seyiadesigbin/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile for Oluwaseyi Adesigbin">
+                                    <img src="./img/LinkedIn_icon.svg" alt="" class="linkedin-icon">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Course and lecturer's details -->
+                    <div>
+                        <div class="overview-section-label">Course</div>
+                        <p class="overview-body overview-course-note">
+                            F21DV Data Visualization and Analytics | Heriot-Watt University 
+                            <br> <b>Lecturer:</b> Dr Pierre Le Bras (PhD, FHEA)
+                        </p>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- References -->
+            <section class="overview-band overview-band-light">
+                <div class="col">
+                    <div class="overview-section-label">References</div>
+
+                    <div class="overview-text-list">
+                        <div class="overview-text-item">
+                            <p class="overview-body">
+                                OECD. (2024). <em>Immigration in Iceland</em>.
+                                <a href="https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/11/immigration-in-iceland_e1b2c815/645ca1ac-en.pdf" target="_blank" rel="noopener noreferrer">
+                                | View source
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="overview-text-item">
+                            <p class="overview-body">
+                                Statistics Iceland (Hagstofa Íslands)- <em>Census datasets used throughout the project.</em>
+                                <a href="https://statice.is/statistics/population/census/census-2021/" target="_blank" rel="noopener noreferrer">
+                                    | View source
+                                </a>
+                            </p>
+                        </div>
+
+                        <div class="overview-text-item">
+                            <p class="overview-body">
+                                Wikipedia <em>2008-2011 Icelandic Financial Crisis</em>.
+                                <a href="https://en.wikipedia.org/wiki/2008%E2%80%932011_Icelandic_financial_crisis" target="_blank" rel="noopener noreferrer">
+                                | View source
+                                </a>
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <!-- Footer -->
+            <section class="overview-band overview-band-footer">
+                <div class="col overview-footer-cta">
+                    <p class="overview-body footer">
+                        This project combines demographic and labour-market evidence to show not only where immigration changed Iceland, but also where integration has falled short.
+                    </p>
+
+                    <button class="overview-cta-btn" id="overview-cta-btn-footer">
+                        Enter Data Story
+                    </button>
+                </div>
+
+                
+            </section>
+        </div>
     </div>
 
 

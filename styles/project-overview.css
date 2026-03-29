@@ -12,13 +12,43 @@ CSS styling for the Project Overview page/overlay
     background: var(--paper);
     opacity: 1;
     visibility: visible;
-    transition: opacity 260ms ease, visibility 260ms ease;
+    transition: 
+        opacity 260ms ease, 
+        visibility 260ms ease, 
+        background 260ms ease,
+        backdrop-filter 260ms ease;
 }
 
 #overview-overlay.hidden{
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+}
+
+#overview-overlay.hidden .overview-shell{
+    transform: translateY(18px);
+    opacity: 0;
+}
+
+#overview-overlay.overview-modal-mode{
+    background: rgba(14, 17, 23, 0.22);
+    backdrop-filter: blur(6px);
+    padding: 28px 16px;
+}
+
+.overview-shell{
+    position: relative;
+    min-height: 100%;
+    background-color: var(--paper);
+    transition:
+        transform 260ms ease,
+        opacity 260ms ease,
+        border-radius 260ms ease,
+        box-shadow 260ms ease,
+        width 260ms ease,
+        margin 260ms ease;
+    transform: translateY(0);
+    opacity: 1;
 }
 
 .overview-x-btn{
@@ -41,6 +71,12 @@ CSS styling for the Project Overview page/overlay
     transition: all var(--transition);
 }
 
+#overview-overlay.overview-modal-mode .overview-x-btn{
+    position: absolute;
+    top: 16px;
+    right: 16px;
+}
+
 .overview-x-btn:hover{
     background: rgba(14, 17, 23, 0.88);
     transform: scale(1.03);
@@ -48,6 +84,39 @@ CSS styling for the Project Overview page/overlay
 
 #overview-overlay.overview-first-open .overview-x-btn{
     display: none;
+}
+
+#overview-overlay.overview-modal-mode .overview-shell{
+    width: min(1040px, 100%);
+    min-height: auto;
+    margin: 0 auto;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 24px 64px rgb(14, 17, 23, 0.16);
+    overflow: hidden;
+    transform: translateY(0) scale(1);
+    animation: overviewModalIn 220ms ease;
+
+}
+
+@keyframes overviewModalIn{
+    from{
+        opacity: 0;
+        transform: translateY(14px) scale(0.985);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+#overview-overlay.overview-first-open .overview-shell{
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .overview-header-band{
