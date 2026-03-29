@@ -359,9 +359,37 @@ function clearGroupedBarSelection(){
 
 /* ======================= Sanket's codes start here ======================= */
 
+// Create Horizontal Dot Plot object
+const horizontalDotPlot = new HorizontalDotPlot(
+    "#horizontal-dotplot",
+    chartConfig.horizontalDotPlot.width,
+    chartConfig.horizontalDotPlot.height,
+    chartConfig.horizontalDotPlot.margins,
+);
 
+function showEmploymentRateTooltip(event, d){
+    tooltip
+        .style('opacity', 1)
+        .html(`
+            <strong>${d.ageGroup}</strong>
+            <span>Year: ${state.year}</span>
+            <span>Immigrants: ${d.immigrantRate.toFixed(1)}%</span>
+            <span>Natives: ${d.nativeRate.toFixed(1)}%</span>
+            <span>Gap: ${Math.abs(d.immigrantRate - d.nativeRate).toFixed(1)}pp (${d.immigrantRate < d.nativeRate ? 'Immigrants behind' : 'Immigrants ahead'})</span>
+        `);
+    moveTooltip(event);
+}
 
-
+// Bind dotplot year toggle
+function bindDotPlotControls(){
+    d3.selectAll('#dotplot-year-toggle .toggle-btn')
+        .on('click', function(){
+            d3.selectAll('#dotplot-year-toggle .toggle-btn').classed('active', false);
+            d3.select(this).classed('active', true);
+            state.year = +this.dataset.year;
+            renderAll();
+        });
+}
 
 
 /* ======================= Sanket's codes end here ======================= */
@@ -406,6 +434,7 @@ function renderAll(){
 
     choroplethChart.render(appData.municipalityShare, appData.geo, state) // render choropleth chart
     chapter1GroupBarChart.render(appData.background, state);
+    horizontalDotPlot.render(appData.labour, state); // render horizontal dot plot
 
     // pyramidChart.render(appData.background, state);
 
@@ -441,8 +470,16 @@ async function init(){
             .setBarClick(toggleGroupedBarMapHighlight)
             .setChartBackgroundClick(clearGroupedBarSelection);
             // .setBarClick(selectedAgeGroup);
+        horizontalDotPlot
+            .setDotHover((event, d) => showEmploymentRateTooltip(event, d))
+            .setDotOut(hideRegionTooltip)
+            .setDotClick((event, d) => {
+            state.selectedAgeGroup = state.selectedAgeGroup === d.ageGroup ? null : d.ageGroup;
+            renderAll();
+            });
             
         bindControls();
+        bindDotPlotControls();
         syncYearToggleButtons();
         renderAll();
 
