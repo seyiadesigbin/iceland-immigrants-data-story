@@ -1,6 +1,3 @@
-/* This file implements the Slope chart
-*/
-
 'use strict';
 
 import { palette, chartConfig } from './utils.js';
@@ -74,80 +71,92 @@ export default class SlopeChart {
     }
 
     #updateScales(chartData){
-        this.scaleX
-            .domain([2011, 2021])
-            .range([0, this.innerWidth])
-            .padding(0.3);
+    this.scaleX
+        .domain([2011, 2021])
+        .range([0, this.innerWidth])
+        .padding(0.3);
 
-        let rateValues = chartData.map(d => d.rate);
-        let lowest = d3.min(rateValues);
-        let highest = d3.max(rateValues);
+    let rateValues = chartData.map(d => d.rate);
+    let highest = d3.max(rateValues) || 0;
 
-        let buffer = 4;
-        this.scaleY
-            .domain([Math.floor(lowest - buffer), Math.ceil(highest + buffer)])
-            .range([this.innerHeight, 0]);
-    }
+    this.scaleY
+        .domain([0, Math.ceil(highest + 4)])
+        .range([this.innerHeight, 0]);
+}
 
     #updateMarks(chartData) {
-        this.chartGroup.selectAll('*').remove();
+    this.chartGroup.selectAll('*').remove();
 
-        let backgrounds = ['Immigrants', 'Natives'];
-        let groupColours = {
-            'Immigrants': palette.immigrants,
-            'Natives': palette.natives
-        };
+    let backgrounds = ['Immigrants', 'Natives'];
+    let groupColours = {
+        'Immigrants': palette.immigrants,
+        'Natives': palette.natives
+    };
 
-        backgrounds.forEach(group => {
-            let groupRows = chartData.filter(d => d.background === group);
+    backgrounds.forEach(group => {
+        let groupRows = chartData.filter(d => d.background === group);
 
-            let start = groupRows.find(d => d.year === 2011);
-            let end = groupRows.find(d => d.year === 2021);
+        let start = groupRows.find(d => d.year === 2011);
+        let end = groupRows.find(d => d.year === 2021);
 
-            if (!start || !end) return;
+        if (!start || !end) return;
 
-            let lineColour = groupColours[group];
+        let lineColour = groupColours[group];
+        let startY = this.scaleY(0);
 
-            this.chartGroup.append('line')
-                .attr('x1', this.scaleX(2011))
-                .attr('y1', this.scaleY(start.rate))
-                .attr('x2', this.scaleX(2021))
-                .attr('y2', this.scaleY(end.rate))
-                .attr('stroke', lineColour)
-                .attr('stroke-width', 2.5)
-                .attr('stroke-linecap', 'round');
+        this.chartGroup.append('line')
+            .attr('x1', this.scaleX(2011))
+            .attr('y1', startY)
+            .attr('x2', this.scaleX(2021))
+            .attr('y2', startY)
+            .attr('stroke', lineColour)
+            .attr('stroke-width', 2.5)
+            .attr('stroke-linecap', 'round')
+            .transition()
+            .duration(800)
+            .attr('y1', this.scaleY(start.rate))
+            .attr('y2', this.scaleY(end.rate));
 
-            [start, end].forEach(d => {
-                this.chartGroup.append('circle')
-                    .attr('cx', this.scaleX(d.year))
-                    .attr('cy',this.scaleY(d.rate))
-                    .attr('r', 5)
-                    .attr('fill',lineColour)
-                    .attr('stroke', '#fff')
-                    .attr('stroke-width',1.5);
-            });
-
-            this.chartGroup.append('text')
-                .attr('x', this.scaleX(2011) - 10)
-                .attr('y', this.scaleY(start.rate))
-                .attr('dy', '0.35em')
-                .attr('text-anchor', 'end')
-                .style('font-size', '12px')
-                .style('fill', lineColour)
-                .style('font-weight', '600')
-                .text(`${group}: ${start.rate.toFixed(1)}%`);
-
-            this.chartGroup.append('text')
-                .attr('x', this.scaleX(2021) + 10)
-                .attr('y', this.scaleY(end.rate))
-                .attr('dy', '0.35em')
-                .attr('text-anchor', 'start')
-                .style('font-size', '12px')
-                .style('fill', lineColour)
-                .style('font-weight', '600')
-                .text(`${group}: ${end.rate.toFixed(1)}%`);
+        [start, end].forEach(d => {
+            this.chartGroup.append('circle')
+                .attr('cx', this.scaleX(d.year))
+                .attr('cy', startY)
+                .attr('r', 5)
+                .attr('fill', lineColour)
+                .attr('stroke', '#fff')
+                .attr('stroke-width', 1.5)
+                .transition()
+                .duration(800)
+                .attr('cy', this.scaleY(d.rate));
         });
-    }
+
+        this.chartGroup.append('text')
+            .attr('x', this.scaleX(2011) - 10)
+            .attr('y', startY)
+            .attr('dy', '0.35em')
+            .attr('text-anchor', 'end')
+            .style('font-size', '12px')
+            .style('fill', lineColour)
+            .style('font-weight', '600')
+            .text(`${group}: ${start.rate.toFixed(1)}%`)
+            .transition()
+            .duration(800)
+            .attr('y', this.scaleY(start.rate));
+
+        this.chartGroup.append('text')
+            .attr('x', this.scaleX(2021) + 10)
+            .attr('y', startY)
+            .attr('dy', '0.35em')
+            .attr('text-anchor', 'start')
+            .style('font-size', '12px')
+            .style('fill', lineColour)
+            .style('font-weight', '600')
+            .text(`${group}: ${end.rate.toFixed(1)}%`)
+            .transition()
+            .duration(800)
+            .attr('y', this.scaleY(end.rate));
+    });
+}
 
     #updateAxes() {
         let xAxis = d3.axisBottom(this.scaleX)
