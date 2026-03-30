@@ -833,7 +833,6 @@ html {
 .footer{
     background-color: #0d1117;
     padding: 10px 0px;
-    border-top: var(--red) solid 1px;
 }
 
 .footer-inner{
