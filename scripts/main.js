@@ -438,6 +438,27 @@ const slopeChart = new SlopeChart(
     chartConfig.slopeChart.height,
     chartConfig.slopeChart.margins
 );
+function bindSlopeChartControls() {
+    d3.selectAll('#level-toggle .filter-btn')
+        .on('click', function () {
+            d3.selectAll('#level-toggle .filter-btn').classed('active', false);
+            d3.select(this).classed('active', true);
+
+            const selected = this.dataset.edu;
+
+            if (selected === 'all-level') {
+                state.selectedEducation = null;
+            } else if (selected === 'basic-level') {
+                state.selectedEducation = 'Basic education';
+            } else if (selected === 'secondary-level') {
+                state.selectedEducation = 'Upper secondary education';
+            } else if (selected === 'tertiary-level') {
+                state.selectedEducation = 'Tertiary education';
+            }
+
+            renderAll();
+        });
+}
 
 
 
@@ -510,12 +531,12 @@ async function init(){
             });
             
         bindControls();
-        bindDotPlotControls();
-        syncYearToggleButtons();
-        bindChapter3Controls();
-        syncChapter3YearToggleButtons();
-        renderAll();
-
+bindDotPlotControls();       
+bindSlopeChartControls();
+syncYearToggleButtons();
+bindChapter3Controls();
+syncChapter3YearToggleButtons();
+renderAll();
         console.log("App initialized successfully.");
     }catch (error){
         console.error("Error initializing app: ", error);
