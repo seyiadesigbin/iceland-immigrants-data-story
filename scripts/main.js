@@ -348,14 +348,6 @@ const horizontalDotPlot = new HorizontalDotPlot(
     chartConfig.horizontalDotPlot.margins,
 );
 
-const slopeChart = new SlopeChart(
-    "#slope-chart",
-    "#slope-legend",
-    chartConfig.slopeChart.width,
-    chartConfig.slopeChart.height,
-    chartConfig.slopeChart.margins
-);
-
 // Show tooltip for the Chapter 2 horizontal dot plot.
 function showEmploymentRateTooltip(event, d){
     tooltip
