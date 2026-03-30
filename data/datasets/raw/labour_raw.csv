@@ -1,0 +1,105 @@
+"Background","Education","Age group","2011 Employed Males","2011 Employed Females","2011 Not employed Males","2011 Not employed Females","2021 Employed Males","2021 Employed Females","2021 Not employed Males","2021 Not employed Females"
+"Natives","Basic education","16-19 years",3842,4624,4729,3191,3465,3716,4255,3286
+"Natives","Basic education","20-24 years",3515,2187,1642,1010,3064,1618,1287,802
+"Natives","Basic education","25-29 years",2479,1098,916,785,2306,998,911,626
+"Natives","Basic education","30-34 years",2267,1086,724,627,1959,696,727,526
+"Natives","Basic education","35-39 years",2359,1233,590,564,1770,661,676,529
+"Natives","Basic education","40-44 years",2240,1588,489,610,1817,730,624,550
+"Natives","Basic education","45-49 years",2235,1980,600,760,1867,942,634,561
+"Natives","Basic education","50-54 years",2010,2324,623,889,1892,1298,621,701
+"Natives","Basic education","55-59 years",1782,2616,578,1014,1724,1527,702,929
+"Natives","Basic education","60-64 years",1520,2642,599,1304,1617,1813,779,1326
+"Natives","Basic education","65-69 years",1020,1417,863,2396,1026,1164,997,2277
+"Natives","Basic education","70-74 years",223,146,1128,2960,386,270,1405,3297
+"Natives","Basic education","75 years and over",84,85,3084,8362,231,173,2932,8276
+"Natives","Upper secondary education","16-19 years",275,597,252,236,372,755,223,278
+"Natives","Upper secondary education","20-24 years",3526,4384,2006,1974,3843,4892,1597,1577
+"Natives","Upper secondary education","25-29 years",2878,2252,875,1140,3661,2786,797,868
+"Natives","Upper secondary education","30-34 years",2838,1798,536,774,3117,1924,571,687
+"Natives","Upper secondary education","35-39 years",2935,1827,384,620,2734,1600,485,648
+"Natives","Upper secondary education","40-44 years",3097,1936,320,465,2637,1536,459,540
+"Natives","Upper secondary education","45-49 years",3992,2920,463,554,2850,1702,406,514
+"Natives","Upper secondary education","50-54 years",4278,2635,574,512,3005,1983,400,520
+"Natives","Upper secondary education","55-59 years",3875,2284,636,481,3756,2651,662,719
+"Natives","Upper secondary education","60-64 years",3229,1763,745,555,3590,2126,915,780
+"Natives","Upper secondary education","65-69 years",1890,693,1329,821,2383,1119,1611,1354
+"Natives","Upper secondary education","70-74 years",381,74,1761,832,906,198,2589,1725
+"Natives","Upper secondary education","75 years and over",149,30,3727,1610,482,93,4808,2401
+"Natives","Tertiary education","16-19 years",..,..,..,..,..,..,..,..
+"Natives","Tertiary education","20-24 years",228,406,101,119,354,546,90,109
+"Natives","Tertiary education","25-29 years",1663,2744,308,693,2167,3503,276,576
+"Natives","Tertiary education","30-34 years",2665,3923,288,602,3067,4647,284,611
+"Natives","Tertiary education","35-39 years",2798,4162,200,591,3236,4823,263,596
+"Natives","Tertiary education","40-44 years",2488,3698,180,397,3370,4984,274,567
+"Natives","Tertiary education","45-49 years",2352,3444,203,373,3184,4778,296,559
+"Natives","Tertiary education","50-54 years",2156,3021,209,271,2668,3914,268,409
+"Natives","Tertiary education","55-59 years",1974,2218,198,268,2370,3403,269,471
+"Natives","Tertiary education","60-64 years",1564,1213,239,235,2200,2760,352,544
+"Natives","Tertiary education","65-69 years",727,377,346,405,1525,1311,640,1013
+"Natives","Tertiary education","70-74 years",187,39,446,303,635,232,983,1012
+"Natives","Tertiary education","75 years and over",100,17,833,407,248,85,1355,996
+"Natives","Unknown","16-19 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","20-24 years",..,..,..,..,1,..,..,..
+"Natives","Unknown","25-29 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","30-34 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","35-39 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","40-44 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","45-49 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","50-54 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","55-59 years",..,..,..,..,..,1,..,..
+"Natives","Unknown","60-64 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","65-69 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","70-74 years",..,..,..,..,..,..,..,..
+"Natives","Unknown","75 years and over",..,..,..,..,..,..,1,1
+"Immigrants","Basic education","16-19 years",231,260,179,142,230,216,302,277
+"Immigrants","Basic education","20-24 years",361,404,103,107,723,502,462,376
+"Immigrants","Basic education","25-29 years",376,352,110,124,1287,681,764,522
+"Immigrants","Basic education","30-34 years",399,423,110,111,1132,532,637,364
+"Immigrants","Basic education","35-39 years",413,399,80,106,742,410,386,234
+"Immigrants","Basic education","40-44 years",322,368,64,95,680,503,311,220
+"Immigrants","Basic education","45-49 years",266,358,60,78,596,432,259,208
+"Immigrants","Basic education","50-54 years",182,304,73,87,422,420,203,213
+"Immigrants","Basic education","55-59 years",109,177,55,54,296,348,150,205
+"Immigrants","Basic education","60-64 years",56,75,27,51,173,218,128,181
+"Immigrants","Basic education","65-69 years",25,30,24,48,53,56,78,137
+"Immigrants","Basic education","70-74 years",8,7,35,70,10,9,52,115
+"Immigrants","Basic education","75 years and over",3,4,47,173,12,13,63,181
+"Immigrants","Upper secondary education","16-19 years",13,27,13,10,38,53,36,48
+"Immigrants","Upper secondary education","20-24 years",306,416,195,225,404,586,346,464
+"Immigrants","Upper secondary education","25-29 years",782,762,221,252,817,738,474,496
+"Immigrants","Upper secondary education","30-34 years",770,580,150,179,1018,660,467,384
+"Immigrants","Upper secondary education","35-39 years",577,418,145,116,1263,754,580,374
+"Immigrants","Upper secondary education","40-44 years",450,356,108,83,1061,655,417,250
+"Immigrants","Upper secondary education","45-49 years",333,276,79,60,875,581,366,217
+"Immigrants","Upper secondary education","50-54 years",281,232,88,50,643,419,312,193
+"Immigrants","Upper secondary education","55-59 years",184,141,55,39,409,238,204,159
+"Immigrants","Upper secondary education","60-64 years",91,57,43,31,253,148,187,116
+"Immigrants","Upper secondary education","65-69 years",21,17,33,35,84,59,104,93
+"Immigrants","Upper secondary education","70-74 years",10,9,32,50,19,14,76,72
+"Immigrants","Upper secondary education","75 years and over",1,2,42,106,14,8,68,138
+"Immigrants","Tertiary education","16-19 years",..,..,..,..,..,..,..,..
+"Immigrants","Tertiary education","20-24 years",58,70,31,45,54,80,44,55
+"Immigrants","Tertiary education","25-29 years",257,397,50,114,637,794,378,507
+"Immigrants","Tertiary education","30-34 years",362,565,66,142,894,1019,446,574
+"Immigrants","Tertiary education","35-39 years",291,404,61,107,720,854,375,453
+"Immigrants","Tertiary education","40-44 years",196,311,38,64,569,810,228,273
+"Immigrants","Tertiary education","45-49 years",123,228,35,45,404,516,170,197
+"Immigrants","Tertiary education","50-54 years",105,143,24,36,231,351,125,125
+"Immigrants","Tertiary education","55-59 years",84,83,24,33,125,210,78,86
+"Immigrants","Tertiary education","60-64 years",63,56,23,25,125,137,47,74
+"Immigrants","Tertiary education","65-69 years",25,21,17,23,48,52,54,64
+"Immigrants","Tertiary education","70-74 years",6,7,16,31,27,13,49,51
+"Immigrants","Tertiary education","75 years and over",2,1,17,32,16,13,37,90
+"Immigrants","Unknown","16-19 years",..,..,..,..,..,..,2,3
+"Immigrants","Unknown","20-24 years",..,..,..,..,..,..,5,9
+"Immigrants","Unknown","25-29 years",..,..,..,..,..,..,7,3
+"Immigrants","Unknown","30-34 years",..,..,..,..,..,1,9,11
+"Immigrants","Unknown","35-39 years",..,..,..,..,..,..,6,4
+"Immigrants","Unknown","40-44 years",..,..,..,..,1,1,8,3
+"Immigrants","Unknown","45-49 years",..,..,..,..,..,..,1,3
+"Immigrants","Unknown","50-54 years",..,..,..,..,1,..,2,2
+"Immigrants","Unknown","55-59 years",..,..,..,..,1,..,..,1
+"Immigrants","Unknown","60-64 years",..,..,..,..,..,..,1,..
+"Immigrants","Unknown","65-69 years",..,..,..,..,..,..,1,..
+"Immigrants","Unknown","70-74 years",..,..,..,..,..,..,..,..
+"Immigrants","Unknown","75 years and over",..,..,..,..,..,1,1,1
