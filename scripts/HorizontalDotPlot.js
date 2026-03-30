@@ -40,20 +40,22 @@ export default class HorizontalDotPlot {
         this.dots = this.chart.selectAll('circle');
 
         this.axisX = this.svg.append('g')
-            .attr('transform', `translate(${margins.left}, ${this.height - margins.bottom})`);
+            .classed('axis axis-x', true).attr('transform', `translate(${margins.left}, ${this.height - margins.bottom})`);
 
         this.axisY = this.svg.append('g')
-            .attr('transform', `translate(${margins.left}, ${margins.top})`);
+            .classed('axis axis-y', true).attr('transform', `translate(${margins.left}, ${margins.top})`);
 
         this.labelX = this.svg.append('text')
             .attr('transform', `translate(${this.width / 2}, ${this.height})`)
-            .style('text-anchor', 'middle')
+            .style('text-anchor', 'middle') 
             .attr('dy', -5)
             .text('Employment Rate (%)')
             .classed('axis-title', true);
+            
         this.labelY = this.svg.append('text')
             .attr('transform', `translate(12, ${this.height / 2}) rotate(-90)`)
             .style('text-anchor', 'middle')
+            .attr('dy', 10)
             .text('Age Group')
             .classed('axis-title', true);
     }

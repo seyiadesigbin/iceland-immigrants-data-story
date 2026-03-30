@@ -104,7 +104,7 @@ export const chartConfig = {
         top: 24,
         right: 40,
         bottom: 52,
-        left: 120,
+        left: 90,
     }
 }
 };
