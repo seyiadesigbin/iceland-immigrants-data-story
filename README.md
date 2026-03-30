@@ -1,30 +1,30 @@
 # Iceland Demographics 2011 - 2021
 *An interactive data story developed for:*
 
-**``Course``**: F21DV Data Visualization and Analytics
+**Course**: F21DV Data Visualization and Analytics
 
-**``School``**: Heriot-Watt University, Edinburgh
+**School**: Heriot-Watt University, Edinburgh
 
 ----
 
-**``About the Project``**: The project examnines the effect of immigration on Iceland between **2011** and **2021**.
+**`About the Project`**: The project examines the effect of immigration on Iceland between **2011** and **2021**.
 
-**``Target Audience``**: Policy and Government Leaders
+**`Target Audience`**: Policy and Government Readers
 
 ## Project Focus
 
 The project is built on a central narrative:
 
-- Immigration reshaped Iceland geoegraphically and demographically
+- Immigration reshaped Iceland geographically and demographically
 - Immigrant employment outcomes reversed between 2011 and 2021
-- Higher qualifications did not seem to address the employmen gap
+- Higher qualifications did not seem to address the employment gap
 
 ### Story Structure
 
 
-| Chapter | Title   | Details | Visualisations
+| Chapter | Title   | Details | Visualisations|
 |-------- | ------- | --------| --------------
-|1      | The Shift | Shows where immigraant share rose across Icelandic municipalities and how population change varied by age group, for immigrants and natives. | ``Choropleth chart``  ``Horizontal chart``
+|1      | The Shift | Shows where immigrant share rose across Icelandic municipalities and how population change varied by age group, for immigrants and natives. | ``Choropleth chart``  ``Grouped bar chart``
 |2 | Employment Reversal | Highlights the decline of immigrant employment between 2011 and 2021 and how this varies by age group and education. | ``Slope Chart``  ``Horizontal dot plot``
 |3| Qualification Paradox | Shows the employment-rate gap between immigrants and natives across age groups and education levels. | ``Heatmap``
 
@@ -53,7 +53,7 @@ The cleaned datasets from the Design phase are loaded dynamically at runtime usi
 
 ### Datasets description
 
-| Dataset | Description
+| Dataset | Description|
 |-------- | ------- 
 |`background_clean.csv` | Population by municipality, age group, background, sex, and year
 |`labour_clean.csv` | Population by employment status, age group, background, education, sex, and year
@@ -83,38 +83,38 @@ Municipality names across the `background` dataset and `map boundaries` to accou
 
 ### Processing functions
 Implemented in:
-- `scripts/preprocess,js`
+- `scripts/preprocess.js`
 
 
 ## Application Architecture
 
 The project adopts a modular d3 structure.
 
-| Focus | File | Details
+| Focus | File | Details|
 |-------- | ------- | --------
 |**Main coordination** | `scripts/main.js` | - Loads and parses all datasets <br> - Stored shared state <br>- Controls chart interactions <br>- Renders and updates the application
 |**Pre-processing** |`scripts/preprocess.js`| - Computes municipality immigrant share <br> - Computes grouped employment-rate tables
 |**Utility/config** | `scripts/utils.js` | - Shared constants <br> - Chart configuration <br> - Palette definitions <br> - Municipality name normalization <br> - Municipality-to-region mapping
 |**Chart components**|`scripts/ChoroplethChart.js` <br> `scripts/GroupedBarChart.js` <br> `scripts/SlopeChart.js` <br> `scripts/HorizontalDotPlot.js` <br> `scripts/HeatmapChart.js`| Choropleth chart <br> Grouped bar chart <br> Slope chart <br> Horizontal dot plot chart <br> Heatmap chart <br>
 
-    Each chart is implemented as a resuable class with:
-        - A constructor for SVG/container setup
-        - Private update methods for data, scales, marks, axes, and events
-        - Setter methods for interactivity callbacks
+Each chart is implemented as a resuable class with:
+- A constructor for SVG/container setup
+- Private update methods for data, scales, marks, axes, and events
+- Setter methods for interactivity callbacks
 
-## Share State
+## Shared State
 
 The application uses a shared `state` object in `main.js` to coordinate interactions across the different views.
 
 Examples include:
 - `year`
 - `selectedMunicipality`
-- `selectedEduation`
+- `selectedEducation`
 - `selectedAgeGroup`
-- `selectedBackgroun`
+- `selectedBackground`
 - `highlightedMunicipalities`
 
-This allows for a seamless linkage between chart interactions.
+This allows chart interactions to stay linked across views.
 
 ## Visual Design
 
@@ -130,7 +130,7 @@ Accessibility was considered using:
 - Supplementary labels and interaction hints
 - Non-colour interaction cues such as opacity and highlighting
 
-``` md
+```md
 ## Repository Structure
 
 ```text
@@ -176,9 +176,9 @@ This project is a static web application.
 To run it locally:
 1. Open the up-to-date repository in a local web server environment
 2. Load `index.html`
-3. Keep  the `data`, `scripts`, `styles`, `libs`, and `img` folders in their current relative paths
+3. Keep the `data`, `scripts`, `styles`, `libs`, and `img` folders in their current relative paths
 
-The project must be launched through a local server rather than directly as a raw file in the browser, to enable the datasets load dynamically using d3.
+The project must be launched through a local server rather than directly as a raw file in the browser, to enable the datasets load dynamically using D3.
 
 ## Limitations
 - The project compares 2011 and 2021, so intermediate change is not directly observed
@@ -203,15 +203,14 @@ Potential next steps include:
 - [Oluwaseyi Adesigbin](https://www.linkedin.com/in/seyiadesigbin/) `H00531793` `Team Lead`
 - Ee Ern Ong `H00356380`
 - Sanket Bhoye `H00496389`
-- Shashank Sunil `H00505028`
+- [Shashank Sunil](https://www.linkedin.com/in/shashanksunil) `H00505028`
 
 
 ## References
 
 ### Data and report sources
-- Statistics Iceland (Hagstofa Íslands) | [🔗](https://statice.is/statistics/population/census/census-2021/)
+- Statistics Iceland | [🔗](https://statice.is/statistics/population/census/census-2021/)
 - OECD. Immigration in Iceland (2024) | [🔗](https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/11/immigration-in-iceland_e1b2c815/645ca1ac-en.pdf)
-- Wikipedia | [🔗](https://en.wikipedia.org/wiki/2008%E2%80%932011_Icelandic_financial_crisis)
 
 ### External Assets
 
@@ -224,7 +223,7 @@ Potential next steps include:
 
 The project made use of AI-assisted tools during development. The main platforms used were:
 
-- Open AI ChatGPT / Code
+- OpenAI ChatGPT / Codex
 - Anthropic Claude
 - Microsoft 365 Copilot
 
