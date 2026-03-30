@@ -1,15 +1,17 @@
 'use strict';
 
-// This js file handles the preprocessing of all data to be used for charting.
+// This file derives the aggregated measures used by the charts.
 
 import { values } from './utils.js'
 
 
 /*
-* Calculates the municipality share of immigrants across the different groupings
-* @param {object} backgroundData - Background statistics dataset
-* @param {object} values - Datasets attribute values
+Calculate immigrant share for each municipality-year pair.
+
+@param {object[]} backgroundData - Background dataset rows
+@returns {object[]} Municipality-level immigrant share values
 */
+
 export function calculateMunicipalityShare(backgroundData){
 
     const data = backgroundData; // get background dataset
@@ -18,8 +20,8 @@ export function calculateMunicipalityShare(backgroundData){
     const grouped = d3.rollup(
         data, 
         (rows) => {
-            let total = 0; // keep count of otal population
-            let immigrants = 0; // keep count of immigrants count
+            let total = 0; // total population in the municipality-year group
+            let immigrants = 0; // immigrant population in the municipality-year group
 
             // Loop through each row/set in the data
             rows.forEach((d) => {
@@ -34,7 +36,7 @@ export function calculateMunicipalityShare(backgroundData){
             return {
                 totalPopulation: total,
                 immigrantPopulation: immigrants,
-                immigrantShare: (immigrants/total) * 100
+                immigrantShare: total === 0 ? 0 : (immigrants / total) * 100
             };
         },
         (d) => d.municipality,
@@ -60,9 +62,10 @@ export function calculateMunicipalityShare(backgroundData){
 
 
 /*
-* Calculates the employment rates share of immigrants across the different groupings
-* @param {object} labourData - Labour statistics dataset
-* @param {object} values - Datasets attribute values
+Calculate employment rates for each year-age-background-education combination.
+
+@param {object[]} labourData - Labour dataset rows
+@returns {object[]} Aggregated employment-rate rows
 */
 
 export function calculateEmploymentRates(labourData){
@@ -78,7 +81,7 @@ export function calculateEmploymentRates(labourData){
             let total = 0; // keep count of total population
 
             rows.forEach(d => {
-                total += d.population // total = Previous total + population value
+                total += d.population; // total = Previous total + population value
 
                 // Check if empStatus is "Employed" and add population to employed value
                 if (d.empStatus === values.employmentStatus.employed){
@@ -89,7 +92,7 @@ export function calculateEmploymentRates(labourData){
             return {
                 employed: employed,
                 total: total,
-                employmentRate: total == 0 ? 0 : (employed/total) * 100
+                employmentRate: total === 0 ? 0 : (employed/total) * 100
             };
         },
 
@@ -131,6 +134,10 @@ export function calculateEmploymentRates(labourData){
 
 }
 
+/*
+Build heatmap rows by pairing immigrant and native employment rates
+within the same year, education level, and age group.
+*/
 export function buildHeatmapData(employmentRates){
 
     // Group by year -> education -> ageGroup -> background

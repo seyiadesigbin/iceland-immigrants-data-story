@@ -1,12 +1,9 @@
 'use strict';
 
-/* This file handles the grouped bar chart 
-Assigned team member: Seyi
-
-*/
+/* This file implements the grouped bar chart. */
 
 // Import required functions/variables
-import { palette, chartConfig, values} from './utils.js';
+import { palette, values} from './utils.js';
 
 export default class GroupedBarChart{
 
@@ -74,7 +71,7 @@ export default class GroupedBarChart{
             .style('text-anchor', 'end')
             .attr('dy', 10)
             .attr('dx', -50)
-            .text('Population Growth')
+            .text('Population Change')
             .classed('axis-title', true);
 
         this.title = this.svg.append('text')
@@ -84,27 +81,20 @@ export default class GroupedBarChart{
 
     }
 
-    // Calculate percentage growth between 2011 and 2021.
-    #getGrowth(population2011, population2021){
+    // Calculate population change between 2011 and 2021.
+    #getChange(population2011, population2021){
 
         let startValue = +population2011 || 0;
         let endValue = +population2021 || 0;
 
-        // if (startValue === 0 && endValue === 0) return 0;
-        // if (startValue === 0) return null;
-
-        // let growth = ((endValue - startValue) / startValue) * 100;
-
-        // return Number.isFinite(growth) ? growth : null;
-
         return endValue - startValue;
     }
 
+    /*
+    Prepare grouped-bar rows showing population change from 2011 to 2021
+    for immigrants and natives within each age group.
+    */
     #updateData(){
-            // let filtered = this.data.filter(d => 
-            //     d.year === this.state.year &&
-            //     d.background === values.background.immigrants
-            // );
     
             let municipalityFiltered = this.state.selectedMunicipality
                 ? this.data.filter(d => d.municipality === this.state.selectedMunicipality)
@@ -133,8 +123,8 @@ export default class GroupedBarChart{
                     immigrants2021,
                     natives2011,
                     natives2021,
-                    immigrantGrowth: this.#getGrowth(immigrants2011, immigrants2021),
-                    nativeGrowth: this.#getGrowth(natives2011, natives2021)
+                    immigrantGrowth: this.#getChange(immigrants2011, immigrants2021),
+                    nativeGrowth: this.#getChange(natives2011, natives2021)
                 };
 
             });
@@ -172,10 +162,6 @@ export default class GroupedBarChart{
         let validValues = this.barData
             .map(d => d.value)
             .filter(d => Number.isFinite(d));
-
-        // let maxAbsValue = validValues.length > 0
-        //     ? d3.max(validValues, d => Math.abs(d))
-        //     : 1;
 
         let minValue = validValues.length > 0 ? Math.min(0, d3.min(validValues)) : 0;
         let maxValue = validValues.length > 0 ? Math.max(0, d3.max(validValues)) : 1;
@@ -267,7 +253,7 @@ export default class GroupedBarChart{
                     this.state.selectedAgeGroup === d.ageGroup &&
                     this.state.selectedBackground === d.background;
 
-                // Keep this bar faint if it has no usuable value
+                // Keep this bar faint if it has no usable value.
                 if (!Number.isFinite(d.value)) return 0.25;
 
                 // Default state: show all bars normally.
@@ -277,15 +263,6 @@ export default class GroupedBarChart{
                 return isSelected ? 1 : 0.25;
 
             });
-
-        // this.bars.selectAll('title')
-        //     .data(d => [d])
-        //     .join('title')
-        //     .text(d => {
-        //         let growthText = d.value === null ? 'n/a' : `${d.value.toLocaleString()}`;
-        //         // let growthText = d.value === null ? 'n/a' : `${d.value.toFixed(1)}%`;
-        //         return `${d.ageGroup} | ${d.background}: ${growthText}`;
-        //     });
 
         this.#updateEvents();
         this.#updateBackgroundEvent();
@@ -300,7 +277,7 @@ export default class GroupedBarChart{
         let axisGenX = d3.axisBottom(this.scaleX);
         let axisGenY = d3.axisLeft(this.scaleY);
 
-        /* Format X-axis */
+        /* Keep age-group labels horizontal for easier scanning. */
         this.axisX.call(axisGenX);
 
         this.axisX.selectAll('text')
@@ -313,7 +290,7 @@ export default class GroupedBarChart{
         this.axisX.selectAll('.tick line').remove();
 
 
-        /* Format Y-axis */
+        /* Keep the vertical axis clean so the zero line remains prominent. */
         this.axisY.transition().duration(this.anim).call(axisGenY)
 
         this.axisY.selectAll('.tick line').remove();
@@ -330,7 +307,7 @@ export default class GroupedBarChart{
 
     
     /*
-    Legend logic goes in here 
+    Render the grouped-bar legend for immigrants and natives.
     */
     #updateLegend(){
         let legendData = [

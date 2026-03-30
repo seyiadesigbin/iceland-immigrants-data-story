@@ -1,8 +1,8 @@
 'use strict';
 
-// This script handles all reusable functions
+// Shared constants, configuration, and helper functions used across the application.
 
-const chartWidth = 636
+const chartWidth = 636;
 
 /*
 * Dataset attribute values are defined in the "values" object
@@ -53,17 +53,6 @@ export const chartConfig = {
         }
     },
 
-    pyramidChart: {
-        width: chartWidth,
-        height: 340,
-        margins: {
-            top: 24,
-            right: 48,
-            bottom: 44,
-            left: 48,
-        }
-    },
-
     slopeChart: {
         width: chartWidth,
         height: 260,
@@ -98,14 +87,14 @@ export const chartConfig = {
     },
 
     horizontalDotPlot: {
-    width: chartWidth,
-    height: 300,
-    margins: {
-        top: 24,
-        right: 40,
-        bottom: 52,
-        left: 90,
-    }
+        width: chartWidth,
+        height: 300,
+        margins: {
+            top: 24,
+            right: 40,
+            bottom: 52,
+            left: 90,
+        }
 }
 };
 
@@ -131,13 +120,14 @@ export const palette = {
 
     ink: '#111827',
     muted: '#6b7280',
-    border: '#717174'
+    border: '#717174',
+    noColor: '#e5e7eb'
 
 };
 
 
 
-// Municipality name mapping geoJSON vs CSV
+// Municipality aliases used to map dataset names with map boundary names.
 const municipalityAliases = {
     'hafnarfjardarbaer': 'hafnarfjardarkaupstadur',
     'sandgerdisbaer': 'sudurnesjabaer',
@@ -229,12 +219,15 @@ export const municipalityToRegion = {
 };
 
 /*
-* Converts the municipality name in the dataset to the format in the geoJSON
-* @param {string} name - Municipality name from dataset
+Normalize municipality names so dataset rows and map features can be matched.
+This handles Icelandic characters, mojibake text, and known municipality aliases.
+
+@param {string} name - Municipality name from the dataset or map
 */
+
 export function normalizeName(name){
 
-    // let normalizedName = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    if (!name) return '';
 
     let normalizedName = name
         .toLowerCase()
@@ -260,9 +253,10 @@ export function normalizeName(name){
 * The input can be a dataset municipality name or a map feature name.
 */
 export function getMunicipalityRegion(name){
-    return municipalityToRegion[normalizeName(name)] || 'Region unavailable';
+    return municipalityToRegion[normalizeName(name)] || 'Unknown region';
 }
 
+// Fixed ordering used to keep heatmap rows and columns stable across renders.
 export const heatmapOrder = {
     education: [
         values.education.basic,

@@ -1,7 +1,6 @@
 'use strict';
 
-/* This file handles the Horizontal Dot Plot
-Assigned team member: Sanket
+/* This file implements the Horizontal dot plot.
 */
 
 // Import required functions/variables

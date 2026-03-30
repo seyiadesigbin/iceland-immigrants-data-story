@@ -23,7 +23,7 @@
     /* Navigations/frame */
     --iceland-blue: #003d85;
    
-    /* Immigrants data color */
+    /* Teal palette */
     --teal:      #0a7c5c;
     --teal2:     #12a87a;
     --teal3:     #d4f0e6;
@@ -33,7 +33,7 @@
     --immigrants: #0077b6;   /* blue  — always immigrants */
     --natives:    #d95f02;   /* orange — always natives  */
 
-    /* Natives data color */
+    /* Blue palette */
     --blue:      #1a4f8a;
     --blue2:      #4a75a7;
     --blue3:     #dbeafe;
@@ -48,6 +48,7 @@
     --red:       #c0392b;
     --red2:      #e74c3c;
     --red3:      #fde8e6;
+    --red-dark:  #8f2d23;
 
     /* Amber palette- origin divide */
     --amber:     #92540a;
@@ -85,7 +86,8 @@ html {
     margin: 0 auto;
 }
 
-/* Style properties for the navigation bar */
+/* Navigation */
+
 .nav{
     position: sticky;
     top: 0;
@@ -193,12 +195,6 @@ html {
     color: white;
 }
 
-/* .header em */
-    /* text-decoration: underline; */
-    /* border-bottom: 2px solid var(--blue); */
-
-/* } */
-
 .header-body{
     color: var(--ink4);
     font-size: 14px;
@@ -277,29 +273,19 @@ html {
     /* align-items: start; */
 }
 
-/* Insights column */
-.insights{
-    position: sticky;
-}
-
 /* Chapter tags */
 .ch-tag{
     font-family: 'DM Mono', monospace;
     display: inline-flex;
     align-items: center;
     text-transform: uppercase;
-    font-size: 0.6rem;                                                                                                                                                                                                                                                                                                                                                                                  
+    font-size: 0.6rem;                                                                                                                                                                                                                                                                                                                                                                  
     border-radius: 12px;
     padding: 3px 10px;
     letter-spacing: 0.1em;
     font-weight: 500;
     background-color: var(--blue3)
 }
-
-/* .ch-tag-green{ background-color: var(--teal3); color:var(--teal) }
-.ch-tag-red{ background-color: var(--red3); color:var(--red) }
-.ch-tag-orange{ background-color: var(--orange3); color:var(--orange) }
-.ch-tag-amber{ background-color: var(--amber3); color:var(--amber) } */
 
 /* Chapter typography */
 
@@ -371,7 +357,6 @@ html {
     box-shadow: 0 10px 28px rgba(15, 23, 42, 0.16);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(6px);
     transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
     z-index: 300;
     pointer-events: none;
@@ -544,15 +529,11 @@ html {
     padding: 2px 8px;
     border-radius: 12px;
     background-color: var(--paper3);
-    /* background-color: transparent;
-    border: 1px dashed var(--border); */
     color: var(--ink2);
     font-size: 10.5px;
     line-height: 1.4;
 }
 
-
-/* Legend styling starts here */
 .legend{
     display: flex;
     align-items: center;
@@ -560,6 +541,10 @@ html {
     gap: 12px;
     margin-bottom: 8px;
     margin-left: 20px;
+    font-size: 11px;
+    color: var(--ink2);
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
 
 .legend-item{
@@ -581,13 +566,6 @@ html {
 
 .legend-label{
     display: inline-block;
-}
-
-.legend{
-    font-size: 11px;
-    color: var(--ink2);
-    margin-bottom: 2px;
-    margin-top: 2px;
 }
 
 .choropleth-legend-scale{
@@ -664,8 +642,6 @@ html {
 
 /* Chart axis formatting */
 
-/* Legend styling ends here */
-
 /* Interactivity Controls */
 
 .chart-int{
@@ -677,15 +653,6 @@ html {
 .chart-int-filters{
     display: flex;
 }
-
-
-
-
-/* .filter-group{
-    /* display: flex;
-    gap: 5px;
-}
-*/
 
 .filter-btn{
     font-family: var(--font-sans);
@@ -721,7 +688,6 @@ html {
     border: none;
     cursor: pointer;
     transition: all var(--transition);
-    /* border: 1px solid var(--border); */
 }
 
 .toggle-btn.active {
@@ -800,7 +766,6 @@ html {
 }
 
 .policy em{
-    /* text-decoration: underline; */
     border-bottom: 2px solid var(--red2)
 }
 
@@ -831,9 +796,7 @@ html {
 .policy-num{
     font-family: var(--font-mono);
     font-size: 10px;
-    /* font-weight: 700; */
     color: var(--ink3);
-    /* line-height: 1; */
 }
 
 .policy-num.teal{ color: #7ec8e3; }

@@ -18,7 +18,7 @@ const labourDir = "data/datasets/clean/labour_clean.csv"
 const geoDir = "data/json/geoBoundaries-ISL-ADM2.topo.json"
 
 
-// Shared app state- to store selectons needed for bidirectional interactions
+// Shared app state used to store selections needed for linked interactions
 const state = {
     year: 2021,
     selectedMunicipality: null,
@@ -40,7 +40,8 @@ const appData = {
     geo: null
 };
 
-/* Datasets row parse */
+
+/* ============== Parse datasets rows ================== */
 
 // Background dataset
 function parseBackgroundRow(d){
@@ -102,7 +103,7 @@ async function loadData(){
 }
 
 
-// Verify loaded data
+// Verify loaded data for debugging only
 function validateLoadedData(){
 
     console.log("================= Validate Loaded Data =================")
@@ -120,7 +121,7 @@ function validateLoadedData(){
 }
 
 
-/* =========================== Seyi's codes start here ==========================*/
+/* =========================== Chapter 1 interactions ==========================*/
 
 // Create choropleth chart object
 const choroplethChart = new ChoroplethChart(
@@ -166,7 +167,7 @@ function showRegionTooltip(event, feature, row){
     moveTooltip(event);
 }
 
-function hideRegionTooltip(){
+function hideTooltip(){
     tooltip.style('opacity', 0);
 }
 
@@ -194,7 +195,7 @@ function selectMunicipality(event, feature, row){
     renderAll();
 }
 
-// Clear all interaction state for chapter 1, when the user clicks outside the map regions
+// Clear Chapter 1 interaction state when the user clicks outside the map regions.
 function clearMunicipalitySelection(){
     state.selectedMunicipality = null;
     state.selectedAgeGroup = null;
@@ -237,7 +238,8 @@ function updateChapter1DetailTitle(){
 
 
 /*
-Grouped bar chart functionalities
+Chapter 1 reverse interaction:
+the grouped bar chart can highlight matching municipalities on the map.
 */
 
 /*
@@ -309,23 +311,7 @@ function toggleGroupedBarMapHighlight(event, d){
 }
 
 
-/*
-Create Choropleth chart object and interactivity functions ends here
-*/
-
-
-// /*
-// Create Pyramid chart object and interactivity functions
-// */
-// const pyramidChart = new PyramidChart(
-//     "#pyramid-chart",
-//     "#pyramid-legend",
-//     chartConfig.pyramidChart.width,
-//     chartConfig.pyramidChart.height,
-//     chartConfig.pyramidChart.margins,
-// );
-
-// Tooltip callback
+// Show tooltip for Chapter 1 grouped-bar values.
 function showAgeGrowthTooltip(event, d){
     let growthText = d.value === null ? 'n/a' : `${d.value.toLocaleString()}`;
 
@@ -342,10 +328,6 @@ function showAgeGrowthTooltip(event, d){
     moveTooltip(event);
 }
 
-function selectedAgeGroup(event, d){
-    state.selectedAgeGroup = state.selectedAgeGroup === d.ageGroup ? null : d.ageGroup;
-    renderAll();
-}
 
 function clearGroupedBarSelection(){
     state.selectedAgeGroup = null;
@@ -355,10 +337,8 @@ function clearGroupedBarSelection(){
     renderAll();
 }
 
-/* ======================= Seyi's codes end here ================================= */
 
-
-/* ======================= Sanket's codes start here ======================= */
+/* ======================= Chapter 2 charts and controls ======================= */
 
 // Create Horizontal Dot Plot object
 const horizontalDotPlot = new HorizontalDotPlot(
@@ -368,6 +348,15 @@ const horizontalDotPlot = new HorizontalDotPlot(
     chartConfig.horizontalDotPlot.margins,
 );
 
+const slopeChart = new SlopeChart(
+    "#slope-chart",
+    "#slope-legend",
+    chartConfig.slopeChart.width,
+    chartConfig.slopeChart.height,
+    chartConfig.slopeChart.margins
+);
+
+// Show tooltip for the Chapter 2 horizontal dot plot.
 function showEmploymentRateTooltip(event, d){
     tooltip
         .style('opacity', 1)
@@ -393,11 +382,7 @@ function bindDotPlotControls(){
 }
 
 
-/* ======================= Sanket's codes end here ======================= */
-
-
-
-/* ======================= Ee-Erns's codes start here ======================= */
+/* ======================= Chapter 3 chart and controls ======================= */
 const heatmapChart = new HeatmapChart(
     "#heatmap-chart",
     "#heatmap-legend",
@@ -487,8 +472,6 @@ function renderAll(){
     slopeChart.render(appData.employmentRates, state);// render SlopeChart
     heatmapChart.render(appData.heatmapData, state);
 
-    // pyramidChart.render(appData.background, state);
-
     updateChapter1DetailTitle();
 
 }
@@ -497,34 +480,27 @@ function renderAll(){
 async function init(){
     try{
         await loadData();
-        validateLoadedData();
+        
 
         appData.municipalityShare = calculateMunicipalityShare(appData.background);
         appData.employmentRates = calculateEmploymentRates(appData.labour);
         appData.heatmapData = buildHeatmapData(appData.employmentRates);
 
-        // Test municipality share and employment rates functions
-        console.log("Municipality Share: ", appData.municipalityShare);
-        console.log("Employment Rates: ", appData.employmentRates);
-
-
-        console.log("Check: ", appData.employmentRates.filter(d => d.year === 2021 && d.background === "Immigrants" ))
-
         choroplethChart
             .setRegionHover(showRegionTooltip)
-            .setRegionOut(hideRegionTooltip)
+            .setRegionOut(hideTooltip)
             .setRegionClick(selectMunicipality)
             .setMapBackgroundClick(clearMunicipalitySelection);
 
         chapter1GroupBarChart
             .setBarHover((event, d) => showAgeGrowthTooltip(event, d))
-            .setBarOut(hideRegionTooltip)
+            .setBarOut(hideTooltip)
             .setBarClick(toggleGroupedBarMapHighlight)
             .setChartBackgroundClick(clearGroupedBarSelection);
             // .setBarClick(selectedAgeGroup);
         horizontalDotPlot
             .setDotHover((event, d) => showEmploymentRateTooltip(event, d))
-            .setDotOut(hideRegionTooltip)
+            .setDotOut(hideTooltip)
             .setDotClick((event, d) => {
             state.selectedAgeGroup = state.selectedAgeGroup === d.ageGroup ? null : d.ageGroup;
             renderAll();

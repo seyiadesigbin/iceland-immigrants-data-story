@@ -30,6 +30,7 @@ CSS styling for the Project Overview page/overlay
     opacity: 0;
 }
 
+/* Reopened overview behaves like a centered modal instead of a full-page intro. */
 #overview-overlay.overview-modal-mode{
     background: rgba(14, 17, 23, 0.22);
     backdrop-filter: blur(6px);
@@ -57,12 +58,10 @@ CSS styling for the Project Overview page/overlay
     right: 20px;
     z-index: 520;
     width: 42px;
-    margin-right: 50px;
     height: 42px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     border-radius: 50%;
-    /* background: rgba(14, 17, 23, 0.68); */
-    background-color: var(--red);
+    background-color: var(--red-dark);
     color: #ffffff;
     font-family: var(--font-sans);
     font-size: 24px;
@@ -78,7 +77,7 @@ CSS styling for the Project Overview page/overlay
 }
 
 .overview-x-btn:hover{
-    background: rgba(14, 17, 23, 0.88);
+    background: var(--red   );
     transform: scale(1.03);
 }
 
@@ -92,7 +91,7 @@ CSS styling for the Project Overview page/overlay
     margin: 0 auto;
     border: 1px solid var(--border);
     border-radius: 18px;
-    box-shadow: 0 24px 64px rgb(14, 17, 23, 0.16);
+    box-shadow: 0 24px 64px rgba(14, 17, 23, 0.16);
     overflow: hidden;
     transform: translateY(0) scale(1);
     animation: overviewModalIn 220ms ease;
@@ -151,7 +150,6 @@ CSS styling for the Project Overview page/overlay
     line-height: 1.14;
     color: #ffffff;
     margin-bottom: 16px;
-    /* max-width: 11ch; */
 }
 
 .overview-lead{
@@ -195,6 +193,63 @@ CSS styling for the Project Overview page/overlay
     transition: all var(--transition);
 }
 
+/* Style tag */
+.style-tags{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+}
+
+.style-tag{
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ink4);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.style-tag-tooltip{
+    position: relative;
+    cursor: default;
+}
+
+.style-tag-bubble{
+    position: absolute;
+    left: 50%;
+    bottom: calc(100% + 10px);
+    transform: translateX(-50%) translateY(6px);
+    width: 220px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--paper);
+    color: var(--ink2);
+    border: 1px solid var(--border);
+    box-shadow: 0 12px 30px rgba(14, 17, 23, 0.16);
+    font-family: var(--font-sans);
+    font-size: 11px;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 160ms ease, transform 160ms ease, visibility 160ms ease;
+    z-index: 40;
+}
+
+.style-tag-tooltip:hover .style-tag-bubble{
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
 .overview-cta-btn:hover{
     background: var(--iceland-blue);
     transform: translateY(-1px);
@@ -236,7 +291,7 @@ CSS styling for the Project Overview page/overlay
     display: none!important;
 }
 
-.overview-body{
+.overview-body, li{
     font-family: var(--font-sans);
     font-size: 14px;
     line-height: 1.85;
@@ -278,7 +333,6 @@ CSS styling for the Project Overview page/overlay
 }
 
 .overview-text-item{
-    padding: 14px 0 16px;
     border-bottom: 1px solid var(--border);
 }
 
@@ -339,12 +393,6 @@ CSS styling for the Project Overview page/overlay
 .overview-linkedin:hover{
     background: var(--immigrants);
     transform: translateY(-1px);
-}
-
-.overview-linkedin-icon{
-    width: 15px;
-    height: 15px;
-    display: block;
 }
 
 .overview-course-note{
