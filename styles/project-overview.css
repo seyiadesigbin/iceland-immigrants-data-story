@@ -195,6 +195,15 @@ CSS styling for the Project Overview page/overlay
     transition: all var(--transition);
 }
 
+.style-tag{
+    background-color: var(--iceland-blue);
+    padding: 7px;
+    border-radius: 5px;
+    color: white;
+    font-family: var(--font-sans);
+    font-size: 12px;
+}
+
 .overview-cta-btn:hover{
     background: var(--iceland-blue);
     transform: translateY(-1px);
@@ -278,7 +287,6 @@ CSS styling for the Project Overview page/overlay
 }
 
 .overview-text-item{
-    padding: 14px 0 16px;
     border-bottom: 1px solid var(--border);
 }
 

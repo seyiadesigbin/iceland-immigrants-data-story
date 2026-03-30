@@ -1,8 +1,7 @@
 'use strict';
 
 /*
-This file handles the heatmap chart
-Assigned team member: Ee Ern
+ This file implements the Heatmap.
 */
 
 import { palette, values, heatmapOrder } from './utils.js';

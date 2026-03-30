@@ -1,3 +1,6 @@
+/* This file implements the Slope chart
+*/
+
 'use strict';
 
 import { palette, chartConfig } from './utils.js';

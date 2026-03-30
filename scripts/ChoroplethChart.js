@@ -1,9 +1,6 @@
 'use strict';
 
-/* This file handles the choropleth chart 
-Assigned team member: Seyi
-
-*/
+/* This file implements the Choropleth map. */
 
 // Import required functions/variables
 import { normalizeName, palette } from './utils.js';
@@ -50,10 +47,6 @@ export default class ChoroplethChart{
         // Legend container
         this.legendContainer = d3.select(legendContainer);
 
-        // this.chart = this.svg.append("g");
-
-        // this.path = d3.geoPath();
-
     }
 
     #getMunicipalityMatch(feature){
@@ -64,7 +57,7 @@ export default class ChoroplethChart{
     #getMunicipalityFill(feature){
         let match = this.#getMunicipalityMatch(feature);
 
-        return match ? this.colorScale(match.immigrantShare) : '#eee';
+        return match ? this.colorScale(match.immigrantShare) : palette.noColor;
     }
 
     #updateEvents(){
@@ -126,34 +119,14 @@ export default class ChoroplethChart{
     #updateRegionStyles(){
         const anim = 350;
 
-        // this.regionSelection
-        //     .transition()
-        //     .duration(anim)
-        //     .attr('fill', d => this.#getMunicipalityFill(d))
-        //     .attr('stroke-width', d => {
-        //         let name = normalizeName(d.properties.shapeName);
-        //         let isSelected = this.state.selectedMunicipality &&
-        //             normalizeName(this.state.selectedMunicipality) === name;
-
-        //         return isSelected ? 2 : 0.8;
-        //     })
-        //     .attr('opacity', d => {
-        //         // When nothing is selected, show all municipalities equally.
-        //         if (!this.state.selectedMunicipality) return 1;
-
-        //         let name = normalizeName(d.properties.shapeName);
-        //         let isSelected =
-        //             normalizeName(this.state.selectedMunicipality) === name;
-
-        //         // Fade non-selected municipalities so the active one stands out.
-        //         return isSelected ? 1 : 0.35;
-        //     });
+        // The map keeps one fill meaning at all times; selections and reverse interaction
+        // are shown through stroke emphasis and opacity instead of changing the color metric.
 
         this.regionSelection
             .transition()
             .duration(anim)
             .attr('fill', d => this.#getMunicipalityFill(d))
-            .attr('stroke-width', d => {
+            .attr('stroke', d => {
                 let name = normalizeName(d.properties.shapeName);
                 let highlightedNames = (this.state.highlightedMunicipalities || []).map(normalizeName);
 
@@ -177,8 +150,8 @@ export default class ChoroplethChart{
 
                 if (isSelected) return 2.4;
                 if (isHighlighted) return 1.6;
+                return 0.8;
 
-                // return isSelected ? 2 : 0.8;
             })
             .attr('opacity', d => {
                 let name = normalizeName(d.properties.shapeName);
@@ -222,7 +195,7 @@ export default class ChoroplethChart{
         }).join(', ');
 
         // Use readable interior ticks, but always include the exact max at the end.
-        let tickValues = d3.ticks(minValue, maxValue, 1.5);
+        let tickValues = d3.ticks(minValue, maxValue, 3);
 
         if (tickValues[tickValues.length - 1] !== maxValue){
             tickValues = [...tickValues, maxValue];
@@ -237,7 +210,7 @@ export default class ChoroplethChart{
         let legendScale = this.legendContainer.append('div')
             .classed('choropleth-legend-scale', true);
 
-        // Build a CSS gradient from the 
+        /// Build the gradient bar from the sampled choropleth color scale.
         legendScale.append('div')
             .classed('choropleth-legend-gradient', true)
             .style('background', `linear-gradient(to right, ${gradientStops})`);
@@ -280,6 +253,9 @@ export default class ChoroplethChart{
 
     // Render the Choropleth map
     render(data = [], regions = null, state = {}){
+
+        if (!regions) return this;
+        
         this.data = data;
         this.regions = regions;
         this.state = state;
