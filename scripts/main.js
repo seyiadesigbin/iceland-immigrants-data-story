@@ -373,6 +373,28 @@ function bindDotPlotControls(){
         });
 }
 
+// Bind Level toggle
+function bindLevelToggle(){
+    d3.selectAll('#level-toggle .filter-btn')
+        .on('click', function(){
+            d3.selectAll('#level-toggle .filter-btn').classed('active', false);
+            d3.select(this).classed('active', true);
+
+            const edu = this.dataset.edu;
+            if (edu === 'all-level') {
+                state.selectedEducation = null;
+            } else if (edu === 'basic-level') {
+                state.selectedEducation = values.education.basic;
+            } else if (edu === 'secondary-level') {
+                state.selectedEducation = values.education.upperSecondary;
+            } else if (edu === 'tertiary-level') {
+                state.selectedEducation = values.education.tertiary;
+            }
+
+            renderAll();
+        });
+}
+
 
 /* ======================= Chapter 3 chart and controls ======================= */
 const heatmapChart = new HeatmapChart(
@@ -501,6 +523,7 @@ async function init(){
         bindControls();
 bindDotPlotControls();       
 bindSlopeChartControls();
+bindLevelToggle();
 syncYearToggleButtons();
 bindChapter3Controls();
 syncChapter3YearToggleButtons();
