@@ -348,6 +348,14 @@ const horizontalDotPlot = new HorizontalDotPlot(
     chartConfig.horizontalDotPlot.margins,
 );
 
+const slopeChart = new SlopeChart(
+    "#slope-chart",
+    "#slope-legend",
+    chartConfig.slopeChart.width,
+    chartConfig.slopeChart.height,
+    chartConfig.slopeChart.margins
+);
+
 // Show tooltip for the Chapter 2 horizontal dot plot.
 function showEmploymentRateTooltip(event, d){
     tooltip
@@ -373,7 +381,7 @@ function bindDotPlotControls(){
         });
 }
 
-// Bind Level toggle
+// Bind level toggle
 function bindLevelToggle(){
     d3.selectAll('#level-toggle .filter-btn')
         .on('click', function(){
@@ -393,9 +401,8 @@ function bindLevelToggle(){
 
             renderAll();
         });
-}
-
-
+    }
+    
 /* ======================= Chapter 3 chart and controls ======================= */
 const heatmapChart = new HeatmapChart(
     "#heatmap-chart",
@@ -415,69 +422,11 @@ function syncChapter3YearToggleButtons(){
         .classed('active', true);
 }
 
-function bindChapter3Controls(){
-    d3.selectAll('#chapter3-year-toggle .toggle-btn')
-        .on('click', function(){
-            state.year = +this.dataset.year;
-            syncChapter3YearToggleButtons();
-            renderAll();
-        });
-}
-
-/* ======================= Ee-Erns's codes end here ======================= */
 
 
 
 
-/* ======================= Shashank's codes start here ======================= */
-const slopeChart = new SlopeChart(
-    "#slope-chart",
-    "#slope-legend",
-    chartConfig.slopeChart.width,
-    chartConfig.slopeChart.height,
-    chartConfig.slopeChart.margins
-);
-function bindSlopeChartControls() {
-    d3.selectAll('#level-toggle .filter-btn')
-        .on('click', function () {
-            d3.selectAll('#level-toggle .filter-btn').classed('active', false);
-            d3.select(this).classed('active', true);
-
-            const selected = this.dataset.edu;
-
-            if (selected === 'all-level') {
-                state.selectedEducation = null;
-            } else if (selected === 'basic-level') {
-                state.selectedEducation = 'Basic education';
-            } else if (selected === 'secondary-level') {
-                state.selectedEducation = 'Upper secondary education';
-            } else if (selected === 'tertiary-level') {
-                state.selectedEducation = 'Tertiary education';
-            }
-
-            renderAll();
-        });
-}
-
-
-
-
-
-/* ================================= Shashank's codes end here ======================= */
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Render all charts
+// Central render function: refresh every chart from the current shared state.
 function renderAll(){
 
     choroplethChart.render(appData.municipalityShare, appData.geo, state) // render choropleth chart
@@ -521,13 +470,12 @@ async function init(){
             });
             
         bindControls();
-bindDotPlotControls();       
-bindSlopeChartControls();
-bindLevelToggle();
-syncYearToggleButtons();
-bindChapter3Controls();
-syncChapter3YearToggleButtons();
-renderAll();
+        bindDotPlotControls();
+        bindLevelToggle();
+        syncYearToggleButtons();
+        syncChapter3YearToggleButtons();
+        renderAll();
+
         console.log("App initialized successfully.");
     }catch (error){
         console.error("Error initializing app: ", error);
