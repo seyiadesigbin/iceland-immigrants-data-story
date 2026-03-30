@@ -12,10 +12,9 @@ import SlopeChart from './SlopeChart.js'
 import HorizontalDotPlot from './HorizontalDotPlot.js'
 
 // Define directory of data files
-const backgroundDir = "data/datasets/background.csv"
-const educationDir = "data/datasets/education.csv"
-const labourDir = "data/datasets/labour.csv"
-// const geoDir = "data/geo_json/iceland_municipalities.geojson"
+const backgroundDir = "data/datasets/clean/background.csv"
+const educationDir = "data/datasets/clean/education.csv"
+const labourDir = "data/datasets/clean/labour.csv"
 const geoDir = "data/json/geoBoundaries-ISL-ADM2.topo.json"
 
 
