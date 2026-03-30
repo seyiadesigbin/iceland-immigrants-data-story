@@ -1,36 +1,81 @@
+# Iceland Demographics 2011 - 2021
 
-This is the repository for the the Data Visualisation & Analytics course group project.
+**``Course``**: F21DV Data Visualization and Analytics
 
-You must work from this template on GitLab.
+**``School``**: Heriot-Watt University, Edinburgh
 
-Remember that we will adjust your individual grade based on your contributions on this repository.
+----
 
-### TODO
+**``About the Project``**: The project examnines the effect of immigration on Iceland between **2011** and **2021**.
 
- - [ ] One member of the group (e.g., designated group leader), must fork the project template (see screenshot below).
-    - Move the project under your namespace (e.g., `abc1234`)
-    - Rename the project name with to include: your cohort (_F21DV_ or _F20DV_), your campus (_DU_, _ED_, _MY_), and your group number. For example:
-        - F21DV DU Group 8
-        - F20DV MY Group 2
-        - F21DV ED Group 11
+**``Target Audience``**: Policy and Government Leaders
 
-![Fork Screenshot](img/fork_screenshot.png)
+## Project Focus
 
- - [ ] That same group member then invites other group members to the project (see screenshots below).
-    - Open the members' panel, from the link on the side bar
-    - Click on _Invite members_
-    - In the modal, enter your group members' username, make sure to add them with the _Owner_ permissions.
-    - Click _Invite_
-    - Lecturers and TAs should already part of the forked project. 
+The project is built on a central narrative:
 
-![Mambers Panel](img/members_tab.png)
-![Invite Button](img/invite_members.png)
-![Invite Modal](img/invite_modal.png)
+- Immigration reshaped Iceland geoegraphically and demographically
+- Immigrant employment outcomes reversed between 2011 and 2021
+- Higher qualifications did not seem to address the employmen gap
 
- - [ ] Every group member can clone the repository to work on the project.
- - [ ] After cloning (for every new machine you sue) make sure that your username and email are set correctly.
-    - `git config user.name "Firstname Lastname"`
-    - `git config user.email "abc1234@hw.ac.uk"`
-    - If other deatils are used (e.g., global GitHub config), we might not be able to tell who is who, and therefore who should get marks.
+### Story Structure
 
-Unless you know how to work with those already, we recommend you do not use branches. If your commits history gets lost with a bad merge, we might not be able to see it.
+
+| Chapter | Title   | Details | Visualisations
+|-------- | ------- | --------| --------------
+|1      | The Shift | Shows whre immigraant share across Icelandic municipalities and how | ``Choropleth chart``  ``Horizontal chart``
+|2 | Employment Reversal | Highlights the decline of immigrant employment between 2011 and 2021 and how this varies by age group and education. | ``Slope Chart``  ``Horizontal dot plot``
+|3| Qualification Paradox | Shows the employment-rate gap between immigrants and natives across age groups and education levels. | ``Heatmap``
+
+## Data Sources
+
+The cleaned datasets from the Design phase are loaded dynamically at runtime using d3.
+
+### Files
+- `data/datasets/clean/background_clean.csv`
+- `data/datasets/clean/labour_clean.csv`
+- `data/json/geoBoundaries-ISL-ADM2.topo.json`
+
+
+### Datasets description
+
+| Dataset | Description
+|-------- | ------- 
+|`background_clean.csv` | Population by municipality, age group, background, sex, and year
+|`labour_clean.csv` | Population by employment status, age group, background, education, sex, and year
+|`geoBoundaries-ISL-ADM2.topo.json` | Municipality geometry mapping for the Choropleth map
+
+
+## Data Pre-Processing
+
+Pre-processing of data is handled within the application.
+
+### Main derived measures
+
+| Measure | Definition
+|-------- | ------- 
+| **Immigrant share by municipality** | Immigrant population divided by total population for each municipality-year pair
+| **Employment rate** | Employed population divided by total population within each subgroup
+| **Population change** | `2021 population - 2011 population`
+| **Employment-rate gap** | Immigrant employment rate minus native employment rate
+
+
+### Harmonisation
+Municipality names across the `background` dataset and `map boundaries` to account for:
+- Icelandic characters
+- Alternate spellings
+- Municipalities that were merged or renamed over time
+
+
+### Processing functions
+Implemented in:
+- `scripts/preprocess,js`
+
+
+## Application Architecture
+
+The project adopts a modular d3 structure.
+
+| Focus | File | Details
+|-------- | ------- | --------
+|**Main coordination** | `scripts/main.js` | - Loads and parses all datasets <br> - Stored shared state <br>- Controls chart interactions <br>- Renders and updates the application
