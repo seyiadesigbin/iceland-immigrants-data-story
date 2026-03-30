@@ -74,7 +74,7 @@ export default class GroupedBarChart{
             .style('text-anchor', 'end')
             .attr('dy', 10)
             .attr('dx', -50)
-            .text('Population Change')
+            .text('Population Growth')
             .classed('axis-title', true);
 
         this.title = this.svg.append('text')
