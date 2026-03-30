@@ -253,7 +253,7 @@ export default class HeatmapChart {
         this.data = data;
         this.state = state;
 
-        this.filteredData = this.data.filter(d => d.year === this.state.year);
+        this.filteredData = this.data.filter(d => d.year === this.state.chapter2Year);
 
         this.#updateScales();
         this.#updateAxes();

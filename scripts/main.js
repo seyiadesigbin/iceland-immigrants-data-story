@@ -20,7 +20,8 @@ const geoDir = "data/json/geoBoundaries-ISL-ADM2.topo.json"
 
 // Shared app state used to store selections needed for linked interactions
 const state = {
-    year: 2021,
+    chapter1Year: 2021,
+    chapter2Year: 2021,
     selectedMunicipality: null,
     selectedEducation: null,
     selectedAgeGroup: null,
@@ -160,7 +161,7 @@ function showRegionTooltip(event, feature, row){
         .html(`
             <strong>${feature.properties.shapeName}</strong>
             <span>Region: ${region}</span>
-            <span>Year: ${state.year}</span>
+            <span>Year: ${state.chapter1Year}</span>
             <span>Immigrant share: ${shareText}</span>
         `);
 
@@ -192,7 +193,7 @@ function selectMunicipality(event, feature, row){
     state.selectedBackground = null;
     state.highlightedMunicipalities = [];
 
-    renderAll();
+    renderChapter1();;
 }
 
 // Clear Chapter 1 interaction state when the user clicks outside the map regions.
@@ -202,28 +203,28 @@ function clearMunicipalitySelection(){
     state.selectedBackground = null;
     state.highlightedMunicipalities = [];
 
-    renderAll();
+    renderChapter1();
 }
 
 function syncYearToggleButtons(){
     d3.selectAll('#chapter1-year-toggle .toggle-btn')
         .classed('active', false)
         .filter(function(){
-            return +this.dataset.year === state.year;
+            return +this.dataset.year === state.chapter1Year;
         })
         .classed('active', true);
 }
 
-function setYear(year){
-    state.year = year;
+function setChapter1Year(year){
+    state.chapter1Year = year;
     syncYearToggleButtons();
-    renderAll();
+    renderChapter1();
 }
 
 function bindControls(){
     d3.selectAll('#chapter1-year-toggle .toggle-btn')
         .on('click', function(){
-            setYear(+this.dataset.year);
+            setChapter1Year(+this.dataset.year);
         });
 }
 
@@ -234,6 +235,13 @@ function updateChapter1DetailTitle(){
         : `Population Growth by Age Group - All municipalities`;
 
     d3.select('#chapter1-detail-title').text(titleText);
+}
+
+// Render Chapter 1
+function renderChapter1(){
+    choroplethChart.render(appData.municipalityShare, appData.geo, state);
+    chapter1GroupBarChart.render(appData.background, state);
+    updateChapter1DetailTitle();
 }
 
 
@@ -307,7 +315,7 @@ function toggleGroupedBarMapHighlight(event, d){
         state.highlightedMunicipalities = getHighlightedMunicipalitiesForBar(d);
     }
 
-    renderAll();
+    renderChapter1();;
 }
 
 
@@ -334,7 +342,7 @@ function clearGroupedBarSelection(){
     state.selectedBackground = null;
     state.highlightedMunicipalities = [];
 
-    renderAll();
+    renderChapter1();
 }
 
 
@@ -362,7 +370,7 @@ function showEmploymentRateTooltip(event, d){
         .style('opacity', 1)
         .html(`
             <strong>${d.ageGroup}</strong>
-            <span>Year: ${state.year}</span>
+            <span>Year: ${state.chapter2Year}</span>
             <span>Immigrants: ${d.immigrantRate.toFixed(1)}%</span>
             <span>Natives: ${d.nativeRate.toFixed(1)}%</span>
             <span>Gap: ${Math.abs(d.immigrantRate - d.nativeRate).toFixed(1)}pp (${d.immigrantRate < d.nativeRate ? 'Immigrants behind' : 'Immigrants ahead'})</span>
@@ -376,8 +384,9 @@ function bindDotPlotControls(){
         .on('click', function(){
             d3.selectAll('#dotplot-year-toggle .toggle-btn').classed('active', false);
             d3.select(this).classed('active', true);
-            state.year = +this.dataset.year;
-            renderAll();
+            state.chapter2Year = +this.dataset.year;
+            horizontalDotPlot.render(appData.labour, state);
+            heatmapChart.render(appData.heatmapData, state);
         });
 }
 
@@ -417,7 +426,7 @@ function syncChapter3YearToggleButtons(){
     d3.selectAll('#chapter3-year-toggle .toggle-btn')
         .classed('active', false)
         .filter(function(){
-            return +this.dataset.year === state.year;
+            return +this.dataset.year === state.chapter2Year;
         })
         .classed('active', true);
 }
@@ -461,12 +470,15 @@ async function init(){
             .setBarClick(toggleGroupedBarMapHighlight)
             .setChartBackgroundClick(clearGroupedBarSelection);
             // .setBarClick(selectedAgeGroup);
+
         horizontalDotPlot
             .setDotHover((event, d) => showEmploymentRateTooltip(event, d))
             .setDotOut(hideTooltip)
             .setDotClick((event, d) => {
             state.selectedAgeGroup = state.selectedAgeGroup === d.ageGroup ? null : d.ageGroup;
-            renderAll();
+            
+            horizontalDotPlot.render(appData.labour, state);
+            heatmapChart.render(appData.heatmapData, state);
             });
             
         bindControls();

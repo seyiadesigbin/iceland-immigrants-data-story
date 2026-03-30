@@ -61,7 +61,7 @@ export default class HorizontalDotPlot {
 
     // Calculate employment rate per age group and background for the selected year
     #updateData() {
-        let filtered = this.data.filter(d => d.year === this.state.year);
+        let filtered = this.data.filter(d => d.year === this.state.chapter2Year);
         if (this.state.selectedEducation) {
     filtered = filtered.filter(d => d.education === this.state.selectedEducation);
 }

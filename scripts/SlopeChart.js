@@ -80,7 +80,7 @@ export default class SlopeChart {
     let highest = d3.max(rateValues) || 0;
 
     this.scaleY
-        .domain([0, Math.ceil(highest + 4)])
+        .domain([0, 100])
         .range([this.innerHeight, 0]);
 }
 
@@ -167,7 +167,8 @@ export default class SlopeChart {
             .select('.domain').remove();
 
         let yAxis = d3.axisLeft(this.scaleY)
-            .ticks(5)
+            .tickValues([0, 25, 50, 75, 100])
+            // .ticks(5)
             .tickFormat(d => d + '%')
             .tickSize(-this.innerWidth);
 

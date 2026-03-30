@@ -261,7 +261,7 @@ export default class ChoroplethChart{
         this.state = state;
 
         // Filter the data to the selected year
-        let filtered = this.data.filter(d => d.year === this.state.year);
+        let filtered = this.data.filter(d => d.year === this.state.chapter1Year);
 
         // Create lookup table for matching municipality names
         this.lookup = new Map(
