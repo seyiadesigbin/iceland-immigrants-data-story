@@ -378,6 +378,19 @@ function showEmploymentRateTooltip(event, d){
     moveTooltip(event);
 }
 
+// Show tooltip for the Chapter 2 Slope chart
+function showSlopeChartTooltip(event, d){
+    tooltip
+        .style('opacity', 1)
+        .html(`
+            <strong>${d.year}</strong>
+            <span>Immigrants: ${d.immigrantsRate !== null ? d.immigrantsRate.toFixed(1) : 'n/a'}%</span>
+            <span>Natives: ${d.nativesRate !== null ? d.nativesRate.toFixed(1) : 'n/a'}%</span>
+        `);
+
+    moveTooltip(event);
+}
+
 // Bind dotplot year toggle
 function bindDotPlotControls(){
     d3.selectAll('#dotplot-year-toggle .toggle-btn')
@@ -480,6 +493,10 @@ async function init(){
             horizontalDotPlot.render(appData.labour, state);
             heatmapChart.render(appData.heatmapData, state);
             });
+
+        slopeChart
+            .setDotHover((event, d) => showSlopeChartTooltip(event, d))
+            .setDotOut(hideTooltip);
             
         bindControls();
         bindDotPlotControls();

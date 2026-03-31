@@ -12,6 +12,9 @@ export default class SlopeChart {
     data; state;
     legendContainer;
 
+    dotHover = () => {};
+    dotOut = () => {};
+
     constructor(container, legendContainer, width, height, margins) {
         this.width = width;
         this.height = height;
@@ -118,17 +121,47 @@ export default class SlopeChart {
             .attr('y2', this.scaleY(end.rate));
 
         [start, end].forEach(d => {
+            let yearRows = chartData.filter(row => row.year === d.year);
+            let immigrants = yearRows.find(row => row.background === 'Immigrants');
+            let natives = yearRows.find(row => row.background === 'Natives');
+
+            let tooltipData = {
+                year: d.year,
+                immigrantsRate: immigrants ? immigrants.rate : null,
+                nativesRate: natives ? natives.rate : null
+            };
+
             this.chartGroup.append('circle')
+                .datum(tooltipData)
                 .attr('cx', this.scaleX(d.year))
                 .attr('cy', startY)
                 .attr('r', 5)
                 .attr('fill', lineColour)
                 .attr('stroke', '#fff')
                 .attr('stroke-width', 1.5)
+                .style('cursor', 'pointer')
+                .on('mouseover', (event, pointData) => {
+                    d3.select(event.currentTarget)
+                        .transition()
+                        .duration(150)
+                        .attr('r', 7);
+                    this.dotHover(event, pointData);
+                })
+                .on('mousemove', (event, pointData) => {
+                    this.dotHover(event, pointData);
+                })
+                .on('mouseout', (event, pointData) => {
+                    d3.select(event.currentTarget)
+                        .transition()
+                        .duration(150)
+                        .attr('r', 5);
+                    this.dotOut(event, pointData);
+                })
                 .transition()
                 .duration(800)
                 .attr('cy', this.scaleY(d.rate));
         });
+            
 
         this.chartGroup.append('text')
             .attr('x', this.scaleX(2011) - 10)
@@ -220,6 +253,16 @@ export default class SlopeChart {
         this.#updateAxes();
         this.#updateLegend();
 
+        return this;
+    }
+
+    setDotHover(f = () => {}) {
+        this.dotHover = f;
+        return this;
+    }
+
+    setDotOut(f = () => {}) {
+        this.dotOut = f;
         return this;
     }
 }
