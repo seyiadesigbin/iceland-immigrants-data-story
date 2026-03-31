@@ -294,7 +294,7 @@ CSS styling for the Project Overview page/overlay
 .overview-body, li{
     font-family: var(--font-sans);
     font-size: 14px;
-    line-height: 1.85;
+    line-height: 1.6;
     color: var(--ink2);
 }
 
