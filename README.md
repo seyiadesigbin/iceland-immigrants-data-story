@@ -200,10 +200,10 @@ Potential next steps include:
 - **Lecturer**: Dr Pierre Le Bras (PhD, FHEA)
 
 ### Team
-- [Oluwaseyi Adesigbin](https://www.linkedin.com/in/seyiadesigbin/) `H00531793` `Team Lead`
-- Ee Ern Ong `H00356380`
-- Sanket Bhoye `H00496389`
-- [Shashank Sunil](https://www.linkedin.com/in/shashanksunil) `H00505028`
+- [Oluwaseyi Adesigbin](https://www.linkedin.com/in/seyiadesigbin/) `Team Lead`
+- Ee Ern Ong
+- Sanket Bhoye
+- [Shashank Sunil](https://www.linkedin.com/in/shashanksunil)
 
 
 ## References
