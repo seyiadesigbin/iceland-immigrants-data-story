@@ -27,8 +27,10 @@ export default class HeatmapChart {
         // Set up selection
         this.svg = d3.select(container).append("svg")
             .classed("viz heatmap", true)
-            .attr("width", this.width)
-            .attr("height", this.height);
+            .attr("viewBox", `0 0 ${this.width} ${this.height}`)
+            .attr("preserveAspectRatio", "xMidYMid meet")
+            .attr("width", "100%")
+            .attr("height", "auto");
 
         this.chart = this.svg.append("g")
             .attr("transform", `translate(${this.margin.left},${this.margin.top})`);
@@ -112,7 +114,7 @@ export default class HeatmapChart {
 
         this.axisX.selectAll("text")
             .attr("fill", palette.muted)
-            .attr("font-size", 12);
+            .attr("font-size", window.innerWidth <= 640 ? 9 : 12);
 
         this.axisY.selectAll("text")
             .text(d => this.#getEducationLabel(d))
@@ -172,7 +174,7 @@ export default class HeatmapChart {
             .attr("x", this.xScale.bandwidth() - 8)
             .attr("y", 14)
             .attr("text-anchor", "end")
-            .attr("font-size", 11)
+            .attr("font-size", 11).attr("font-size", window.innerWidth <= 640 ? 9 : 11)
             .attr("fill", "#fff")
             .attr("font-weight", 800)
             .text("⚑");

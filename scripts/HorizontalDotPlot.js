@@ -30,8 +30,10 @@ export default class HorizontalDotPlot {
 
         this.svg = d3.select(container).append('svg')
             .classed('viz horizontal-dot-plot', true)
-            .attr('width', width)
-            .attr('height', height);
+            .attr('viewBox', `0 0 ${width} ${height}`)
+            .attr('preserveAspectRatio', 'xMidYMid meet')
+            .attr('width', '100%')
+            .attr('height', 'auto');
 
         this.chart = this.svg.append('g')
             .attr('transform', `translate(${margins.left}, ${margins.top})`);

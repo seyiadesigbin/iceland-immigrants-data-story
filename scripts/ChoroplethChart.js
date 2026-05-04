@@ -26,8 +26,10 @@ export default class ChoroplethChart{
         // Set up selection
         this.svg = d3.select(container).append("svg")
             .classed("viz choropleth", true)
-            .attr("width", this.width)
-            .attr("height", this.height);
+            .attr("viewBox", `0 0 ${this.width} ${this.height}`)
+            .attr("preserveAspectRatio", "xMidYMid meet")
+            .attr("width", "100%")
+            .attr("height", "auto");
 
         // Transparent background to catch clicks outside municipalities
         this.backgroundRect = this.svg.append('rect')

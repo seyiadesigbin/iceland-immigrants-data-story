@@ -81,9 +81,21 @@ html {
     scroll-behavior: smooth;
 }
 
+html, body{
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 .col{
-    max-width: var(--col-width);
+    width: min(var(--col-width), calc(100% - 32px));
     margin: 0 auto;
+}
+
+.header-inner > *,
+.chapter-grid > *,
+.policy-inner > *,
+.footer-inner > *{
+    min-width: 0;
 }
 
 /* Navigation */
@@ -92,7 +104,7 @@ html {
     position: sticky;
     top: 0;
     z-index: 100;
-    background-color: var(--paper);
+    background-color: var(--paper); 
     border-bottom: 1px solid var(--paper3);
     height: 48px;
     display: flex;
@@ -451,6 +463,58 @@ html {
 
 
 /* Charts */
+
+/* #choropleth-chart{
+    min-width: 520px;
+} */
+
+/* .chart-body{
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+} */
+
+.heatmap-row{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+}
+
+#heatmap-chart{
+    min-width: 620px;
+    flex: 0 0 auto;
+}
+
+#heatmap-legend{
+    width: 35px;
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.charts-section{
+    min-width: 0;
+}
+
+.chapter-grid > *{
+    min-width: 0;
+}
+
+#heatmap-chart{
+    min-width: 620px;
+}
+
+
+.viz{
+    display: block;
+    width: 100%;
+    height: auto;
+}
 
 .charts-stack{
     display: flex;
@@ -847,3 +911,226 @@ html {
     font-size: 10px;
 }
 
+
+/* Mobile responsiveness */
+
+@media (max-width: 1100px){
+    .nav-inner{
+        width: min(var(--col-width), calc(100% - 24px));
+    }
+
+    .logo{
+        height: 84px;
+    }
+}
+
+@media (max-width: 900px){
+    .header{
+        padding: 56px 0 44px;
+    }
+
+    .header-inner,
+    .chapter-grid,
+    .policy-inner,
+    .footer-inner,
+    .stats-bar-inner{
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .nav{
+        height: auto;
+        padding: 8px 0;
+    }
+
+    .nav-inner{
+        width: min(var(--col-width), calc(100% - 20px));
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        gap: 10px;
+    }
+
+    .nav-brand{
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav-links{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px 14px;
+    }
+
+    .nav-pill{
+        order: 3;
+        display: none;
+    }
+
+    .logo{
+        height: 64px;
+        margin-top: 0;
+    }
+
+    .header-title{
+        font-size: 34px;
+        line-height: 1.25;
+    }
+
+    .header-body,
+    .policy-body{
+        line-height: 1.7;
+    }
+
+    .chapter{
+        padding-top: 36px;
+        padding-bottom: 36px;
+    }
+
+    .insights{
+        position: static;
+    }
+
+    .chart-head,
+    .chart-int,
+    .chart-int-filters,
+    .chart-footer{
+        align-items: flex-start;
+    }
+
+    .chart-int{
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .chart-int-filters{
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .filter-group{
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    .toggle-group{
+        flex-wrap: wrap;
+    }
+
+    .legend,
+    .choropleth-legend-scale{
+        margin-left: 0;
+    }
+
+    .policy{
+        padding: 40px 0;
+    }
+}
+
+@media (max-width: 640px){
+    .col{
+        width: min(var(--col-width), calc(100% - 20px));
+    }
+
+    .header{
+        padding: 42px 0 34px;
+    }
+
+    .header-title{
+        font-size: 28px;
+        line-height: 1.22;
+    }
+
+    .ch-head{
+        font-size: 19px;
+    }
+
+    .policy-title{
+        font-size: 24px;
+    }
+
+    .header-body,
+    .policy-body{
+        font-size: 13px;
+    }
+
+    .ch-body{
+        font-size: 12px;
+    }
+
+    .stat-num{
+        font-size: 20px;
+    }
+
+    .chart-head{
+        padding: 8px 10px;
+    }
+
+    .chart-name{
+        font-size: 11px;
+    }
+
+    .chart-src{
+        font-size: 8.5px;
+    }
+
+    .chart-footer{
+        gap: 10px;
+        padding: 8px 10px;
+    }
+
+    .chart-footer span,
+    .preprocess-note{
+        font-size: 10px;
+        line-height: 1.45;
+    }
+
+    .filter-btn,
+    .toggle-btn{
+        font-size: 10px;
+        padding: 5px 10px;
+    }
+
+    .policy-card{
+        grid-template-columns: 1fr;
+        gap: 6px;
+    }
+
+    .footer-inner{
+        gap: 8px;
+    }
+
+    .axis text{
+        font-size: 9px;
+    }
+
+    .axis-title{
+        font-size: 10px;
+    }
+
+    #heatmap-chart{
+    min-width: 0;
+    width: 100%;
+    }
+
+    #heatmap-legend{
+        width: 24px;
+    }
+
+    .heatmap-row{
+        overflow-x: hidden;
+        gap: 6px;
+    }
+
+    .axis text{
+        font-size: 8.5px;
+    }
+
+    .axis-title{
+        font-size: 9.5px;
+    }
+
+
+}

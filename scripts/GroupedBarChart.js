@@ -34,8 +34,10 @@ export default class GroupedBarChart{
 
         this.svg = d3.select(container).append('svg')
             .classed('viz grouped-bar-chart', true)
-            .attr('width', width)
-            .attr('height', height);
+            .attr('viewBox', `0 0 ${width} ${height}`)
+            .attr('preserveAspectRatio', 'xMidYMid meet')
+            .attr('width', '100%')
+            .attr('height', 'auto');
 
         this.chart = this.svg.append('g')
             .attr('transform', `translate(${margins.left}, ${margins.top})`);
